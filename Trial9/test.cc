@@ -6,6 +6,8 @@
 
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
+typedef Eigen::SparseMatrix<double> SpMat;
+typedef Eigen::Triplet<double> T;
 
 
 
@@ -29,7 +31,7 @@ void top_level_task(const Task *task,
                     Context ctx, Runtime *runtime)
 {
 
-	int num_pieces = 100;
+	int num_pieces = 10;
 
 	printf("Define Index Space\n");
 	Rect<1> rect(0,num_pieces-1);
@@ -54,7 +56,7 @@ void top_level_task(const Task *task,
 	printf("PARTITIONS SUCCESSFULLY CREATED\n");
 
 	FieldAllocator allocator = runtime->create_field_allocator(ctx, fs);
-	allocator.allocate_field(sizeof(VectorXd), FIELD_ID);
+	allocator.allocate_field(sizeof(double), FIELD_ID);
 
 	ArgumentMap arg_map;
 
@@ -69,17 +71,8 @@ void top_level_task(const Task *task,
 	init_launcher.region_requirements[0].privilege_fields.clear();
 	init_launcher.region_requirements[0].instance_fields.clear();
 
-
-	//
-	printf("Output task\n");
-	IndexTaskLauncher output_launcher(OUTPUT_TASK_ID, is, TaskArgument(NULL,0), arg_map);
-	RegionRequirement out_req(lp, 0, READ_WRITE, EXCLUSIVE, lr);
-	output_launcher.add_region_requirement(out_req);
-	output_launcher.region_requirements[0].add_field(0,FIELD_ID);
-	runtime->execute_index_space(ctx,output_launcher);
-
-	output_launcher.region_requirements[0].privilege_fields.clear();
-	output_launcher.region_requirements[0].instance_fields.clear();
+	// output_launcher.region_requirements[0].privilege_fields.clear();
+	// output_launcher.region_requirements[0].instance_fields.clear();
 
 	// 
 	runtime->destroy_logical_region(ctx, lr);
@@ -96,41 +89,94 @@ void init_task(const Task *task,
                Context ctx, Runtime *runtime){
 	cout << "here" << endl;
 
-	const FieldAccessor<READ_WRITE, VectorXd, 1> acc(regions[0], FIELD_ID);
+	const FieldAccessor<READ_WRITE, double, 1> acc(regions[0], FIELD_ID);
 
 	int index = task->index_point.point_data[0];
-	cout << "index " << endl;
-	cout << index << endl;
 
-	VectorXd field = VectorXd::Ones(10);
+	double my_d = 2;
 
 	cout << "make point" << endl;
 	Point<1> point(index);
 
-	acc[point] = field;
-	VectorXd my_field = acc[point];
-	cout << "my_field" << endl;
-	cout << my_field.transpose() << endl;
+	acc[point] = my_d;
+	cout << "my_d" << endl;
+	cout << my_d << endl;
+
+	vector<T> cprec; //inititate the vector with values of FEM integral
+	//Loop over elements
+	unsigned ned = 10;
+	for(int e=0; e<ned; e++){				
+		double kv = 1/fabs(0.01); // k(x_e)/dx	
+
+		if(e==0){	// first sudomain	
+			cprec.push_back(T(e,e,kv)); 
+
+		}else if (e==ned-1){ // last subdomain
+			cprec.push_back(T(e-1,e-1,kv));
+
+		} else { //inner subdomains
+			cprec.push_back(T(e-1,e-1, kv));
+			cprec.push_back(T(e-1,e  ,-kv));
+			cprec.push_back(T(e  ,e-1,-kv));
+			cprec.push_back(T(e  ,e  , kv));
+			/* T(e1, e2, value_kappa) is the approx of 
+					the FEM integral for basis functions with indices (e1,e2).
+					This tells the value is approximated by value_kappa.
+					Since we are doing linear interpolation, we just have a flat
+					approx of the integral
+			*/
+		}
+	}
+
+	SpMat OPer = SpMat(ned-1,ned-1);	// Assembly sparse matrix:
+	OPer.setFromTriplets(cprec.begin(), cprec.end()); /* fill the sparse matrix with cprec 
+														 Oper_(e1,e2) = kappa_value */
+
+
+	LogicalRegion lr = regions[0].get_logical_region();
+
+	//
+	printf("Output task\n");
+	TaskLauncher output_launcher(OUTPUT_TASK_ID, TaskArgument(&OPer,sizeof(OPer)));
+	RegionRequirement out_req(lr, READ_ONLY, EXCLUSIVE, lr);
+	output_launcher.add_region_requirement(out_req);
+	output_launcher.region_requirements[0].add_field(0,FIELD_ID);
+	runtime->execute_task(ctx,output_launcher);
+
+
+
 
 }
 
 void output_task(const Task *task,
                  const std::vector<PhysicalRegion> &regions,
                  Context ctx, Runtime *runtime){
-	cout << "here" << endl;
 
-	const FieldAccessor<READ_ONLY, VectorXd, 1> acc(regions[0], FIELD_ID);
+	SpMat OPer = *((const SpMat*) task->args);
+	const FieldAccessor<READ_ONLY, double, 1> acc(regions[0], FIELD_ID);
 
 	int index = task->index_point.point_data[0];
-	cout << "index " << endl;
-	cout << index << endl;
+	unsigned ned = 10;
+	// cout << "index " << endl;
+	// cout << index << endl;
 
 	cout << "make point" << endl;
 	Point<1> point(index);
 
-	VectorXd my_field = acc[point];
-	cout << "another_field" << endl;
-	cout << my_field.transpose() << endl;
+	double d = acc[point];
+
+	VectorXd b = VectorXd::Constant(ned-1,1);
+	if(b.rows()!=ned-1) cout << "Mismatch\n";
+	SimplicialCholesky<SpMat> chol;
+	chol.compute(OPer); /*  find cholesky decomposition. This will be used to solve the FE 
+							linear system */
+	VectorXd Usol = VectorXd(ned+1);
+	Usol.segment(1,ned-1) = chol.solve(b);
+
+	Usol(0) = d; Usol(ned) = d;
+	cout << " solution " << endl;
+	cout << Usol.transpose() << endl;
+	cout << " " << endl;
 
 }
 
