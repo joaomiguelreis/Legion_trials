@@ -25,6 +25,12 @@ enum FieldsID{
 	FIELD_ID,
 };
 
+struct Indices{
+	int subdomain_index;
+	int iteration_index;
+	int elements_per_subdomain;
+};
+
 
 void top_level_task(const Task *task,
                     const std::vector<PhysicalRegion> &regions,
@@ -33,39 +39,45 @@ void top_level_task(const Task *task,
 
 	int num_pieces = 10;
 
-	printf("Define Index Space\n");
+	//printf("Define Index Space\n");
 	Rect<1> rect(0,num_pieces-1);
 	IndexSpaceT<1> is = runtime->create_index_space(ctx, rect);
 	runtime->attach_name(is, "main_index_space");
 
 	// Make field spaces
-	printf("Define field spaces boundary values\n");
+	//printf("Define field spaces boundary values\n");
 	FieldSpace fs = runtime->create_field_space(ctx);
 	runtime->attach_name(fs, "field_space");
 
 	//Finally create logical region all_subproblems
-	printf("Create logical region\n");
+	//printf("Create logical region\n");
 	LogicalRegion lr = runtime->create_logical_region(ctx, is, fs);
 	runtime->attach_name(lr, "lr");
 
 
 	// CREATE PARTITIONS
-	printf("START CREATING PARTITIONS\n");
+	//printf("START CREATING PARTITIONS\n");
 	IndexPartition ip = runtime->create_equal_partition(ctx, is, is);
 	LogicalPartition lp = runtime->get_logical_partition(ctx, lr, ip);
-	printf("PARTITIONS SUCCESSFULLY CREATED\n");
+	//printf("PARTITIONS SUCCESSFULLY CREATED\n");
 
 	FieldAllocator allocator = runtime->create_field_allocator(ctx, fs);
 	allocator.allocate_field(sizeof(double), FIELD_ID);
+	// allocator.allocate_field(sizeof(int), INDEX_ID);
 
 	ArgumentMap arg_map;
+	for (int n=0; n<num_pieces; n++){
+		Point<1> point(n);
+		arg_map.set_point(point, TaskArgument(&n, sizeof(int)));
+	}
 
 	//
-	printf("Initiate task\n");
+	printf("GLOBAL TASK\n");
 	IndexTaskLauncher init_launcher(INIT_TASK_ID, is, TaskArgument(NULL,0), arg_map);
 	RegionRequirement init_req(lp, 0, READ_WRITE, EXCLUSIVE, lr);
 	init_launcher.add_region_requirement(init_req);
 	init_launcher.region_requirements[0].add_field(0,FIELD_ID);
+	// init_launcher.region_requirements[0].add_field(1,INDEX_ID);
 	runtime->execute_index_space(ctx,init_launcher);
 
 	init_launcher.region_requirements[0].privilege_fields.clear();
@@ -87,61 +99,69 @@ void top_level_task(const Task *task,
 void init_task(const Task *task,
                const std::vector<PhysicalRegion> &regions,
                Context ctx, Runtime *runtime){
-	cout << "here" << endl;
+
+	int subdomain_index = *((const int*)task->local_args);
+	cout << "-  subdomain number " << subdomain_index << endl;
+	assert(subdomain_index==task->index_point.point_data[0]);
+
+	/*  INPUTS */
+	int Ne = 10;
+	unsigned Nd = 3;
+	unsigned No = 3; 
+	double mu_kl = 1;
+	double var_kl = 0.1;
+	double len_kl = 0.1;
+	double prec = 1e-9;
+	// int M = 10;
+	unsigned Net = Nd*Ne+No;  // number of total elements (added "no" elements to last subdomain)
+
+
+	/* Spatial settings */
+	double dx = 1 / float(Net); 
+	VectorXd MeshG = VectorXd::Zero(Net+1);
+
+	//printf("Do spatial mesh\n");
+	for (int e = 0; e < Net+1; e++) MeshG(e) = e*dx;
+	VectorXd SF = VectorXd::Ones(Net);
+	VectorXd KF = VectorXd::Ones(Net);
+	/*  INPUTS */
 
 	const FieldAccessor<READ_WRITE, double, 1> acc(regions[0], FIELD_ID);
+	// const FieldAccessor<READ_WRITE, int, 1> acc_index(regions[0], INDEX_ID);
 
 	int index = task->index_point.point_data[0];
 
 	double my_d = 2;
-
-	cout << "make point" << endl;
 	Point<1> point(index);
 
 	acc[point] = my_d;
-	cout << "my_d" << endl;
-	cout << my_d << endl;
-
-	vector<T> cprec; //inititate the vector with values of FEM integral
-	//Loop over elements
-	unsigned ned = 10;
-	for(int e=0; e<ned; e++){				
-		double kv = 1/fabs(0.01); // k(x_e)/dx	
-
-		if(e==0){	// first sudomain	
-			cprec.push_back(T(e,e,kv)); 
-
-		}else if (e==ned-1){ // last subdomain
-			cprec.push_back(T(e-1,e-1,kv));
-
-		} else { //inner subdomains
-			cprec.push_back(T(e-1,e-1, kv));
-			cprec.push_back(T(e-1,e  ,-kv));
-			cprec.push_back(T(e  ,e-1,-kv));
-			cprec.push_back(T(e  ,e  , kv));
-			/* T(e1, e2, value_kappa) is the approx of 
-					the FEM integral for basis functions with indices (e1,e2).
-					This tells the value is approximated by value_kappa.
-					Since we are doing linear interpolation, we just have a flat
-					approx of the integral
-			*/
-		}
-	}
-
-	SpMat OPer = SpMat(ned-1,ned-1);	// Assembly sparse matrix:
-	OPer.setFromTriplets(cprec.begin(), cprec.end()); /* fill the sparse matrix with cprec 
-														 Oper_(e1,e2) = kappa_value */
-
+	// acc_index[point] = index
+	// cout << "my_d" << endl;
+	// cout << my_d << endl;
 
 	LogicalRegion lr = regions[0].get_logical_region();
 
+	Indices indices;
+	indices.subdomain_index = subdomain_index;
+	indices.elements_per_subdomain = Ne;
+
+
 	//
-	printf("Output task\n");
-	TaskLauncher output_launcher(OUTPUT_TASK_ID, TaskArgument(&OPer,sizeof(OPer)));
-	RegionRequirement out_req(lr, READ_ONLY, EXCLUSIVE, lr);
-	output_launcher.add_region_requirement(out_req);
-	output_launcher.region_requirements[0].add_field(0,FIELD_ID);
-	runtime->execute_task(ctx,output_launcher);
+	printf("LOCAL TASK\n");
+	for (int n=0; n<3; n++){
+		printf("ITERATION %3d \n", n);
+		indices.iteration_index = n;
+		TaskLauncher output_launcher(OUTPUT_TASK_ID, TaskArgument(&indices,sizeof(Indices)));
+		RegionRequirement out_req(lr, READ_ONLY, EXCLUSIVE, lr);
+		output_launcher.add_region_requirement(out_req);
+		output_launcher.region_requirements[0].add_field(0,FIELD_ID);
+		// output_launcher.region_requirements[0].add_field(1,INDEX_ID);
+		runtime->execute_task(ctx,output_launcher);	
+	}
+
+	cout << "Next piece" << endl;
+	cout << " " << endl;
+	
 
 
 
@@ -152,29 +172,102 @@ void output_task(const Task *task,
                  const std::vector<PhysicalRegion> &regions,
                  Context ctx, Runtime *runtime){
 
-	SpMat OPer = *((const SpMat*) task->args);
+
+
 	const FieldAccessor<READ_ONLY, double, 1> acc(regions[0], FIELD_ID);
 
-	int index = task->index_point.point_data[0];
-	unsigned ned = 10;
-	// cout << "index " << endl;
-	// cout << index << endl;
+	Indices indices = *((const Indices*)task->args);
 
-	cout << "make point" << endl;
-	Point<1> point(index);
+	int ned = indices.elements_per_subdomain;
+
+	static map< int, SpMat > Oper_for_point;
+	static map<int,SpMat* > Oper_ptr_for_point;
+	static map<int,int> Oper_for_point_is_valid_for_timestep;
+	static std::mutex cache_mutex;
+	int index_point = task->index_point.point_data[0]; // find the index point this instance of T2 was called on
+	cout << "-   current index point " << index_point << endl;
+	int curr_timestep = indices.subdomain_index;  // retrieve from task arguments
+	cout << "-   iteration " << curr_timestep << endl;
+	SpMat Oper;
+	SpMat* Oper_ptr;
+	int valid_timestep;
+	{
+	std::lock_guard<std::mutex> guard(cache_mutex);
+	Oper = Oper_for_point[index_point];
+	Oper_ptr = Oper_ptr_for_point[index_point];
+	valid_timestep = Oper_for_point_is_valid_for_timestep[index_point];
+	}
+	cout << "-    valid for subdomain " << valid_timestep << endl;
+	cout << "-    current subdomain " << curr_timestep << endl;
+	if (Oper_ptr_for_point[index_point] == NULL || valid_timestep != curr_timestep) {
+
+		cout << "I AM COMPUTING CHOLESKY BECAUSE THE TWO PREVIOUS INTEGERS ARE DIFFERENT!!!!" << endl;
+		//cout << "iteration " << curr_timestep << endl;
+
+		//unsigned ned=10;
+		vector<T> cprec; //inititate the vector with values of FEM integral
+
+		//Loop over elements
+		for(int e=0; e<ned; e++){				
+			double kv = 1/fabs(0.1); // k(x_e)/dx	
+
+			if(e==0){	// first sudomain	
+				cprec.push_back(T(e,e,kv)); 
+
+			}else if (e==ned-1){ // last subdomain
+				cprec.push_back(T(e-1,e-1,kv));
+
+			} else { //inner subdomains
+				cprec.push_back(T(e-1,e-1, kv));
+				cprec.push_back(T(e-1,e  ,-kv));
+				cprec.push_back(T(e  ,e-1,-kv));
+				cprec.push_back(T(e  ,e  , kv));
+				/* T(e1, e2, value_kappa) is the approx of 
+						the FEM integral for basis functions with indices (e1,e2).
+						This tells the value is approximated by value_kappa.
+						Since we are doing linear interpolation, we just have a flat
+						approx of the integral
+				*/
+			}
+		}
+
+		SpMat Oper = SpMat(ned-1,ned-1);	// Assembly sparse matrix:
+		Oper.setFromTriplets(cprec.begin(), cprec.end()); /* fill the sparse matrix with cprec 
+														 Oper_(e1,e2) = kappa_value */
+		Oper_ptr = &Oper;
+
+
+		//cout << chol << endl;
+		std::lock_guard<std::mutex> guard(cache_mutex);
+		if (Oper_ptr_for_point[index_point] != NULL) {
+			Oper_for_point.erase(index_point); // remove old value from cache
+			Oper_ptr_for_point.erase(index_point); // remove old value from cache
+		}
+
+		Oper_for_point[index_point] = Oper;
+		Oper_ptr_for_point[index_point] = Oper_ptr;
+		Oper_for_point_is_valid_for_timestep[index_point] = curr_timestep;
+	}
+	
+
+	Point<1> point(index_point);
 
 	double d = acc[point];
 
 	VectorXd b = VectorXd::Constant(ned-1,1);
 	if(b.rows()!=ned-1) cout << "Mismatch\n";
-	SimplicialCholesky<SpMat> chol;
-	chol.compute(OPer); /*  find cholesky decomposition. This will be used to solve the FE 
-							linear system */
+	
 	VectorXd Usol = VectorXd(ned+1);
-	Usol.segment(1,ned-1) = chol.solve(b);
+
+	SimplicialCholesky<SpMat> cholesky;
+	Oper = Oper_for_point[index_point];
+	cholesky.compute(Oper); /*  find cholesky decomposition. This will be used to solve the FE 
+							linear system */
+
+	Usol.segment(1,ned-1) = cholesky.solve(b);
 
 	Usol(0) = d; Usol(ned) = d;
-	cout << " solution " << endl;
+	cout << "-    Solution " << endl;
 	cout << Usol.transpose() << endl;
 	cout << " " << endl;
 
