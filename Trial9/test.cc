@@ -108,10 +108,10 @@ void init_task(const Task *task,
 	int Ne = 10;
 	unsigned Nd = 3;
 	unsigned No = 3; 
-	double mu_kl = 1;
-	double var_kl = 0.1;
-	double len_kl = 0.1;
-	double prec = 1e-9;
+	// double mu_kl = 1;
+	// double var_kl = 0.1;
+	// double len_kl = 0.1;
+	// double prec = 1e-9;
 	// int M = 10;
 	unsigned Net = Nd*Ne+No;  // number of total elements (added "no" elements to last subdomain)
 
@@ -184,7 +184,7 @@ void output_task(const Task *task,
 	static map<int,SpMat* > Oper_ptr_for_point;
 	static map<int,int> Oper_for_point_is_valid_for_timestep;
 	static std::mutex cache_mutex;
-	int index_point = task->index_point.point_data[0]; // find the index point this instance of T2 was called on
+	int index_point = task->parent_task->index_point.point_data[0]; // find the index point this instance of T2 was called on
 	cout << "-   current index point " << index_point << endl;
 	int curr_timestep = indices.subdomain_index;  // retrieve from task arguments
 	cout << "-   iteration " << curr_timestep << endl;
