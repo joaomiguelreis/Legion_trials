@@ -180,26 +180,26 @@ void output_task(const Task *task,
 
 	int ned = indices.elements_per_subdomain;
 
-	static map< int, SpMat > Oper_for_point;
-	static map<int,SpMat* > Oper_ptr_for_point;
-	static map<int,int> Oper_for_point_is_valid_for_timestep;
+	//static map< int, SimplicialCholesky<SpMat> > Oper_for_point;
+	static map<int,SimplicialCholesky<SpMat>* > chol_ptr_for_point;
+	static map<int,int> chol_for_point_is_valid_for_timestep;
 	static std::mutex cache_mutex;
 	int index_point = task->parent_task->index_point.point_data[0]; // find the index point this instance of T2 was called on
 	cout << "-   current index point " << index_point << endl;
 	int curr_timestep = indices.subdomain_index;  // retrieve from task arguments
 	cout << "-   iteration " << curr_timestep << endl;
-	SpMat Oper;
-	SpMat* Oper_ptr;
+	//SpMat Oper;
+	SimplicialCholesky<SpMat>* chol_ptr;
 	int valid_timestep;
 	{
 	std::lock_guard<std::mutex> guard(cache_mutex);
-	Oper = Oper_for_point[index_point];
-	Oper_ptr = Oper_ptr_for_point[index_point];
-	valid_timestep = Oper_for_point_is_valid_for_timestep[index_point];
+	//Oper = Oper_for_point[index_point];
+	chol_ptr = chol_ptr_for_point[index_point];
+	valid_timestep = chol_for_point_is_valid_for_timestep[index_point];
 	}
 	cout << "-    valid for subdomain " << valid_timestep << endl;
 	cout << "-    current subdomain " << curr_timestep << endl;
-	if (Oper_ptr_for_point[index_point] == NULL || valid_timestep != curr_timestep) {
+	if (chol_ptr_for_point[index_point] == NULL || valid_timestep != curr_timestep) {
 
 		cout << "I AM COMPUTING CHOLESKY BECAUSE THE TWO PREVIOUS INTEGERS ARE DIFFERENT!!!!" << endl;
 		//cout << "iteration " << curr_timestep << endl;
@@ -230,23 +230,24 @@ void output_task(const Task *task,
 				*/
 			}
 		}
-
 		SpMat Oper = SpMat(ned-1,ned-1);	// Assembly sparse matrix:
 		Oper.setFromTriplets(cprec.begin(), cprec.end()); /* fill the sparse matrix with cprec 
 														 Oper_(e1,e2) = kappa_value */
-		Oper_ptr = &Oper;
+		SimplicialCholesky<SpMat> chol;
+		chol.compute(Oper);
+		chol_ptr = &chol;
 
 
 		//cout << chol << endl;
 		std::lock_guard<std::mutex> guard(cache_mutex);
-		if (Oper_ptr_for_point[index_point] != NULL) {
-			Oper_for_point.erase(index_point); // remove old value from cache
-			Oper_ptr_for_point.erase(index_point); // remove old value from cache
+		if (chol_ptr_for_point[index_point] != NULL) {
+			//Oper_for_point.erase(index_point); // remove old value from cache
+			chol_ptr_for_point.erase(index_point); // remove old value from cache
 		}
 
-		Oper_for_point[index_point] = Oper;
-		Oper_ptr_for_point[index_point] = Oper_ptr;
-		Oper_for_point_is_valid_for_timestep[index_point] = curr_timestep;
+		//Oper_for_point[index_point] = Oper;
+		chol_ptr_for_point[index_point] = chol_ptr;
+		chol_for_point_is_valid_for_timestep[index_point] = curr_timestep;
 	}
 	
 
@@ -259,12 +260,12 @@ void output_task(const Task *task,
 	
 	VectorXd Usol = VectorXd(ned+1);
 
-	SimplicialCholesky<SpMat> cholesky;
-	Oper = Oper_for_point[index_point];
-	cholesky.compute(Oper); /*  find cholesky decomposition. This will be used to solve the FE 
-							linear system */
+	//SimplicialCholesky<SpMat> cholesky;
+	chol_ptr = chol_ptr_for_point[index_point];
+	//cholesky.compute(Oper); /*  find cholesky decomposition. This will be used to solve the FE 
+							//linear system */
 
-	Usol.segment(1,ned-1) = cholesky.solve(b);
+	Usol.segment(1,ned-1) = (*chol_ptr).solve(b);
 
 	Usol(0) = d; Usol(ned) = d;
 	cout << "-    Solution " << endl;
