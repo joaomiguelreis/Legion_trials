@@ -1,16 +1,51 @@
 #include "schwarz_solver.h"
+#include "../kldec.h"
 
+
+MatrixXd SetKLModes(int const nel, VectorXd &Lam, double len_kl, double var_f);
+
+
+void init_spatial_task(const Task *task,
+                       const std::vector<PhysicalRegion> &regions,
+                       Context ctx, Runtime *runtime){
+
+
+	Indices indices = *((const Indices*)task->args);
+	int current_subdomain = task->index_point.point_data[0];
+
+
+
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_source(regions[0], SOURCE_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_mesh(regions[0], MESH_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[0], SOLUTION_ID);
+
+	int ned = indices.elements_per_subdomain;
+	int No = indices.num_overlapping_elem;
+	int Net = indices.num_total_elements;
+	
+	int start = current_subdomain * (ned-No);
+	double dx = 1 / float(Net);
+	// int id; 
+	for (int e=0; e<ned+1; e++){
+		int id = start + e;
+		if (e<ned+1) acc_source[id] = 1; //last value is just something...
+		acc_mesh[id] = id*dx;
+		acc_sol[id] = 0; //BC WILL BE WRITTEN IN NODES TASK
+	}
+}
+
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 
 
 void init_fields_task(const Task *task,
 			          const std::vector<PhysicalRegion> &regions,
 			          Context ctx, Runtime *runtime){
 
-	cout << "init_fields_task" << endl;
-
 
 	Indices indices = *((const Indices*)task->args);
-	int current_subdomain = *((const int*)task->local_args);
+	int current_subdomain = task->index_point.point_data[0];
 
 
 
@@ -19,14 +54,14 @@ void init_fields_task(const Task *task,
 	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_left(regions[1], INNER_LEFT_ID);
 	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_right(regions[1], INNER_RIGHT_ID);
 	const FieldAccessor<WRITE_ONLY, bool, 1> acc_done(regions[1], DONE_ID);
+	const FieldAccessor<WRITE_ONLY, bool, 1> acc_write(regions[1], WRITE_ID);
 
 
 	int num_pieces = indices.num_pieces;
-	double u0 = 0;
-	double u1 = 1;
+	double u0 = indices.u0;
+	double u1 = indices.u1;
 	double ul, ur;
-	// cout << u0 << "  " << u1 << endl;
-	//cout << "current subdomain at init" << current_subdomain << endl;
+
 	if (current_subdomain==0 || current_subdomain==num_pieces-1 ){
 		if (current_subdomain== 0){
 			ul = u0; //left BC
@@ -51,6 +86,7 @@ void init_fields_task(const Task *task,
 	acc_inner_left[current_subdomain] = 0;
 	acc_inner_right[current_subdomain] = 0;
 	acc_done[current_subdomain] = false;
+	acc_write[current_subdomain] = true;
 
 
 }
@@ -58,33 +94,39 @@ void init_fields_task(const Task *task,
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 
-void init_spatial_task(const Task *task,
-                       const std::vector<PhysicalRegion> &regions,
-                       Context ctx, Runtime *runtime){
+void KL_expansion_task(const Task *task,
+                    const std::vector<PhysicalRegion> &regions,
+                    Context ctx, Runtime *runtime){
 
+	std::default_random_engine generator;
+	std::normal_distribution<double> G(.0,1.0);
 
 	Indices indices = *((const Indices*)task->args);
-	int current_subdomain = *((const int*)task->local_args);
-
 
 	const FieldAccessor<WRITE_ONLY, double, 1> acc_field(regions[0], FIELD_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_source(regions[0], SOURCE_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_mesh(regions[0], MESH_ID);
 
-	int num_elements_subdomain = indices.elements_per_subdomain;
-	int No = indices.num_overlapping_elem;
+	double len_kl = indices.len_kl;
+	double var_kl = indices.var_kl;
+	double mu_kl = indices.mu_kl;
 	int Net = indices.num_total_elements;
-	
-	int start = current_subdomain * (num_elements_subdomain-No);
-	double dx = 1 / float(Net);
-	// int id; 
-	for (int e=0; e<num_elements_subdomain+1; e++){
-		int id = start + e;
-		if (e<num_elements_subdomain+1) acc_field[id] = 1; //values in the middle of elements
-		if (e<num_elements_subdomain+1) acc_source[id] = 1; //last value is just something...
-		acc_mesh[id] = id*dx;
 
+	/* Find KL modes */
+	VectorXd Lam;
+	MatrixXd Modes = SetKLModes(Net, Lam, len_kl, var_kl);
+	for(int e=0; e<Net; e++) Modes.col(e) *= Lam(e);
+
+	/* KL Expansion */
+	VectorXd KF = VectorXd::Ones(Net)*mu_kl; // full KL-epansion
+	for(int e=0; e<Net; e++){
+		double va = G(generator);
+		KF += Modes.col(e)*va;	
 	}
+	KF.array() = KF.array().exp();
+
+	for(int e=0; e<Net; e++){
+		acc_field[e] = KF(e);	
+	}
+
 }
 
 
@@ -96,18 +138,16 @@ void color_spatial_fields_task(const Task *task,
                     const std::vector<PhysicalRegion> &regions,
                     Context ctx, Runtime *runtime){
 
-	cout << "color_spatial_fields_task" << endl;
-
 	const FieldAccessor<WRITE_ONLY, Point<1>, 1> acc_color(regions[0], SUBDOMAIN_COLOR_ID);
 
-	LocalSpatial settings = *((const LocalSpatial*)task->args);
-	int num_elements_subdomain = settings.num_elements_subdomain;
-	int num_pieces = settings.num_pieces;
+	Indices indices = *((const Indices*)task->args);
+	int ned = indices.elements_per_subdomain;
+	int num_pieces = indices.num_pieces;
 
 
 	for(int n=0; n<num_pieces; n++){
-		for (int e=0; e<num_elements_subdomain; e++){
-			int id = n * num_elements_subdomain + e;
+		for (int e=0; e<ned; e++){
+			int id = n * ned + e;
 			const Point<1> node_ptr(id);
 			acc_color[node_ptr] = n;
 		}
@@ -123,17 +163,17 @@ bool loc_solver_task(const Task *task,
 			         const std::vector<PhysicalRegion> &regions,
 			         Context ctx, Runtime *runtime){
 
-	//cout << "running local solver" << endl;
-
 	/* create accessors to regions */
 	const FieldAccessor<READ_ONLY, double, 1> acc_edge_left(regions[0], EDGE_LEFT_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_edge_right(regions[0], EDGE_RIGHT_ID);
 	const FieldAccessor<READ_WRITE, double, 1> acc_inner_left(regions[1], INNER_LEFT_ID);
 	const FieldAccessor<READ_WRITE, double, 1> acc_inner_right(regions[1], INNER_RIGHT_ID);
 	const FieldAccessor<READ_WRITE, bool, 1> acc_done(regions[1], DONE_ID);
+	const FieldAccessor<READ_WRITE, bool, 1> acc_write(regions[1], WRITE_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_field(regions[2], FIELD_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_source(regions[2], SOURCE_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_mesh(regions[2], MESH_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[2], SOLUTION_ID);
 
 	// Get indices 
 	int current_subdomain = *((const int*)task->local_args);
@@ -195,7 +235,7 @@ bool loc_solver_task(const Task *task,
 		static map<int,SpMat* > Oper_ptr_for_point;
 		static map<int,int> Oper_for_point_is_valid_for_timestep;
 		static std::mutex cache_mutex;
-		//int index_point = task->parent_task->index_point.point_data[0];
+
 		SpMat Oper;
 		SpMat* Oper_ptr;
 		int valid_timestep;
@@ -301,10 +341,20 @@ bool loc_solver_task(const Task *task,
 		double tol = indices.tolerance;
 		if ((gap_left < tol) && (gap_right < tol)== 1){
 			acc_done[current_subdomain] = true;
-			cout << "mesh of subdomain " << current_subdomain << endl;
-			cout << X.transpose() << endl;
-			cout << " piece of solution at subdomain " << current_subdomain << endl;
-			cout << Usol.transpose() << endl;
+
+			//display
+			if (acc_write[current_subdomain]){
+				cout << " piece of solution at subdomain " << current_subdomain << endl;
+				cout << Usol.transpose() << endl;
+				cout << "\n" << endl;
+				int start = current_subdomain * (ned-no);
+				for (int e=0; e<ned+1; e++){
+					int id = start + e;
+					acc_sol[id] = Usol(e);
+				}
+				acc_write[current_subdomain] = false;
+				
+			}
 		}
 
 	} // END OF IF BOOL == FALSE
@@ -335,8 +385,6 @@ void updateBC_task(const Task *task,
 	int current_subdomain = task->index_point.point_data[0]; 
 	bool done = acc_done[current_subdomain];
 
-	if (current_subdomain==0) cout << " new iteration\n \n";
-
 	if (done==false){
 
 		int num_pieces = indices.num_pieces;
@@ -348,6 +396,28 @@ void updateBC_task(const Task *task,
 
 }
 
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+void display_task(const Task *task,
+			       const std::vector<PhysicalRegion> &regions,
+			       Context ctx, Runtime *runtime){
+
+	const FieldAccessor<READ_ONLY, double, 1> acc_sol(regions[0], SOLUTION_ID);
+
+	int Net = *((const int*)task->args);
+
+	VectorXd solution = VectorXd::Zero(Net+1);
+	for (int n=0; n<Net+1; n++){
+		solution[n] = acc_sol[n];
+	}
+
+	cout << "final solution \n";
+	cout << solution.transpose() << endl;
+
+
+}
 
 
 
