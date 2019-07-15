@@ -1,0 +1,8 @@
+level	start	end	color	opacity	title	initiation	in	out	children	parents	prof_uid
+3	3626	3633	#ff2000	1.0	Equal Partition	3					10787
+3	6174	6235	#00f0ff	1.0	Partition By Field	5					10788
+3	538789	538794	#000000	1.0	Intersection						356
+3	538811	538815	#000000	1.0	Intersection						357
+3	538829	538833	#000000	1.0	Intersection						358
+3	538848	538853	#000000	1.0	Intersection						359
+3	538871	538876	#000000	1.0	Intersection						360

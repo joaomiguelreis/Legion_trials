@@ -1,0 +1,2478 @@
+op_id	desc	proc	level
+0	Operation <0>		
+1	top_level <1>	CPU Processor 0x1d00000000000001	2
+3	Pending Partition Operation <3>		
+4	color_spatial_fields_task <4>	CPU Processor 0x1d00000000000001	3
+5	Dependent Partition Operation <5>		
+6	KL_expansion_task <6>	CPU Processor 0x1d00000000000001	3
+7	init_spatial_task <7>		
+8	init_fields_task <8>		
+9	loc_solver_task <9>		
+10	Advance Operation <10>		
+11	Open Operation <11>		
+12	Advance Operation <12>		
+13	Open Operation <13>		
+14	Advance Operation <14>		
+15	Open Operation <15>		
+16	Post Close Operation <16>		
+17	init_fields_task <17>		
+18	Post Close Operation <18>		
+19	init_fields_task <19>	CPU Processor 0x1d00000000000001	3
+20	init_fields_task <20>	CPU Processor 0x1d00000000000001	3
+21	init_fields_task <21>	CPU Processor 0x1d00000000000001	3
+22	init_fields_task <22>	CPU Processor 0x1d00000000000001	3
+23	init_fields_task <23>	CPU Processor 0x1d00000000000001	3
+24	Post Close Operation <24>		
+25	Post Close Operation <25>		
+26	Post Close Operation <26>		
+27	Post Close Operation <27>		
+28	Post Close Operation <28>		
+29	Post Close Operation <29>		
+30	Post Close Operation <30>		
+31	Post Close Operation <31>		
+32	Post Close Operation <32>		
+33	Post Close Operation <33>		
+34	init_spatial_task <34>		
+35	init_spatial_task <35>	CPU Processor 0x1d00000000000001	3
+36	init_spatial_task <36>	CPU Processor 0x1d00000000000001	3
+37	init_spatial_task <37>	CPU Processor 0x1d00000000000001	3
+38	init_spatial_task <38>	CPU Processor 0x1d00000000000001	3
+39	init_spatial_task <39>	CPU Processor 0x1d00000000000001	3
+40	Post Close Operation <40>		
+41	Post Close Operation <41>		
+42	Post Close Operation <42>		
+43	Post Close Operation <43>		
+44	Post Close Operation <44>		
+45	loc_solver_task <45>		
+46	loc_solver_task <46>	CPU Processor 0x1d00000000000001	3
+47	loc_solver_task <47>	CPU Processor 0x1d00000000000001	3
+48	loc_solver_task <48>	CPU Processor 0x1d00000000000001	3
+49	loc_solver_task <49>	CPU Processor 0x1d00000000000001	3
+50	loc_solver_task <50>	CPU Processor 0x1d00000000000001	3
+51	updateBC_task <51>		
+52	loc_solver_task <52>		
+53	updateBC_task <53>		
+54	updateBC_task <54>	CPU Processor 0x1d00000000000001	3
+55	updateBC_task <55>	CPU Processor 0x1d00000000000001	3
+56	updateBC_task <56>	CPU Processor 0x1d00000000000001	3
+57	updateBC_task <57>	CPU Processor 0x1d00000000000001	3
+58	updateBC_task <58>	CPU Processor 0x1d00000000000001	3
+59	Post Close Operation <59>		
+60	Post Close Operation <60>		
+61	Post Close Operation <61>		
+62	Post Close Operation <62>		
+63	Post Close Operation <63>		
+64	loc_solver_task <64>		
+65	loc_solver_task <65>	CPU Processor 0x1d00000000000001	3
+66	loc_solver_task <66>	CPU Processor 0x1d00000000000001	3
+67	loc_solver_task <67>	CPU Processor 0x1d00000000000001	3
+68	loc_solver_task <68>	CPU Processor 0x1d00000000000001	3
+69	loc_solver_task <69>	CPU Processor 0x1d00000000000001	3
+70	updateBC_task <70>		
+71	loc_solver_task <71>		
+72	updateBC_task <72>		
+73	updateBC_task <73>	CPU Processor 0x1d00000000000001	3
+74	updateBC_task <74>	CPU Processor 0x1d00000000000001	3
+75	updateBC_task <75>	CPU Processor 0x1d00000000000001	3
+76	updateBC_task <76>	CPU Processor 0x1d00000000000001	3
+77	updateBC_task <77>	CPU Processor 0x1d00000000000001	3
+78	Post Close Operation <78>		
+79	Post Close Operation <79>		
+80	Post Close Operation <80>		
+81	Post Close Operation <81>		
+82	Post Close Operation <82>		
+83	loc_solver_task <83>		
+84	loc_solver_task <84>	CPU Processor 0x1d00000000000001	3
+85	loc_solver_task <85>	CPU Processor 0x1d00000000000001	3
+86	loc_solver_task <86>	CPU Processor 0x1d00000000000001	3
+87	loc_solver_task <87>	CPU Processor 0x1d00000000000001	3
+88	loc_solver_task <88>	CPU Processor 0x1d00000000000001	3
+89	updateBC_task <89>		
+90	loc_solver_task <90>		
+91	updateBC_task <91>		
+92	updateBC_task <92>	CPU Processor 0x1d00000000000001	3
+93	updateBC_task <93>	CPU Processor 0x1d00000000000001	3
+94	updateBC_task <94>	CPU Processor 0x1d00000000000001	3
+95	updateBC_task <95>	CPU Processor 0x1d00000000000001	3
+96	updateBC_task <96>	CPU Processor 0x1d00000000000001	3
+97	Post Close Operation <97>		
+98	Post Close Operation <98>		
+99	Post Close Operation <99>		
+100	Post Close Operation <100>		
+101	Post Close Operation <101>		
+102	loc_solver_task <102>		
+103	loc_solver_task <103>	CPU Processor 0x1d00000000000001	3
+104	loc_solver_task <104>	CPU Processor 0x1d00000000000001	3
+105	loc_solver_task <105>	CPU Processor 0x1d00000000000001	3
+106	loc_solver_task <106>	CPU Processor 0x1d00000000000001	3
+107	loc_solver_task <107>	CPU Processor 0x1d00000000000001	3
+108	updateBC_task <108>		
+109	loc_solver_task <109>		
+110	updateBC_task <110>		
+111	updateBC_task <111>	CPU Processor 0x1d00000000000001	3
+112	updateBC_task <112>	CPU Processor 0x1d00000000000001	3
+113	updateBC_task <113>	CPU Processor 0x1d00000000000001	3
+114	updateBC_task <114>	CPU Processor 0x1d00000000000001	3
+115	updateBC_task <115>	CPU Processor 0x1d00000000000001	3
+116	Post Close Operation <116>		
+117	Post Close Operation <117>		
+118	Post Close Operation <118>		
+119	Post Close Operation <119>		
+120	Post Close Operation <120>		
+121	loc_solver_task <121>		
+122	loc_solver_task <122>	CPU Processor 0x1d00000000000001	3
+123	loc_solver_task <123>	CPU Processor 0x1d00000000000001	3
+124	loc_solver_task <124>	CPU Processor 0x1d00000000000001	3
+125	loc_solver_task <125>	CPU Processor 0x1d00000000000001	3
+126	loc_solver_task <126>	CPU Processor 0x1d00000000000001	3
+127	updateBC_task <127>		
+128	loc_solver_task <128>		
+129	updateBC_task <129>		
+130	updateBC_task <130>	CPU Processor 0x1d00000000000001	3
+131	updateBC_task <131>	CPU Processor 0x1d00000000000001	3
+132	updateBC_task <132>	CPU Processor 0x1d00000000000001	3
+133	updateBC_task <133>	CPU Processor 0x1d00000000000001	3
+134	updateBC_task <134>	CPU Processor 0x1d00000000000001	3
+135	Post Close Operation <135>		
+136	Post Close Operation <136>		
+137	Post Close Operation <137>		
+138	Post Close Operation <138>		
+139	Post Close Operation <139>		
+140	loc_solver_task <140>		
+141	loc_solver_task <141>	CPU Processor 0x1d00000000000001	3
+142	loc_solver_task <142>	CPU Processor 0x1d00000000000001	3
+143	loc_solver_task <143>	CPU Processor 0x1d00000000000001	3
+144	loc_solver_task <144>	CPU Processor 0x1d00000000000001	3
+145	loc_solver_task <145>	CPU Processor 0x1d00000000000001	3
+146	updateBC_task <146>		
+147	loc_solver_task <147>		
+148	updateBC_task <148>		
+149	updateBC_task <149>	CPU Processor 0x1d00000000000001	3
+150	updateBC_task <150>	CPU Processor 0x1d00000000000001	3
+151	updateBC_task <151>	CPU Processor 0x1d00000000000001	3
+152	updateBC_task <152>	CPU Processor 0x1d00000000000001	3
+153	updateBC_task <153>	CPU Processor 0x1d00000000000001	3
+154	Post Close Operation <154>		
+155	Post Close Operation <155>		
+156	Post Close Operation <156>		
+157	Post Close Operation <157>		
+158	Post Close Operation <158>		
+159	loc_solver_task <159>		
+160	loc_solver_task <160>	CPU Processor 0x1d00000000000001	3
+161	loc_solver_task <161>	CPU Processor 0x1d00000000000001	3
+162	loc_solver_task <162>	CPU Processor 0x1d00000000000001	3
+163	loc_solver_task <163>	CPU Processor 0x1d00000000000001	3
+164	loc_solver_task <164>	CPU Processor 0x1d00000000000001	3
+165	updateBC_task <165>		
+166	loc_solver_task <166>		
+167	updateBC_task <167>		
+168	updateBC_task <168>	CPU Processor 0x1d00000000000001	3
+169	updateBC_task <169>	CPU Processor 0x1d00000000000001	3
+170	updateBC_task <170>	CPU Processor 0x1d00000000000001	3
+171	updateBC_task <171>	CPU Processor 0x1d00000000000001	3
+172	updateBC_task <172>	CPU Processor 0x1d00000000000001	3
+173	Post Close Operation <173>		
+174	Post Close Operation <174>		
+175	Post Close Operation <175>		
+176	Post Close Operation <176>		
+177	Post Close Operation <177>		
+178	loc_solver_task <178>		
+179	loc_solver_task <179>	CPU Processor 0x1d00000000000001	3
+180	loc_solver_task <180>	CPU Processor 0x1d00000000000001	3
+181	loc_solver_task <181>	CPU Processor 0x1d00000000000001	3
+182	loc_solver_task <182>	CPU Processor 0x1d00000000000001	3
+183	loc_solver_task <183>	CPU Processor 0x1d00000000000001	3
+184	updateBC_task <184>		
+185	loc_solver_task <185>		
+186	updateBC_task <186>		
+187	updateBC_task <187>	CPU Processor 0x1d00000000000001	3
+188	updateBC_task <188>	CPU Processor 0x1d00000000000001	3
+189	updateBC_task <189>	CPU Processor 0x1d00000000000001	3
+190	updateBC_task <190>	CPU Processor 0x1d00000000000001	3
+191	updateBC_task <191>	CPU Processor 0x1d00000000000001	3
+192	Post Close Operation <192>		
+193	Post Close Operation <193>		
+194	Post Close Operation <194>		
+195	Post Close Operation <195>		
+196	Post Close Operation <196>		
+197	loc_solver_task <197>		
+198	loc_solver_task <198>	CPU Processor 0x1d00000000000001	3
+199	loc_solver_task <199>	CPU Processor 0x1d00000000000001	3
+200	loc_solver_task <200>	CPU Processor 0x1d00000000000001	3
+201	loc_solver_task <201>	CPU Processor 0x1d00000000000001	3
+202	loc_solver_task <202>	CPU Processor 0x1d00000000000001	3
+203	updateBC_task <203>		
+204	loc_solver_task <204>		
+205	updateBC_task <205>		
+206	updateBC_task <206>	CPU Processor 0x1d00000000000001	3
+207	updateBC_task <207>	CPU Processor 0x1d00000000000001	3
+208	updateBC_task <208>	CPU Processor 0x1d00000000000001	3
+209	updateBC_task <209>	CPU Processor 0x1d00000000000001	3
+210	updateBC_task <210>	CPU Processor 0x1d00000000000001	3
+211	Post Close Operation <211>		
+212	Post Close Operation <212>		
+213	Post Close Operation <213>		
+214	Post Close Operation <214>		
+215	Post Close Operation <215>		
+216	loc_solver_task <216>		
+217	loc_solver_task <217>	CPU Processor 0x1d00000000000001	3
+218	loc_solver_task <218>	CPU Processor 0x1d00000000000001	3
+219	loc_solver_task <219>	CPU Processor 0x1d00000000000001	3
+220	loc_solver_task <220>	CPU Processor 0x1d00000000000001	3
+221	loc_solver_task <221>	CPU Processor 0x1d00000000000001	3
+222	updateBC_task <222>		
+223	loc_solver_task <223>		
+224	updateBC_task <224>		
+225	updateBC_task <225>	CPU Processor 0x1d00000000000001	3
+226	updateBC_task <226>	CPU Processor 0x1d00000000000001	3
+227	updateBC_task <227>	CPU Processor 0x1d00000000000001	3
+228	updateBC_task <228>	CPU Processor 0x1d00000000000001	3
+229	updateBC_task <229>	CPU Processor 0x1d00000000000001	3
+230	Post Close Operation <230>		
+231	Post Close Operation <231>		
+232	Post Close Operation <232>		
+233	Post Close Operation <233>		
+234	Post Close Operation <234>		
+235	loc_solver_task <235>		
+236	loc_solver_task <236>	CPU Processor 0x1d00000000000001	3
+237	loc_solver_task <237>	CPU Processor 0x1d00000000000001	3
+238	loc_solver_task <238>	CPU Processor 0x1d00000000000001	3
+239	loc_solver_task <239>	CPU Processor 0x1d00000000000001	3
+240	loc_solver_task <240>	CPU Processor 0x1d00000000000001	3
+241	updateBC_task <241>		
+242	loc_solver_task <242>		
+243	updateBC_task <243>		
+244	updateBC_task <244>	CPU Processor 0x1d00000000000001	3
+245	updateBC_task <245>	CPU Processor 0x1d00000000000001	3
+246	updateBC_task <246>	CPU Processor 0x1d00000000000001	3
+247	updateBC_task <247>	CPU Processor 0x1d00000000000001	3
+248	updateBC_task <248>	CPU Processor 0x1d00000000000001	3
+249	Post Close Operation <249>		
+250	Post Close Operation <250>		
+251	Post Close Operation <251>		
+252	Post Close Operation <252>		
+253	Post Close Operation <253>		
+254	loc_solver_task <254>		
+255	loc_solver_task <255>	CPU Processor 0x1d00000000000001	3
+256	loc_solver_task <256>	CPU Processor 0x1d00000000000001	3
+257	loc_solver_task <257>	CPU Processor 0x1d00000000000001	3
+258	loc_solver_task <258>	CPU Processor 0x1d00000000000001	3
+259	loc_solver_task <259>	CPU Processor 0x1d00000000000001	3
+260	updateBC_task <260>		
+261	loc_solver_task <261>		
+262	updateBC_task <262>		
+263	updateBC_task <263>	CPU Processor 0x1d00000000000001	3
+264	updateBC_task <264>	CPU Processor 0x1d00000000000001	3
+265	updateBC_task <265>	CPU Processor 0x1d00000000000001	3
+266	updateBC_task <266>	CPU Processor 0x1d00000000000001	3
+267	updateBC_task <267>	CPU Processor 0x1d00000000000001	3
+268	Post Close Operation <268>		
+269	Post Close Operation <269>		
+270	Post Close Operation <270>		
+271	Post Close Operation <271>		
+272	Post Close Operation <272>		
+273	loc_solver_task <273>		
+274	loc_solver_task <274>	CPU Processor 0x1d00000000000001	3
+275	loc_solver_task <275>	CPU Processor 0x1d00000000000001	3
+276	loc_solver_task <276>	CPU Processor 0x1d00000000000001	3
+277	loc_solver_task <277>	CPU Processor 0x1d00000000000001	3
+278	loc_solver_task <278>	CPU Processor 0x1d00000000000001	3
+279	updateBC_task <279>		
+280	loc_solver_task <280>		
+281	updateBC_task <281>		
+282	updateBC_task <282>	CPU Processor 0x1d00000000000001	3
+283	updateBC_task <283>	CPU Processor 0x1d00000000000001	3
+284	updateBC_task <284>	CPU Processor 0x1d00000000000001	3
+285	updateBC_task <285>	CPU Processor 0x1d00000000000001	3
+286	updateBC_task <286>	CPU Processor 0x1d00000000000001	3
+287	Post Close Operation <287>		
+288	Post Close Operation <288>		
+289	Post Close Operation <289>		
+290	Post Close Operation <290>		
+291	Post Close Operation <291>		
+292	loc_solver_task <292>		
+293	loc_solver_task <293>	CPU Processor 0x1d00000000000001	3
+294	loc_solver_task <294>	CPU Processor 0x1d00000000000001	3
+295	loc_solver_task <295>	CPU Processor 0x1d00000000000001	3
+296	loc_solver_task <296>	CPU Processor 0x1d00000000000001	3
+297	loc_solver_task <297>	CPU Processor 0x1d00000000000001	3
+298	updateBC_task <298>		
+299	loc_solver_task <299>		
+300	updateBC_task <300>		
+301	updateBC_task <301>	CPU Processor 0x1d00000000000001	3
+302	updateBC_task <302>	CPU Processor 0x1d00000000000001	3
+303	updateBC_task <303>	CPU Processor 0x1d00000000000001	3
+304	updateBC_task <304>	CPU Processor 0x1d00000000000001	3
+305	updateBC_task <305>	CPU Processor 0x1d00000000000001	3
+306	Post Close Operation <306>		
+307	Post Close Operation <307>		
+308	Post Close Operation <308>		
+309	Post Close Operation <309>		
+310	Post Close Operation <310>		
+311	loc_solver_task <311>		
+312	loc_solver_task <312>	CPU Processor 0x1d00000000000001	3
+313	loc_solver_task <313>	CPU Processor 0x1d00000000000001	3
+314	loc_solver_task <314>	CPU Processor 0x1d00000000000001	3
+315	loc_solver_task <315>	CPU Processor 0x1d00000000000001	3
+316	loc_solver_task <316>	CPU Processor 0x1d00000000000001	3
+317	updateBC_task <317>		
+318	loc_solver_task <318>		
+319	updateBC_task <319>		
+320	updateBC_task <320>	CPU Processor 0x1d00000000000001	3
+321	updateBC_task <321>	CPU Processor 0x1d00000000000001	3
+322	updateBC_task <322>	CPU Processor 0x1d00000000000001	3
+323	updateBC_task <323>	CPU Processor 0x1d00000000000001	3
+324	updateBC_task <324>	CPU Processor 0x1d00000000000001	3
+325	Post Close Operation <325>		
+326	Post Close Operation <326>		
+327	Post Close Operation <327>		
+328	Post Close Operation <328>		
+329	Post Close Operation <329>		
+330	loc_solver_task <330>		
+331	loc_solver_task <331>	CPU Processor 0x1d00000000000001	3
+332	loc_solver_task <332>	CPU Processor 0x1d00000000000001	3
+333	loc_solver_task <333>	CPU Processor 0x1d00000000000001	3
+334	loc_solver_task <334>	CPU Processor 0x1d00000000000001	3
+335	loc_solver_task <335>	CPU Processor 0x1d00000000000001	3
+336	updateBC_task <336>		
+337	loc_solver_task <337>		
+338	updateBC_task <338>		
+339	updateBC_task <339>	CPU Processor 0x1d00000000000001	3
+340	updateBC_task <340>	CPU Processor 0x1d00000000000001	3
+341	updateBC_task <341>	CPU Processor 0x1d00000000000001	3
+342	updateBC_task <342>	CPU Processor 0x1d00000000000001	3
+343	updateBC_task <343>	CPU Processor 0x1d00000000000001	3
+344	Post Close Operation <344>		
+345	Post Close Operation <345>		
+346	Post Close Operation <346>		
+347	Post Close Operation <347>		
+348	Post Close Operation <348>		
+349	loc_solver_task <349>		
+350	loc_solver_task <350>	CPU Processor 0x1d00000000000001	3
+351	loc_solver_task <351>	CPU Processor 0x1d00000000000001	3
+352	loc_solver_task <352>	CPU Processor 0x1d00000000000001	3
+353	loc_solver_task <353>	CPU Processor 0x1d00000000000001	3
+354	loc_solver_task <354>	CPU Processor 0x1d00000000000001	3
+355	updateBC_task <355>		
+356	loc_solver_task <356>		
+357	updateBC_task <357>		
+358	updateBC_task <358>	CPU Processor 0x1d00000000000001	3
+359	updateBC_task <359>	CPU Processor 0x1d00000000000001	3
+360	updateBC_task <360>	CPU Processor 0x1d00000000000001	3
+361	updateBC_task <361>	CPU Processor 0x1d00000000000001	3
+362	updateBC_task <362>	CPU Processor 0x1d00000000000001	3
+363	Post Close Operation <363>		
+364	Post Close Operation <364>		
+365	Post Close Operation <365>		
+366	Post Close Operation <366>		
+367	Post Close Operation <367>		
+368	loc_solver_task <368>		
+369	loc_solver_task <369>	CPU Processor 0x1d00000000000001	3
+370	loc_solver_task <370>	CPU Processor 0x1d00000000000001	3
+371	loc_solver_task <371>	CPU Processor 0x1d00000000000001	3
+372	loc_solver_task <372>	CPU Processor 0x1d00000000000001	3
+373	loc_solver_task <373>	CPU Processor 0x1d00000000000001	3
+374	updateBC_task <374>		
+375	loc_solver_task <375>		
+376	updateBC_task <376>		
+377	updateBC_task <377>	CPU Processor 0x1d00000000000001	3
+378	updateBC_task <378>	CPU Processor 0x1d00000000000001	3
+379	updateBC_task <379>	CPU Processor 0x1d00000000000001	3
+380	updateBC_task <380>	CPU Processor 0x1d00000000000001	3
+381	updateBC_task <381>	CPU Processor 0x1d00000000000001	3
+382	Post Close Operation <382>		
+383	Post Close Operation <383>		
+384	Post Close Operation <384>		
+385	Post Close Operation <385>		
+386	Post Close Operation <386>		
+387	loc_solver_task <387>		
+388	loc_solver_task <388>	CPU Processor 0x1d00000000000001	3
+389	loc_solver_task <389>	CPU Processor 0x1d00000000000001	3
+390	loc_solver_task <390>	CPU Processor 0x1d00000000000001	3
+391	loc_solver_task <391>	CPU Processor 0x1d00000000000001	3
+392	loc_solver_task <392>	CPU Processor 0x1d00000000000001	3
+393	updateBC_task <393>		
+394	loc_solver_task <394>		
+395	updateBC_task <395>		
+396	updateBC_task <396>	CPU Processor 0x1d00000000000001	3
+397	updateBC_task <397>	CPU Processor 0x1d00000000000001	3
+398	updateBC_task <398>	CPU Processor 0x1d00000000000001	3
+399	updateBC_task <399>	CPU Processor 0x1d00000000000001	3
+400	updateBC_task <400>	CPU Processor 0x1d00000000000001	3
+401	Post Close Operation <401>		
+402	Post Close Operation <402>		
+403	Post Close Operation <403>		
+404	Post Close Operation <404>		
+405	Post Close Operation <405>		
+406	loc_solver_task <406>		
+407	loc_solver_task <407>	CPU Processor 0x1d00000000000001	3
+408	loc_solver_task <408>	CPU Processor 0x1d00000000000001	3
+409	loc_solver_task <409>	CPU Processor 0x1d00000000000001	3
+410	loc_solver_task <410>	CPU Processor 0x1d00000000000001	3
+411	loc_solver_task <411>	CPU Processor 0x1d00000000000001	3
+412	updateBC_task <412>		
+413	loc_solver_task <413>		
+414	updateBC_task <414>		
+415	updateBC_task <415>	CPU Processor 0x1d00000000000001	3
+416	updateBC_task <416>	CPU Processor 0x1d00000000000001	3
+417	updateBC_task <417>	CPU Processor 0x1d00000000000001	3
+418	updateBC_task <418>	CPU Processor 0x1d00000000000001	3
+419	updateBC_task <419>	CPU Processor 0x1d00000000000001	3
+420	Post Close Operation <420>		
+421	Post Close Operation <421>		
+422	Post Close Operation <422>		
+423	Post Close Operation <423>		
+424	Post Close Operation <424>		
+425	loc_solver_task <425>		
+426	loc_solver_task <426>	CPU Processor 0x1d00000000000001	3
+427	loc_solver_task <427>	CPU Processor 0x1d00000000000001	3
+428	loc_solver_task <428>	CPU Processor 0x1d00000000000001	3
+429	loc_solver_task <429>	CPU Processor 0x1d00000000000001	3
+430	loc_solver_task <430>	CPU Processor 0x1d00000000000001	3
+431	updateBC_task <431>		
+432	loc_solver_task <432>		
+433	updateBC_task <433>		
+434	updateBC_task <434>	CPU Processor 0x1d00000000000001	3
+435	updateBC_task <435>	CPU Processor 0x1d00000000000001	3
+436	updateBC_task <436>	CPU Processor 0x1d00000000000001	3
+437	updateBC_task <437>	CPU Processor 0x1d00000000000001	3
+438	updateBC_task <438>	CPU Processor 0x1d00000000000001	3
+439	Post Close Operation <439>		
+440	Post Close Operation <440>		
+441	Post Close Operation <441>		
+442	Post Close Operation <442>		
+443	Post Close Operation <443>		
+444	loc_solver_task <444>		
+445	loc_solver_task <445>	CPU Processor 0x1d00000000000001	3
+446	loc_solver_task <446>	CPU Processor 0x1d00000000000001	3
+447	loc_solver_task <447>	CPU Processor 0x1d00000000000001	3
+448	loc_solver_task <448>	CPU Processor 0x1d00000000000001	3
+449	loc_solver_task <449>	CPU Processor 0x1d00000000000001	3
+450	updateBC_task <450>		
+451	loc_solver_task <451>		
+452	updateBC_task <452>		
+453	updateBC_task <453>	CPU Processor 0x1d00000000000001	3
+454	updateBC_task <454>	CPU Processor 0x1d00000000000001	3
+455	updateBC_task <455>	CPU Processor 0x1d00000000000001	3
+456	updateBC_task <456>	CPU Processor 0x1d00000000000001	3
+457	updateBC_task <457>	CPU Processor 0x1d00000000000001	3
+458	Post Close Operation <458>		
+459	Post Close Operation <459>		
+460	Post Close Operation <460>		
+461	Post Close Operation <461>		
+462	Post Close Operation <462>		
+463	loc_solver_task <463>		
+464	loc_solver_task <464>	CPU Processor 0x1d00000000000001	3
+465	loc_solver_task <465>	CPU Processor 0x1d00000000000001	3
+466	loc_solver_task <466>	CPU Processor 0x1d00000000000001	3
+467	loc_solver_task <467>	CPU Processor 0x1d00000000000001	3
+468	loc_solver_task <468>	CPU Processor 0x1d00000000000001	3
+469	updateBC_task <469>		
+470	loc_solver_task <470>		
+471	updateBC_task <471>		
+472	updateBC_task <472>	CPU Processor 0x1d00000000000001	3
+473	updateBC_task <473>	CPU Processor 0x1d00000000000001	3
+474	updateBC_task <474>	CPU Processor 0x1d00000000000001	3
+475	updateBC_task <475>	CPU Processor 0x1d00000000000001	3
+476	updateBC_task <476>	CPU Processor 0x1d00000000000001	3
+477	Post Close Operation <477>		
+478	Post Close Operation <478>		
+479	Post Close Operation <479>		
+480	Post Close Operation <480>		
+481	Post Close Operation <481>		
+482	loc_solver_task <482>		
+483	loc_solver_task <483>	CPU Processor 0x1d00000000000001	3
+484	loc_solver_task <484>	CPU Processor 0x1d00000000000001	3
+485	loc_solver_task <485>	CPU Processor 0x1d00000000000001	3
+486	loc_solver_task <486>	CPU Processor 0x1d00000000000001	3
+487	loc_solver_task <487>	CPU Processor 0x1d00000000000001	3
+488	updateBC_task <488>		
+489	loc_solver_task <489>		
+490	updateBC_task <490>		
+491	updateBC_task <491>	CPU Processor 0x1d00000000000001	3
+492	updateBC_task <492>	CPU Processor 0x1d00000000000001	3
+493	updateBC_task <493>	CPU Processor 0x1d00000000000001	3
+494	updateBC_task <494>	CPU Processor 0x1d00000000000001	3
+495	updateBC_task <495>	CPU Processor 0x1d00000000000001	3
+496	Post Close Operation <496>		
+497	Post Close Operation <497>		
+498	Post Close Operation <498>		
+499	Post Close Operation <499>		
+500	Post Close Operation <500>		
+501	loc_solver_task <501>		
+502	loc_solver_task <502>	CPU Processor 0x1d00000000000001	3
+503	loc_solver_task <503>	CPU Processor 0x1d00000000000001	3
+504	loc_solver_task <504>	CPU Processor 0x1d00000000000001	3
+505	loc_solver_task <505>	CPU Processor 0x1d00000000000001	3
+506	loc_solver_task <506>	CPU Processor 0x1d00000000000001	3
+507	updateBC_task <507>		
+508	loc_solver_task <508>		
+509	updateBC_task <509>		
+510	updateBC_task <510>	CPU Processor 0x1d00000000000001	3
+511	updateBC_task <511>	CPU Processor 0x1d00000000000001	3
+512	updateBC_task <512>	CPU Processor 0x1d00000000000001	3
+513	updateBC_task <513>	CPU Processor 0x1d00000000000001	3
+514	updateBC_task <514>	CPU Processor 0x1d00000000000001	3
+515	Post Close Operation <515>		
+516	Post Close Operation <516>		
+517	Post Close Operation <517>		
+518	Post Close Operation <518>		
+519	Post Close Operation <519>		
+520	loc_solver_task <520>		
+521	loc_solver_task <521>	CPU Processor 0x1d00000000000001	3
+522	loc_solver_task <522>	CPU Processor 0x1d00000000000001	3
+523	loc_solver_task <523>	CPU Processor 0x1d00000000000001	3
+524	loc_solver_task <524>	CPU Processor 0x1d00000000000001	3
+525	loc_solver_task <525>	CPU Processor 0x1d00000000000001	3
+526	updateBC_task <526>		
+527	loc_solver_task <527>		
+528	updateBC_task <528>		
+529	updateBC_task <529>	CPU Processor 0x1d00000000000001	3
+530	updateBC_task <530>	CPU Processor 0x1d00000000000001	3
+531	updateBC_task <531>	CPU Processor 0x1d00000000000001	3
+532	updateBC_task <532>	CPU Processor 0x1d00000000000001	3
+533	updateBC_task <533>	CPU Processor 0x1d00000000000001	3
+534	Post Close Operation <534>		
+535	Post Close Operation <535>		
+536	Post Close Operation <536>		
+537	Post Close Operation <537>		
+538	Post Close Operation <538>		
+539	loc_solver_task <539>		
+540	loc_solver_task <540>	CPU Processor 0x1d00000000000001	3
+541	loc_solver_task <541>	CPU Processor 0x1d00000000000001	3
+542	loc_solver_task <542>	CPU Processor 0x1d00000000000001	3
+543	loc_solver_task <543>	CPU Processor 0x1d00000000000001	3
+544	loc_solver_task <544>	CPU Processor 0x1d00000000000001	3
+545	updateBC_task <545>		
+546	loc_solver_task <546>		
+547	updateBC_task <547>		
+548	updateBC_task <548>	CPU Processor 0x1d00000000000001	3
+549	updateBC_task <549>	CPU Processor 0x1d00000000000001	3
+550	updateBC_task <550>	CPU Processor 0x1d00000000000001	3
+551	updateBC_task <551>	CPU Processor 0x1d00000000000001	3
+552	updateBC_task <552>	CPU Processor 0x1d00000000000001	3
+553	Post Close Operation <553>		
+554	Post Close Operation <554>		
+555	Post Close Operation <555>		
+556	Post Close Operation <556>		
+557	Post Close Operation <557>		
+558	loc_solver_task <558>		
+559	loc_solver_task <559>	CPU Processor 0x1d00000000000001	3
+560	loc_solver_task <560>	CPU Processor 0x1d00000000000001	3
+561	loc_solver_task <561>	CPU Processor 0x1d00000000000001	3
+562	loc_solver_task <562>	CPU Processor 0x1d00000000000001	3
+563	loc_solver_task <563>	CPU Processor 0x1d00000000000001	3
+564	updateBC_task <564>		
+565	loc_solver_task <565>		
+566	updateBC_task <566>		
+567	updateBC_task <567>	CPU Processor 0x1d00000000000001	3
+568	updateBC_task <568>	CPU Processor 0x1d00000000000001	3
+569	updateBC_task <569>	CPU Processor 0x1d00000000000001	3
+570	updateBC_task <570>	CPU Processor 0x1d00000000000001	3
+571	updateBC_task <571>	CPU Processor 0x1d00000000000001	3
+572	Post Close Operation <572>		
+573	Post Close Operation <573>		
+574	Post Close Operation <574>		
+575	Post Close Operation <575>		
+576	Post Close Operation <576>		
+577	loc_solver_task <577>		
+578	loc_solver_task <578>	CPU Processor 0x1d00000000000001	3
+579	loc_solver_task <579>	CPU Processor 0x1d00000000000001	3
+580	loc_solver_task <580>	CPU Processor 0x1d00000000000001	3
+581	loc_solver_task <581>	CPU Processor 0x1d00000000000001	3
+582	loc_solver_task <582>	CPU Processor 0x1d00000000000001	3
+583	updateBC_task <583>		
+584	loc_solver_task <584>		
+585	updateBC_task <585>		
+586	updateBC_task <586>	CPU Processor 0x1d00000000000001	3
+587	updateBC_task <587>	CPU Processor 0x1d00000000000001	3
+588	updateBC_task <588>	CPU Processor 0x1d00000000000001	3
+589	updateBC_task <589>	CPU Processor 0x1d00000000000001	3
+590	updateBC_task <590>	CPU Processor 0x1d00000000000001	3
+591	Post Close Operation <591>		
+592	Post Close Operation <592>		
+593	Post Close Operation <593>		
+594	Post Close Operation <594>		
+595	Post Close Operation <595>		
+596	loc_solver_task <596>		
+597	loc_solver_task <597>	CPU Processor 0x1d00000000000001	3
+598	loc_solver_task <598>	CPU Processor 0x1d00000000000001	3
+599	loc_solver_task <599>	CPU Processor 0x1d00000000000001	3
+600	loc_solver_task <600>	CPU Processor 0x1d00000000000001	3
+601	loc_solver_task <601>	CPU Processor 0x1d00000000000001	3
+602	updateBC_task <602>		
+603	loc_solver_task <603>		
+604	updateBC_task <604>		
+605	updateBC_task <605>	CPU Processor 0x1d00000000000001	3
+606	updateBC_task <606>	CPU Processor 0x1d00000000000001	3
+607	updateBC_task <607>	CPU Processor 0x1d00000000000001	3
+608	updateBC_task <608>	CPU Processor 0x1d00000000000001	3
+609	updateBC_task <609>	CPU Processor 0x1d00000000000001	3
+610	Post Close Operation <610>		
+611	Post Close Operation <611>		
+612	Post Close Operation <612>		
+613	Post Close Operation <613>		
+614	Post Close Operation <614>		
+615	loc_solver_task <615>		
+616	loc_solver_task <616>	CPU Processor 0x1d00000000000001	3
+617	loc_solver_task <617>	CPU Processor 0x1d00000000000001	3
+618	loc_solver_task <618>	CPU Processor 0x1d00000000000001	3
+619	loc_solver_task <619>	CPU Processor 0x1d00000000000001	3
+620	loc_solver_task <620>	CPU Processor 0x1d00000000000001	3
+621	updateBC_task <621>		
+622	loc_solver_task <622>		
+623	updateBC_task <623>		
+624	updateBC_task <624>	CPU Processor 0x1d00000000000001	3
+625	updateBC_task <625>	CPU Processor 0x1d00000000000001	3
+626	updateBC_task <626>	CPU Processor 0x1d00000000000001	3
+627	updateBC_task <627>	CPU Processor 0x1d00000000000001	3
+628	updateBC_task <628>	CPU Processor 0x1d00000000000001	3
+629	Post Close Operation <629>		
+630	Post Close Operation <630>		
+631	Post Close Operation <631>		
+632	Post Close Operation <632>		
+633	Post Close Operation <633>		
+634	loc_solver_task <634>		
+635	loc_solver_task <635>	CPU Processor 0x1d00000000000001	3
+636	loc_solver_task <636>	CPU Processor 0x1d00000000000001	3
+637	loc_solver_task <637>	CPU Processor 0x1d00000000000001	3
+638	loc_solver_task <638>	CPU Processor 0x1d00000000000001	3
+639	loc_solver_task <639>	CPU Processor 0x1d00000000000001	3
+640	updateBC_task <640>		
+641	loc_solver_task <641>		
+642	updateBC_task <642>		
+643	updateBC_task <643>	CPU Processor 0x1d00000000000001	3
+644	updateBC_task <644>	CPU Processor 0x1d00000000000001	3
+645	updateBC_task <645>	CPU Processor 0x1d00000000000001	3
+646	updateBC_task <646>	CPU Processor 0x1d00000000000001	3
+647	updateBC_task <647>	CPU Processor 0x1d00000000000001	3
+648	Post Close Operation <648>		
+649	Post Close Operation <649>		
+650	Post Close Operation <650>		
+651	Post Close Operation <651>		
+652	Post Close Operation <652>		
+653	loc_solver_task <653>		
+654	loc_solver_task <654>	CPU Processor 0x1d00000000000001	3
+655	loc_solver_task <655>	CPU Processor 0x1d00000000000001	3
+656	loc_solver_task <656>	CPU Processor 0x1d00000000000001	3
+657	loc_solver_task <657>	CPU Processor 0x1d00000000000001	3
+658	loc_solver_task <658>	CPU Processor 0x1d00000000000001	3
+659	updateBC_task <659>		
+660	loc_solver_task <660>		
+661	updateBC_task <661>		
+662	updateBC_task <662>	CPU Processor 0x1d00000000000001	3
+663	updateBC_task <663>	CPU Processor 0x1d00000000000001	3
+664	updateBC_task <664>	CPU Processor 0x1d00000000000001	3
+665	updateBC_task <665>	CPU Processor 0x1d00000000000001	3
+666	updateBC_task <666>	CPU Processor 0x1d00000000000001	3
+667	Post Close Operation <667>		
+668	Post Close Operation <668>		
+669	Post Close Operation <669>		
+670	Post Close Operation <670>		
+671	Post Close Operation <671>		
+672	loc_solver_task <672>		
+673	loc_solver_task <673>	CPU Processor 0x1d00000000000001	3
+674	loc_solver_task <674>	CPU Processor 0x1d00000000000001	3
+675	loc_solver_task <675>	CPU Processor 0x1d00000000000001	3
+676	loc_solver_task <676>	CPU Processor 0x1d00000000000001	3
+677	loc_solver_task <677>	CPU Processor 0x1d00000000000001	3
+678	updateBC_task <678>		
+679	loc_solver_task <679>		
+680	updateBC_task <680>		
+681	updateBC_task <681>	CPU Processor 0x1d00000000000001	3
+682	updateBC_task <682>	CPU Processor 0x1d00000000000001	3
+683	updateBC_task <683>	CPU Processor 0x1d00000000000001	3
+684	updateBC_task <684>	CPU Processor 0x1d00000000000001	3
+685	updateBC_task <685>	CPU Processor 0x1d00000000000001	3
+686	Post Close Operation <686>		
+687	Post Close Operation <687>		
+688	Post Close Operation <688>		
+689	Post Close Operation <689>		
+690	Post Close Operation <690>		
+691	loc_solver_task <691>		
+692	loc_solver_task <692>	CPU Processor 0x1d00000000000001	3
+693	loc_solver_task <693>	CPU Processor 0x1d00000000000001	3
+694	loc_solver_task <694>	CPU Processor 0x1d00000000000001	3
+695	loc_solver_task <695>	CPU Processor 0x1d00000000000001	3
+696	loc_solver_task <696>	CPU Processor 0x1d00000000000001	3
+697	updateBC_task <697>		
+698	loc_solver_task <698>		
+699	updateBC_task <699>		
+700	updateBC_task <700>	CPU Processor 0x1d00000000000001	3
+701	updateBC_task <701>	CPU Processor 0x1d00000000000001	3
+702	updateBC_task <702>	CPU Processor 0x1d00000000000001	3
+703	updateBC_task <703>	CPU Processor 0x1d00000000000001	3
+704	updateBC_task <704>	CPU Processor 0x1d00000000000001	3
+705	Post Close Operation <705>		
+706	Post Close Operation <706>		
+707	Post Close Operation <707>		
+708	Post Close Operation <708>		
+709	Post Close Operation <709>		
+710	loc_solver_task <710>		
+711	loc_solver_task <711>	CPU Processor 0x1d00000000000001	3
+712	loc_solver_task <712>	CPU Processor 0x1d00000000000001	3
+713	loc_solver_task <713>	CPU Processor 0x1d00000000000001	3
+714	loc_solver_task <714>	CPU Processor 0x1d00000000000001	3
+715	loc_solver_task <715>	CPU Processor 0x1d00000000000001	3
+716	updateBC_task <716>		
+717	loc_solver_task <717>		
+718	updateBC_task <718>		
+719	updateBC_task <719>	CPU Processor 0x1d00000000000001	3
+720	updateBC_task <720>	CPU Processor 0x1d00000000000001	3
+721	updateBC_task <721>	CPU Processor 0x1d00000000000001	3
+722	updateBC_task <722>	CPU Processor 0x1d00000000000001	3
+723	updateBC_task <723>	CPU Processor 0x1d00000000000001	3
+724	Post Close Operation <724>		
+725	Post Close Operation <725>		
+726	Post Close Operation <726>		
+727	Post Close Operation <727>		
+728	Post Close Operation <728>		
+729	loc_solver_task <729>		
+730	loc_solver_task <730>	CPU Processor 0x1d00000000000001	3
+731	loc_solver_task <731>	CPU Processor 0x1d00000000000001	3
+732	loc_solver_task <732>	CPU Processor 0x1d00000000000001	3
+733	loc_solver_task <733>	CPU Processor 0x1d00000000000001	3
+734	loc_solver_task <734>	CPU Processor 0x1d00000000000001	3
+735	updateBC_task <735>		
+736	loc_solver_task <736>		
+737	updateBC_task <737>		
+738	updateBC_task <738>	CPU Processor 0x1d00000000000001	3
+739	updateBC_task <739>	CPU Processor 0x1d00000000000001	3
+740	updateBC_task <740>	CPU Processor 0x1d00000000000001	3
+741	updateBC_task <741>	CPU Processor 0x1d00000000000001	3
+742	updateBC_task <742>	CPU Processor 0x1d00000000000001	3
+743	Post Close Operation <743>		
+744	Post Close Operation <744>		
+745	Post Close Operation <745>		
+746	Post Close Operation <746>		
+747	Post Close Operation <747>		
+748	loc_solver_task <748>		
+749	loc_solver_task <749>	CPU Processor 0x1d00000000000001	3
+750	loc_solver_task <750>	CPU Processor 0x1d00000000000001	3
+751	loc_solver_task <751>	CPU Processor 0x1d00000000000001	3
+752	loc_solver_task <752>	CPU Processor 0x1d00000000000001	3
+753	loc_solver_task <753>	CPU Processor 0x1d00000000000001	3
+754	updateBC_task <754>		
+755	loc_solver_task <755>		
+756	updateBC_task <756>		
+757	updateBC_task <757>	CPU Processor 0x1d00000000000001	3
+758	updateBC_task <758>	CPU Processor 0x1d00000000000001	3
+759	updateBC_task <759>	CPU Processor 0x1d00000000000001	3
+760	updateBC_task <760>	CPU Processor 0x1d00000000000001	3
+761	updateBC_task <761>	CPU Processor 0x1d00000000000001	3
+762	Post Close Operation <762>		
+763	Post Close Operation <763>		
+764	Post Close Operation <764>		
+765	Post Close Operation <765>		
+766	Post Close Operation <766>		
+767	loc_solver_task <767>		
+768	loc_solver_task <768>	CPU Processor 0x1d00000000000001	3
+769	loc_solver_task <769>	CPU Processor 0x1d00000000000001	3
+770	loc_solver_task <770>	CPU Processor 0x1d00000000000001	3
+771	loc_solver_task <771>	CPU Processor 0x1d00000000000001	3
+772	loc_solver_task <772>	CPU Processor 0x1d00000000000001	3
+773	updateBC_task <773>		
+774	loc_solver_task <774>		
+775	updateBC_task <775>		
+776	updateBC_task <776>	CPU Processor 0x1d00000000000001	3
+777	updateBC_task <777>	CPU Processor 0x1d00000000000001	3
+778	updateBC_task <778>	CPU Processor 0x1d00000000000001	3
+779	updateBC_task <779>	CPU Processor 0x1d00000000000001	3
+780	updateBC_task <780>	CPU Processor 0x1d00000000000001	3
+781	Post Close Operation <781>		
+782	Post Close Operation <782>		
+783	Post Close Operation <783>		
+784	Post Close Operation <784>		
+785	Post Close Operation <785>		
+786	loc_solver_task <786>		
+787	loc_solver_task <787>	CPU Processor 0x1d00000000000001	3
+788	loc_solver_task <788>	CPU Processor 0x1d00000000000001	3
+789	loc_solver_task <789>	CPU Processor 0x1d00000000000001	3
+790	loc_solver_task <790>	CPU Processor 0x1d00000000000001	3
+791	loc_solver_task <791>	CPU Processor 0x1d00000000000001	3
+792	updateBC_task <792>		
+793	loc_solver_task <793>		
+794	updateBC_task <794>		
+795	updateBC_task <795>	CPU Processor 0x1d00000000000001	3
+796	updateBC_task <796>	CPU Processor 0x1d00000000000001	3
+797	updateBC_task <797>	CPU Processor 0x1d00000000000001	3
+798	updateBC_task <798>	CPU Processor 0x1d00000000000001	3
+799	updateBC_task <799>	CPU Processor 0x1d00000000000001	3
+800	Post Close Operation <800>		
+801	Post Close Operation <801>		
+802	Post Close Operation <802>		
+803	Post Close Operation <803>		
+804	Post Close Operation <804>		
+805	loc_solver_task <805>		
+806	loc_solver_task <806>	CPU Processor 0x1d00000000000001	3
+807	loc_solver_task <807>	CPU Processor 0x1d00000000000001	3
+808	loc_solver_task <808>	CPU Processor 0x1d00000000000001	3
+809	loc_solver_task <809>	CPU Processor 0x1d00000000000001	3
+810	loc_solver_task <810>	CPU Processor 0x1d00000000000001	3
+811	updateBC_task <811>		
+812	loc_solver_task <812>		
+813	updateBC_task <813>		
+814	updateBC_task <814>	CPU Processor 0x1d00000000000001	3
+815	updateBC_task <815>	CPU Processor 0x1d00000000000001	3
+816	updateBC_task <816>	CPU Processor 0x1d00000000000001	3
+817	updateBC_task <817>	CPU Processor 0x1d00000000000001	3
+818	updateBC_task <818>	CPU Processor 0x1d00000000000001	3
+819	Post Close Operation <819>		
+820	Post Close Operation <820>		
+821	Post Close Operation <821>		
+822	Post Close Operation <822>		
+823	Post Close Operation <823>		
+824	loc_solver_task <824>		
+825	loc_solver_task <825>	CPU Processor 0x1d00000000000001	3
+826	loc_solver_task <826>	CPU Processor 0x1d00000000000001	3
+827	loc_solver_task <827>	CPU Processor 0x1d00000000000001	3
+828	loc_solver_task <828>	CPU Processor 0x1d00000000000001	3
+829	loc_solver_task <829>	CPU Processor 0x1d00000000000001	3
+830	updateBC_task <830>		
+831	loc_solver_task <831>		
+832	updateBC_task <832>		
+833	updateBC_task <833>	CPU Processor 0x1d00000000000001	3
+834	updateBC_task <834>	CPU Processor 0x1d00000000000001	3
+835	updateBC_task <835>	CPU Processor 0x1d00000000000001	3
+836	updateBC_task <836>	CPU Processor 0x1d00000000000001	3
+837	updateBC_task <837>	CPU Processor 0x1d00000000000001	3
+838	Post Close Operation <838>		
+839	Post Close Operation <839>		
+840	Post Close Operation <840>		
+841	Post Close Operation <841>		
+842	Post Close Operation <842>		
+843	loc_solver_task <843>		
+844	loc_solver_task <844>	CPU Processor 0x1d00000000000001	3
+845	loc_solver_task <845>	CPU Processor 0x1d00000000000001	3
+846	loc_solver_task <846>	CPU Processor 0x1d00000000000001	3
+847	loc_solver_task <847>	CPU Processor 0x1d00000000000001	3
+848	loc_solver_task <848>	CPU Processor 0x1d00000000000001	3
+849	updateBC_task <849>		
+850	loc_solver_task <850>		
+851	updateBC_task <851>		
+852	updateBC_task <852>	CPU Processor 0x1d00000000000001	3
+853	updateBC_task <853>	CPU Processor 0x1d00000000000001	3
+854	updateBC_task <854>	CPU Processor 0x1d00000000000001	3
+855	updateBC_task <855>	CPU Processor 0x1d00000000000001	3
+856	updateBC_task <856>	CPU Processor 0x1d00000000000001	3
+857	Post Close Operation <857>		
+858	Post Close Operation <858>		
+859	Post Close Operation <859>		
+860	Post Close Operation <860>		
+861	Post Close Operation <861>		
+862	loc_solver_task <862>		
+863	loc_solver_task <863>	CPU Processor 0x1d00000000000001	3
+864	loc_solver_task <864>	CPU Processor 0x1d00000000000001	3
+865	loc_solver_task <865>	CPU Processor 0x1d00000000000001	3
+866	loc_solver_task <866>	CPU Processor 0x1d00000000000001	3
+867	loc_solver_task <867>	CPU Processor 0x1d00000000000001	3
+868	updateBC_task <868>		
+869	loc_solver_task <869>		
+870	updateBC_task <870>		
+871	updateBC_task <871>	CPU Processor 0x1d00000000000001	3
+872	updateBC_task <872>	CPU Processor 0x1d00000000000001	3
+873	updateBC_task <873>	CPU Processor 0x1d00000000000001	3
+874	updateBC_task <874>	CPU Processor 0x1d00000000000001	3
+875	updateBC_task <875>	CPU Processor 0x1d00000000000001	3
+876	Post Close Operation <876>		
+877	Post Close Operation <877>		
+878	Post Close Operation <878>		
+879	Post Close Operation <879>		
+880	Post Close Operation <880>		
+881	loc_solver_task <881>		
+882	loc_solver_task <882>	CPU Processor 0x1d00000000000001	3
+883	loc_solver_task <883>	CPU Processor 0x1d00000000000001	3
+884	loc_solver_task <884>	CPU Processor 0x1d00000000000001	3
+885	loc_solver_task <885>	CPU Processor 0x1d00000000000001	3
+886	loc_solver_task <886>	CPU Processor 0x1d00000000000001	3
+887	updateBC_task <887>		
+888	loc_solver_task <888>		
+889	updateBC_task <889>		
+890	updateBC_task <890>	CPU Processor 0x1d00000000000001	3
+891	updateBC_task <891>	CPU Processor 0x1d00000000000001	3
+892	updateBC_task <892>	CPU Processor 0x1d00000000000001	3
+893	updateBC_task <893>	CPU Processor 0x1d00000000000001	3
+894	updateBC_task <894>	CPU Processor 0x1d00000000000001	3
+895	Post Close Operation <895>		
+896	Post Close Operation <896>		
+897	Post Close Operation <897>		
+898	Post Close Operation <898>		
+899	Post Close Operation <899>		
+900	loc_solver_task <900>		
+901	loc_solver_task <901>	CPU Processor 0x1d00000000000001	3
+902	loc_solver_task <902>	CPU Processor 0x1d00000000000001	3
+903	loc_solver_task <903>	CPU Processor 0x1d00000000000001	3
+904	loc_solver_task <904>	CPU Processor 0x1d00000000000001	3
+905	loc_solver_task <905>	CPU Processor 0x1d00000000000001	3
+906	updateBC_task <906>		
+907	loc_solver_task <907>		
+908	updateBC_task <908>		
+909	updateBC_task <909>	CPU Processor 0x1d00000000000001	3
+910	updateBC_task <910>	CPU Processor 0x1d00000000000001	3
+911	updateBC_task <911>	CPU Processor 0x1d00000000000001	3
+912	updateBC_task <912>	CPU Processor 0x1d00000000000001	3
+913	updateBC_task <913>	CPU Processor 0x1d00000000000001	3
+914	Post Close Operation <914>		
+915	Post Close Operation <915>		
+916	Post Close Operation <916>		
+917	Post Close Operation <917>		
+918	Post Close Operation <918>		
+919	loc_solver_task <919>		
+920	loc_solver_task <920>	CPU Processor 0x1d00000000000001	3
+921	loc_solver_task <921>	CPU Processor 0x1d00000000000001	3
+922	loc_solver_task <922>	CPU Processor 0x1d00000000000001	3
+923	loc_solver_task <923>	CPU Processor 0x1d00000000000001	3
+924	loc_solver_task <924>	CPU Processor 0x1d00000000000001	3
+925	updateBC_task <925>		
+926	loc_solver_task <926>		
+927	updateBC_task <927>		
+928	updateBC_task <928>	CPU Processor 0x1d00000000000001	3
+929	updateBC_task <929>	CPU Processor 0x1d00000000000001	3
+930	updateBC_task <930>	CPU Processor 0x1d00000000000001	3
+931	updateBC_task <931>	CPU Processor 0x1d00000000000001	3
+932	updateBC_task <932>	CPU Processor 0x1d00000000000001	3
+933	Post Close Operation <933>		
+934	Post Close Operation <934>		
+935	Post Close Operation <935>		
+936	Post Close Operation <936>		
+937	Post Close Operation <937>		
+938	loc_solver_task <938>		
+939	loc_solver_task <939>	CPU Processor 0x1d00000000000001	3
+940	loc_solver_task <940>	CPU Processor 0x1d00000000000001	3
+941	loc_solver_task <941>	CPU Processor 0x1d00000000000001	3
+942	loc_solver_task <942>	CPU Processor 0x1d00000000000001	3
+943	loc_solver_task <943>	CPU Processor 0x1d00000000000001	3
+944	updateBC_task <944>		
+945	loc_solver_task <945>		
+946	updateBC_task <946>		
+947	updateBC_task <947>	CPU Processor 0x1d00000000000001	3
+948	updateBC_task <948>	CPU Processor 0x1d00000000000001	3
+949	updateBC_task <949>	CPU Processor 0x1d00000000000001	3
+950	updateBC_task <950>	CPU Processor 0x1d00000000000001	3
+951	updateBC_task <951>	CPU Processor 0x1d00000000000001	3
+952	Post Close Operation <952>		
+953	Post Close Operation <953>		
+954	Post Close Operation <954>		
+955	Post Close Operation <955>		
+956	Post Close Operation <956>		
+957	loc_solver_task <957>		
+958	loc_solver_task <958>	CPU Processor 0x1d00000000000001	3
+959	loc_solver_task <959>	CPU Processor 0x1d00000000000001	3
+960	loc_solver_task <960>	CPU Processor 0x1d00000000000001	3
+961	loc_solver_task <961>	CPU Processor 0x1d00000000000001	3
+962	loc_solver_task <962>	CPU Processor 0x1d00000000000001	3
+963	updateBC_task <963>		
+964	loc_solver_task <964>		
+965	updateBC_task <965>		
+966	updateBC_task <966>	CPU Processor 0x1d00000000000001	3
+967	updateBC_task <967>	CPU Processor 0x1d00000000000001	3
+968	updateBC_task <968>	CPU Processor 0x1d00000000000001	3
+969	updateBC_task <969>	CPU Processor 0x1d00000000000001	3
+970	updateBC_task <970>	CPU Processor 0x1d00000000000001	3
+971	Post Close Operation <971>		
+972	Post Close Operation <972>		
+973	Post Close Operation <973>		
+974	Post Close Operation <974>		
+975	Post Close Operation <975>		
+976	loc_solver_task <976>		
+977	loc_solver_task <977>	CPU Processor 0x1d00000000000001	3
+978	loc_solver_task <978>	CPU Processor 0x1d00000000000001	3
+979	loc_solver_task <979>	CPU Processor 0x1d00000000000001	3
+980	loc_solver_task <980>	CPU Processor 0x1d00000000000001	3
+981	loc_solver_task <981>	CPU Processor 0x1d00000000000001	3
+982	updateBC_task <982>		
+983	loc_solver_task <983>		
+984	updateBC_task <984>		
+985	updateBC_task <985>	CPU Processor 0x1d00000000000001	3
+986	updateBC_task <986>	CPU Processor 0x1d00000000000001	3
+987	updateBC_task <987>	CPU Processor 0x1d00000000000001	3
+988	updateBC_task <988>	CPU Processor 0x1d00000000000001	3
+989	updateBC_task <989>	CPU Processor 0x1d00000000000001	3
+990	Post Close Operation <990>		
+991	Post Close Operation <991>		
+992	Post Close Operation <992>		
+993	Post Close Operation <993>		
+994	Post Close Operation <994>		
+995	loc_solver_task <995>		
+996	loc_solver_task <996>	CPU Processor 0x1d00000000000001	3
+997	loc_solver_task <997>	CPU Processor 0x1d00000000000001	3
+998	loc_solver_task <998>	CPU Processor 0x1d00000000000001	3
+999	loc_solver_task <999>	CPU Processor 0x1d00000000000001	3
+1000	loc_solver_task <1000>	CPU Processor 0x1d00000000000001	3
+1001	updateBC_task <1001>		
+1002	loc_solver_task <1002>		
+1003	updateBC_task <1003>		
+1004	updateBC_task <1004>	CPU Processor 0x1d00000000000001	3
+1005	updateBC_task <1005>	CPU Processor 0x1d00000000000001	3
+1006	updateBC_task <1006>	CPU Processor 0x1d00000000000001	3
+1007	updateBC_task <1007>	CPU Processor 0x1d00000000000001	3
+1008	updateBC_task <1008>	CPU Processor 0x1d00000000000001	3
+1009	Post Close Operation <1009>		
+1010	Post Close Operation <1010>		
+1011	Post Close Operation <1011>		
+1012	Post Close Operation <1012>		
+1013	Post Close Operation <1013>		
+1014	loc_solver_task <1014>		
+1015	loc_solver_task <1015>	CPU Processor 0x1d00000000000001	3
+1016	loc_solver_task <1016>	CPU Processor 0x1d00000000000001	3
+1017	loc_solver_task <1017>	CPU Processor 0x1d00000000000001	3
+1018	loc_solver_task <1018>	CPU Processor 0x1d00000000000001	3
+1019	loc_solver_task <1019>	CPU Processor 0x1d00000000000001	3
+1020	updateBC_task <1020>		
+1021	loc_solver_task <1021>		
+1022	updateBC_task <1022>		
+1023	updateBC_task <1023>	CPU Processor 0x1d00000000000001	3
+1024	updateBC_task <1024>	CPU Processor 0x1d00000000000001	3
+1025	updateBC_task <1025>	CPU Processor 0x1d00000000000001	3
+1026	updateBC_task <1026>	CPU Processor 0x1d00000000000001	3
+1027	updateBC_task <1027>	CPU Processor 0x1d00000000000001	3
+1028	Post Close Operation <1028>		
+1029	Post Close Operation <1029>		
+1030	Post Close Operation <1030>		
+1031	Post Close Operation <1031>		
+1032	Post Close Operation <1032>		
+1033	loc_solver_task <1033>		
+1034	loc_solver_task <1034>	CPU Processor 0x1d00000000000001	3
+1035	loc_solver_task <1035>	CPU Processor 0x1d00000000000001	3
+1036	loc_solver_task <1036>	CPU Processor 0x1d00000000000001	3
+1037	loc_solver_task <1037>	CPU Processor 0x1d00000000000001	3
+1038	loc_solver_task <1038>	CPU Processor 0x1d00000000000001	3
+1039	updateBC_task <1039>		
+1040	loc_solver_task <1040>		
+1041	updateBC_task <1041>		
+1042	updateBC_task <1042>	CPU Processor 0x1d00000000000001	3
+1043	updateBC_task <1043>	CPU Processor 0x1d00000000000001	3
+1044	updateBC_task <1044>	CPU Processor 0x1d00000000000001	3
+1045	updateBC_task <1045>	CPU Processor 0x1d00000000000001	3
+1046	updateBC_task <1046>	CPU Processor 0x1d00000000000001	3
+1047	Post Close Operation <1047>		
+1048	Post Close Operation <1048>		
+1049	Post Close Operation <1049>		
+1050	Post Close Operation <1050>		
+1051	Post Close Operation <1051>		
+1052	loc_solver_task <1052>		
+1053	loc_solver_task <1053>	CPU Processor 0x1d00000000000001	3
+1054	loc_solver_task <1054>	CPU Processor 0x1d00000000000001	3
+1055	loc_solver_task <1055>	CPU Processor 0x1d00000000000001	3
+1056	loc_solver_task <1056>	CPU Processor 0x1d00000000000001	3
+1057	loc_solver_task <1057>	CPU Processor 0x1d00000000000001	3
+1058	updateBC_task <1058>		
+1059	loc_solver_task <1059>		
+1060	updateBC_task <1060>		
+1061	updateBC_task <1061>	CPU Processor 0x1d00000000000001	3
+1062	updateBC_task <1062>	CPU Processor 0x1d00000000000001	3
+1063	updateBC_task <1063>	CPU Processor 0x1d00000000000001	3
+1064	updateBC_task <1064>	CPU Processor 0x1d00000000000001	3
+1065	updateBC_task <1065>	CPU Processor 0x1d00000000000001	3
+1066	Post Close Operation <1066>		
+1067	Post Close Operation <1067>		
+1068	Post Close Operation <1068>		
+1069	Post Close Operation <1069>		
+1070	Post Close Operation <1070>		
+1071	loc_solver_task <1071>		
+1072	loc_solver_task <1072>	CPU Processor 0x1d00000000000001	3
+1073	loc_solver_task <1073>	CPU Processor 0x1d00000000000001	3
+1074	loc_solver_task <1074>	CPU Processor 0x1d00000000000001	3
+1075	loc_solver_task <1075>	CPU Processor 0x1d00000000000001	3
+1076	loc_solver_task <1076>	CPU Processor 0x1d00000000000001	3
+1077	updateBC_task <1077>		
+1078	loc_solver_task <1078>		
+1079	updateBC_task <1079>		
+1080	updateBC_task <1080>	CPU Processor 0x1d00000000000001	3
+1081	updateBC_task <1081>	CPU Processor 0x1d00000000000001	3
+1082	updateBC_task <1082>	CPU Processor 0x1d00000000000001	3
+1083	updateBC_task <1083>	CPU Processor 0x1d00000000000001	3
+1084	updateBC_task <1084>	CPU Processor 0x1d00000000000001	3
+1085	Post Close Operation <1085>		
+1086	Post Close Operation <1086>		
+1087	Post Close Operation <1087>		
+1088	Post Close Operation <1088>		
+1089	Post Close Operation <1089>		
+1090	loc_solver_task <1090>		
+1091	loc_solver_task <1091>	CPU Processor 0x1d00000000000001	3
+1092	loc_solver_task <1092>	CPU Processor 0x1d00000000000001	3
+1093	loc_solver_task <1093>	CPU Processor 0x1d00000000000001	3
+1094	loc_solver_task <1094>	CPU Processor 0x1d00000000000001	3
+1095	loc_solver_task <1095>	CPU Processor 0x1d00000000000001	3
+1096	updateBC_task <1096>		
+1097	loc_solver_task <1097>		
+1098	updateBC_task <1098>		
+1099	updateBC_task <1099>	CPU Processor 0x1d00000000000001	3
+1100	updateBC_task <1100>	CPU Processor 0x1d00000000000001	3
+1101	updateBC_task <1101>	CPU Processor 0x1d00000000000001	3
+1102	updateBC_task <1102>	CPU Processor 0x1d00000000000001	3
+1103	updateBC_task <1103>	CPU Processor 0x1d00000000000001	3
+1104	Post Close Operation <1104>		
+1105	Post Close Operation <1105>		
+1106	Post Close Operation <1106>		
+1107	Post Close Operation <1107>		
+1108	Post Close Operation <1108>		
+1109	loc_solver_task <1109>		
+1110	loc_solver_task <1110>	CPU Processor 0x1d00000000000001	3
+1111	loc_solver_task <1111>	CPU Processor 0x1d00000000000001	3
+1112	loc_solver_task <1112>	CPU Processor 0x1d00000000000001	3
+1113	loc_solver_task <1113>	CPU Processor 0x1d00000000000001	3
+1114	loc_solver_task <1114>	CPU Processor 0x1d00000000000001	3
+1115	updateBC_task <1115>		
+1116	loc_solver_task <1116>		
+1117	updateBC_task <1117>		
+1118	updateBC_task <1118>	CPU Processor 0x1d00000000000001	3
+1119	updateBC_task <1119>	CPU Processor 0x1d00000000000001	3
+1120	updateBC_task <1120>	CPU Processor 0x1d00000000000001	3
+1121	updateBC_task <1121>	CPU Processor 0x1d00000000000001	3
+1122	updateBC_task <1122>	CPU Processor 0x1d00000000000001	3
+1123	Post Close Operation <1123>		
+1124	Post Close Operation <1124>		
+1125	Post Close Operation <1125>		
+1126	Post Close Operation <1126>		
+1127	Post Close Operation <1127>		
+1128	loc_solver_task <1128>		
+1129	loc_solver_task <1129>	CPU Processor 0x1d00000000000001	3
+1130	loc_solver_task <1130>	CPU Processor 0x1d00000000000001	3
+1131	loc_solver_task <1131>	CPU Processor 0x1d00000000000001	3
+1132	loc_solver_task <1132>	CPU Processor 0x1d00000000000001	3
+1133	loc_solver_task <1133>	CPU Processor 0x1d00000000000001	3
+1134	updateBC_task <1134>		
+1135	loc_solver_task <1135>		
+1136	updateBC_task <1136>		
+1137	updateBC_task <1137>	CPU Processor 0x1d00000000000001	3
+1138	updateBC_task <1138>	CPU Processor 0x1d00000000000001	3
+1139	updateBC_task <1139>	CPU Processor 0x1d00000000000001	3
+1140	updateBC_task <1140>	CPU Processor 0x1d00000000000001	3
+1141	updateBC_task <1141>	CPU Processor 0x1d00000000000001	3
+1142	Post Close Operation <1142>		
+1143	Post Close Operation <1143>		
+1144	Post Close Operation <1144>		
+1145	Post Close Operation <1145>		
+1146	Post Close Operation <1146>		
+1147	loc_solver_task <1147>		
+1148	loc_solver_task <1148>	CPU Processor 0x1d00000000000001	3
+1149	loc_solver_task <1149>	CPU Processor 0x1d00000000000001	3
+1150	loc_solver_task <1150>	CPU Processor 0x1d00000000000001	3
+1151	loc_solver_task <1151>	CPU Processor 0x1d00000000000001	3
+1152	loc_solver_task <1152>	CPU Processor 0x1d00000000000001	3
+1153	updateBC_task <1153>		
+1154	loc_solver_task <1154>		
+1155	updateBC_task <1155>		
+1156	updateBC_task <1156>	CPU Processor 0x1d00000000000001	3
+1157	updateBC_task <1157>	CPU Processor 0x1d00000000000001	3
+1158	updateBC_task <1158>	CPU Processor 0x1d00000000000001	3
+1159	updateBC_task <1159>	CPU Processor 0x1d00000000000001	3
+1160	updateBC_task <1160>	CPU Processor 0x1d00000000000001	3
+1161	Post Close Operation <1161>		
+1162	Post Close Operation <1162>		
+1163	Post Close Operation <1163>		
+1164	Post Close Operation <1164>		
+1165	Post Close Operation <1165>		
+1166	loc_solver_task <1166>		
+1167	loc_solver_task <1167>	CPU Processor 0x1d00000000000001	3
+1168	loc_solver_task <1168>	CPU Processor 0x1d00000000000001	3
+1169	loc_solver_task <1169>	CPU Processor 0x1d00000000000001	3
+1170	loc_solver_task <1170>	CPU Processor 0x1d00000000000001	3
+1171	loc_solver_task <1171>	CPU Processor 0x1d00000000000001	3
+1172	updateBC_task <1172>		
+1173	loc_solver_task <1173>		
+1174	updateBC_task <1174>		
+1175	updateBC_task <1175>	CPU Processor 0x1d00000000000001	3
+1176	updateBC_task <1176>	CPU Processor 0x1d00000000000001	3
+1177	updateBC_task <1177>	CPU Processor 0x1d00000000000001	3
+1178	updateBC_task <1178>	CPU Processor 0x1d00000000000001	3
+1179	updateBC_task <1179>	CPU Processor 0x1d00000000000001	3
+1180	Post Close Operation <1180>		
+1181	Post Close Operation <1181>		
+1182	Post Close Operation <1182>		
+1183	Post Close Operation <1183>		
+1184	Post Close Operation <1184>		
+1185	loc_solver_task <1185>		
+1186	loc_solver_task <1186>	CPU Processor 0x1d00000000000001	3
+1187	loc_solver_task <1187>	CPU Processor 0x1d00000000000001	3
+1188	loc_solver_task <1188>	CPU Processor 0x1d00000000000001	3
+1189	loc_solver_task <1189>	CPU Processor 0x1d00000000000001	3
+1190	loc_solver_task <1190>	CPU Processor 0x1d00000000000001	3
+1191	updateBC_task <1191>		
+1192	loc_solver_task <1192>		
+1193	updateBC_task <1193>		
+1194	updateBC_task <1194>	CPU Processor 0x1d00000000000001	3
+1195	updateBC_task <1195>	CPU Processor 0x1d00000000000001	3
+1196	updateBC_task <1196>	CPU Processor 0x1d00000000000001	3
+1197	updateBC_task <1197>	CPU Processor 0x1d00000000000001	3
+1198	updateBC_task <1198>	CPU Processor 0x1d00000000000001	3
+1199	Post Close Operation <1199>		
+1200	Post Close Operation <1200>		
+1201	Post Close Operation <1201>		
+1202	Post Close Operation <1202>		
+1203	Post Close Operation <1203>		
+1204	loc_solver_task <1204>		
+1205	loc_solver_task <1205>	CPU Processor 0x1d00000000000001	3
+1206	loc_solver_task <1206>	CPU Processor 0x1d00000000000001	3
+1207	loc_solver_task <1207>	CPU Processor 0x1d00000000000001	3
+1208	loc_solver_task <1208>	CPU Processor 0x1d00000000000001	3
+1209	loc_solver_task <1209>	CPU Processor 0x1d00000000000001	3
+1210	updateBC_task <1210>		
+1211	loc_solver_task <1211>		
+1212	updateBC_task <1212>		
+1213	updateBC_task <1213>	CPU Processor 0x1d00000000000001	3
+1214	updateBC_task <1214>	CPU Processor 0x1d00000000000001	3
+1215	updateBC_task <1215>	CPU Processor 0x1d00000000000001	3
+1216	updateBC_task <1216>	CPU Processor 0x1d00000000000001	3
+1217	updateBC_task <1217>	CPU Processor 0x1d00000000000001	3
+1218	Post Close Operation <1218>		
+1219	Post Close Operation <1219>		
+1220	Post Close Operation <1220>		
+1221	Post Close Operation <1221>		
+1222	Post Close Operation <1222>		
+1223	loc_solver_task <1223>		
+1224	loc_solver_task <1224>	CPU Processor 0x1d00000000000001	3
+1225	loc_solver_task <1225>	CPU Processor 0x1d00000000000001	3
+1226	loc_solver_task <1226>	CPU Processor 0x1d00000000000001	3
+1227	loc_solver_task <1227>	CPU Processor 0x1d00000000000001	3
+1228	loc_solver_task <1228>	CPU Processor 0x1d00000000000001	3
+1229	updateBC_task <1229>		
+1230	loc_solver_task <1230>		
+1231	updateBC_task <1231>		
+1232	updateBC_task <1232>	CPU Processor 0x1d00000000000001	3
+1233	updateBC_task <1233>	CPU Processor 0x1d00000000000001	3
+1234	updateBC_task <1234>	CPU Processor 0x1d00000000000001	3
+1235	updateBC_task <1235>	CPU Processor 0x1d00000000000001	3
+1236	updateBC_task <1236>	CPU Processor 0x1d00000000000001	3
+1237	Post Close Operation <1237>		
+1238	Post Close Operation <1238>		
+1239	Post Close Operation <1239>		
+1240	Post Close Operation <1240>		
+1241	Post Close Operation <1241>		
+1242	loc_solver_task <1242>		
+1243	loc_solver_task <1243>	CPU Processor 0x1d00000000000001	3
+1244	loc_solver_task <1244>	CPU Processor 0x1d00000000000001	3
+1245	loc_solver_task <1245>	CPU Processor 0x1d00000000000001	3
+1246	loc_solver_task <1246>	CPU Processor 0x1d00000000000001	3
+1247	loc_solver_task <1247>	CPU Processor 0x1d00000000000001	3
+1248	updateBC_task <1248>		
+1249	loc_solver_task <1249>		
+1250	updateBC_task <1250>		
+1251	updateBC_task <1251>	CPU Processor 0x1d00000000000001	3
+1252	updateBC_task <1252>	CPU Processor 0x1d00000000000001	3
+1253	updateBC_task <1253>	CPU Processor 0x1d00000000000001	3
+1254	updateBC_task <1254>	CPU Processor 0x1d00000000000001	3
+1255	updateBC_task <1255>	CPU Processor 0x1d00000000000001	3
+1256	Post Close Operation <1256>		
+1257	Post Close Operation <1257>		
+1258	Post Close Operation <1258>		
+1259	Post Close Operation <1259>		
+1260	Post Close Operation <1260>		
+1261	loc_solver_task <1261>		
+1262	loc_solver_task <1262>	CPU Processor 0x1d00000000000001	3
+1263	loc_solver_task <1263>	CPU Processor 0x1d00000000000001	3
+1264	loc_solver_task <1264>	CPU Processor 0x1d00000000000001	3
+1265	loc_solver_task <1265>	CPU Processor 0x1d00000000000001	3
+1266	loc_solver_task <1266>	CPU Processor 0x1d00000000000001	3
+1267	updateBC_task <1267>		
+1268	loc_solver_task <1268>		
+1269	updateBC_task <1269>		
+1270	updateBC_task <1270>	CPU Processor 0x1d00000000000001	3
+1271	updateBC_task <1271>	CPU Processor 0x1d00000000000001	3
+1272	updateBC_task <1272>	CPU Processor 0x1d00000000000001	3
+1273	updateBC_task <1273>	CPU Processor 0x1d00000000000001	3
+1274	updateBC_task <1274>	CPU Processor 0x1d00000000000001	3
+1275	Post Close Operation <1275>		
+1276	Post Close Operation <1276>		
+1277	Post Close Operation <1277>		
+1278	Post Close Operation <1278>		
+1279	Post Close Operation <1279>		
+1280	loc_solver_task <1280>		
+1281	loc_solver_task <1281>	CPU Processor 0x1d00000000000001	3
+1282	loc_solver_task <1282>	CPU Processor 0x1d00000000000001	3
+1283	loc_solver_task <1283>	CPU Processor 0x1d00000000000001	3
+1284	loc_solver_task <1284>	CPU Processor 0x1d00000000000001	3
+1285	loc_solver_task <1285>	CPU Processor 0x1d00000000000001	3
+1286	updateBC_task <1286>		
+1287	loc_solver_task <1287>		
+1288	updateBC_task <1288>		
+1289	updateBC_task <1289>	CPU Processor 0x1d00000000000001	3
+1290	updateBC_task <1290>	CPU Processor 0x1d00000000000001	3
+1291	updateBC_task <1291>	CPU Processor 0x1d00000000000001	3
+1292	updateBC_task <1292>	CPU Processor 0x1d00000000000001	3
+1293	updateBC_task <1293>	CPU Processor 0x1d00000000000001	3
+1294	Post Close Operation <1294>		
+1295	Post Close Operation <1295>		
+1296	Post Close Operation <1296>		
+1297	Post Close Operation <1297>		
+1298	Post Close Operation <1298>		
+1299	loc_solver_task <1299>		
+1300	loc_solver_task <1300>	CPU Processor 0x1d00000000000001	3
+1301	loc_solver_task <1301>	CPU Processor 0x1d00000000000001	3
+1302	loc_solver_task <1302>	CPU Processor 0x1d00000000000001	3
+1303	loc_solver_task <1303>	CPU Processor 0x1d00000000000001	3
+1304	loc_solver_task <1304>	CPU Processor 0x1d00000000000001	3
+1305	updateBC_task <1305>		
+1306	loc_solver_task <1306>		
+1307	updateBC_task <1307>		
+1308	updateBC_task <1308>	CPU Processor 0x1d00000000000001	3
+1309	updateBC_task <1309>	CPU Processor 0x1d00000000000001	3
+1310	updateBC_task <1310>	CPU Processor 0x1d00000000000001	3
+1311	updateBC_task <1311>	CPU Processor 0x1d00000000000001	3
+1312	updateBC_task <1312>	CPU Processor 0x1d00000000000001	3
+1313	Post Close Operation <1313>		
+1314	Post Close Operation <1314>		
+1315	Post Close Operation <1315>		
+1316	Post Close Operation <1316>		
+1317	Post Close Operation <1317>		
+1318	loc_solver_task <1318>		
+1319	loc_solver_task <1319>	CPU Processor 0x1d00000000000001	3
+1320	loc_solver_task <1320>	CPU Processor 0x1d00000000000001	3
+1321	loc_solver_task <1321>	CPU Processor 0x1d00000000000001	3
+1322	loc_solver_task <1322>	CPU Processor 0x1d00000000000001	3
+1323	loc_solver_task <1323>	CPU Processor 0x1d00000000000001	3
+1324	updateBC_task <1324>		
+1325	loc_solver_task <1325>		
+1326	updateBC_task <1326>		
+1327	updateBC_task <1327>	CPU Processor 0x1d00000000000001	3
+1328	updateBC_task <1328>	CPU Processor 0x1d00000000000001	3
+1329	updateBC_task <1329>	CPU Processor 0x1d00000000000001	3
+1330	updateBC_task <1330>	CPU Processor 0x1d00000000000001	3
+1331	updateBC_task <1331>	CPU Processor 0x1d00000000000001	3
+1332	Post Close Operation <1332>		
+1333	Post Close Operation <1333>		
+1334	Post Close Operation <1334>		
+1335	Post Close Operation <1335>		
+1336	Post Close Operation <1336>		
+1337	loc_solver_task <1337>		
+1338	loc_solver_task <1338>	CPU Processor 0x1d00000000000001	3
+1339	loc_solver_task <1339>	CPU Processor 0x1d00000000000001	3
+1340	loc_solver_task <1340>	CPU Processor 0x1d00000000000001	3
+1341	loc_solver_task <1341>	CPU Processor 0x1d00000000000001	3
+1342	loc_solver_task <1342>	CPU Processor 0x1d00000000000001	3
+1343	updateBC_task <1343>		
+1344	loc_solver_task <1344>		
+1345	updateBC_task <1345>		
+1346	updateBC_task <1346>	CPU Processor 0x1d00000000000001	3
+1347	updateBC_task <1347>	CPU Processor 0x1d00000000000001	3
+1348	updateBC_task <1348>	CPU Processor 0x1d00000000000001	3
+1349	updateBC_task <1349>	CPU Processor 0x1d00000000000001	3
+1350	updateBC_task <1350>	CPU Processor 0x1d00000000000001	3
+1351	Post Close Operation <1351>		
+1352	Post Close Operation <1352>		
+1353	Post Close Operation <1353>		
+1354	Post Close Operation <1354>		
+1355	Post Close Operation <1355>		
+1356	loc_solver_task <1356>		
+1357	loc_solver_task <1357>	CPU Processor 0x1d00000000000001	3
+1358	loc_solver_task <1358>	CPU Processor 0x1d00000000000001	3
+1359	loc_solver_task <1359>	CPU Processor 0x1d00000000000001	3
+1360	loc_solver_task <1360>	CPU Processor 0x1d00000000000001	3
+1361	loc_solver_task <1361>	CPU Processor 0x1d00000000000001	3
+1362	updateBC_task <1362>		
+1363	loc_solver_task <1363>		
+1364	updateBC_task <1364>		
+1365	updateBC_task <1365>	CPU Processor 0x1d00000000000001	3
+1366	updateBC_task <1366>	CPU Processor 0x1d00000000000001	3
+1367	updateBC_task <1367>	CPU Processor 0x1d00000000000001	3
+1368	updateBC_task <1368>	CPU Processor 0x1d00000000000001	3
+1369	updateBC_task <1369>	CPU Processor 0x1d00000000000001	3
+1370	Post Close Operation <1370>		
+1371	Post Close Operation <1371>		
+1372	Post Close Operation <1372>		
+1373	Post Close Operation <1373>		
+1374	Post Close Operation <1374>		
+1375	loc_solver_task <1375>		
+1376	loc_solver_task <1376>	CPU Processor 0x1d00000000000001	3
+1377	loc_solver_task <1377>	CPU Processor 0x1d00000000000001	3
+1378	loc_solver_task <1378>	CPU Processor 0x1d00000000000001	3
+1379	loc_solver_task <1379>	CPU Processor 0x1d00000000000001	3
+1380	loc_solver_task <1380>	CPU Processor 0x1d00000000000001	3
+1381	updateBC_task <1381>		
+1382	loc_solver_task <1382>		
+1383	updateBC_task <1383>		
+1384	updateBC_task <1384>	CPU Processor 0x1d00000000000001	3
+1385	updateBC_task <1385>	CPU Processor 0x1d00000000000001	3
+1386	updateBC_task <1386>	CPU Processor 0x1d00000000000001	3
+1387	updateBC_task <1387>	CPU Processor 0x1d00000000000001	3
+1388	updateBC_task <1388>	CPU Processor 0x1d00000000000001	3
+1389	Post Close Operation <1389>		
+1390	Post Close Operation <1390>		
+1391	Post Close Operation <1391>		
+1392	Post Close Operation <1392>		
+1393	Post Close Operation <1393>		
+1394	loc_solver_task <1394>		
+1395	loc_solver_task <1395>	CPU Processor 0x1d00000000000001	3
+1396	loc_solver_task <1396>	CPU Processor 0x1d00000000000001	3
+1397	loc_solver_task <1397>	CPU Processor 0x1d00000000000001	3
+1398	loc_solver_task <1398>	CPU Processor 0x1d00000000000001	3
+1399	loc_solver_task <1399>	CPU Processor 0x1d00000000000001	3
+1400	updateBC_task <1400>		
+1401	loc_solver_task <1401>		
+1402	updateBC_task <1402>		
+1403	updateBC_task <1403>	CPU Processor 0x1d00000000000001	3
+1404	updateBC_task <1404>	CPU Processor 0x1d00000000000001	3
+1405	updateBC_task <1405>	CPU Processor 0x1d00000000000001	3
+1406	updateBC_task <1406>	CPU Processor 0x1d00000000000001	3
+1407	updateBC_task <1407>	CPU Processor 0x1d00000000000001	3
+1408	Post Close Operation <1408>		
+1409	Post Close Operation <1409>		
+1410	Post Close Operation <1410>		
+1411	Post Close Operation <1411>		
+1412	Post Close Operation <1412>		
+1413	loc_solver_task <1413>		
+1414	loc_solver_task <1414>	CPU Processor 0x1d00000000000001	3
+1415	loc_solver_task <1415>	CPU Processor 0x1d00000000000001	3
+1416	loc_solver_task <1416>	CPU Processor 0x1d00000000000001	3
+1417	loc_solver_task <1417>	CPU Processor 0x1d00000000000001	3
+1418	loc_solver_task <1418>	CPU Processor 0x1d00000000000001	3
+1419	updateBC_task <1419>		
+1420	loc_solver_task <1420>		
+1421	updateBC_task <1421>		
+1422	updateBC_task <1422>	CPU Processor 0x1d00000000000001	3
+1423	updateBC_task <1423>	CPU Processor 0x1d00000000000001	3
+1424	updateBC_task <1424>	CPU Processor 0x1d00000000000001	3
+1425	updateBC_task <1425>	CPU Processor 0x1d00000000000001	3
+1426	updateBC_task <1426>	CPU Processor 0x1d00000000000001	3
+1427	Post Close Operation <1427>		
+1428	Post Close Operation <1428>		
+1429	Post Close Operation <1429>		
+1430	Post Close Operation <1430>		
+1431	Post Close Operation <1431>		
+1432	loc_solver_task <1432>		
+1433	loc_solver_task <1433>	CPU Processor 0x1d00000000000001	3
+1434	loc_solver_task <1434>	CPU Processor 0x1d00000000000001	3
+1435	loc_solver_task <1435>	CPU Processor 0x1d00000000000001	3
+1436	loc_solver_task <1436>	CPU Processor 0x1d00000000000001	3
+1437	loc_solver_task <1437>	CPU Processor 0x1d00000000000001	3
+1438	updateBC_task <1438>		
+1439	loc_solver_task <1439>		
+1440	updateBC_task <1440>		
+1441	updateBC_task <1441>	CPU Processor 0x1d00000000000001	3
+1442	updateBC_task <1442>	CPU Processor 0x1d00000000000001	3
+1443	updateBC_task <1443>	CPU Processor 0x1d00000000000001	3
+1444	updateBC_task <1444>	CPU Processor 0x1d00000000000001	3
+1445	updateBC_task <1445>	CPU Processor 0x1d00000000000001	3
+1446	Post Close Operation <1446>		
+1447	Post Close Operation <1447>		
+1448	Post Close Operation <1448>		
+1449	Post Close Operation <1449>		
+1450	Post Close Operation <1450>		
+1451	loc_solver_task <1451>		
+1452	loc_solver_task <1452>	CPU Processor 0x1d00000000000001	3
+1453	loc_solver_task <1453>	CPU Processor 0x1d00000000000001	3
+1454	loc_solver_task <1454>	CPU Processor 0x1d00000000000001	3
+1455	loc_solver_task <1455>	CPU Processor 0x1d00000000000001	3
+1456	loc_solver_task <1456>	CPU Processor 0x1d00000000000001	3
+1457	updateBC_task <1457>		
+1458	loc_solver_task <1458>		
+1459	updateBC_task <1459>		
+1460	updateBC_task <1460>	CPU Processor 0x1d00000000000001	3
+1461	updateBC_task <1461>	CPU Processor 0x1d00000000000001	3
+1462	updateBC_task <1462>	CPU Processor 0x1d00000000000001	3
+1463	updateBC_task <1463>	CPU Processor 0x1d00000000000001	3
+1464	updateBC_task <1464>	CPU Processor 0x1d00000000000001	3
+1465	Post Close Operation <1465>		
+1466	Post Close Operation <1466>		
+1467	Post Close Operation <1467>		
+1468	Post Close Operation <1468>		
+1469	Post Close Operation <1469>		
+1470	loc_solver_task <1470>		
+1471	loc_solver_task <1471>	CPU Processor 0x1d00000000000001	3
+1472	loc_solver_task <1472>	CPU Processor 0x1d00000000000001	3
+1473	loc_solver_task <1473>	CPU Processor 0x1d00000000000001	3
+1474	loc_solver_task <1474>	CPU Processor 0x1d00000000000001	3
+1475	loc_solver_task <1475>	CPU Processor 0x1d00000000000001	3
+1476	updateBC_task <1476>		
+1477	loc_solver_task <1477>		
+1478	updateBC_task <1478>		
+1479	updateBC_task <1479>	CPU Processor 0x1d00000000000001	3
+1480	updateBC_task <1480>	CPU Processor 0x1d00000000000001	3
+1481	updateBC_task <1481>	CPU Processor 0x1d00000000000001	3
+1482	updateBC_task <1482>	CPU Processor 0x1d00000000000001	3
+1483	updateBC_task <1483>	CPU Processor 0x1d00000000000001	3
+1484	Post Close Operation <1484>		
+1485	Post Close Operation <1485>		
+1486	Post Close Operation <1486>		
+1487	Post Close Operation <1487>		
+1488	Post Close Operation <1488>		
+1489	loc_solver_task <1489>		
+1490	loc_solver_task <1490>	CPU Processor 0x1d00000000000001	3
+1491	loc_solver_task <1491>	CPU Processor 0x1d00000000000001	3
+1492	loc_solver_task <1492>	CPU Processor 0x1d00000000000001	3
+1493	loc_solver_task <1493>	CPU Processor 0x1d00000000000001	3
+1494	loc_solver_task <1494>	CPU Processor 0x1d00000000000001	3
+1495	updateBC_task <1495>		
+1496	loc_solver_task <1496>		
+1497	updateBC_task <1497>		
+1498	updateBC_task <1498>	CPU Processor 0x1d00000000000001	3
+1499	updateBC_task <1499>	CPU Processor 0x1d00000000000001	3
+1500	updateBC_task <1500>	CPU Processor 0x1d00000000000001	3
+1501	updateBC_task <1501>	CPU Processor 0x1d00000000000001	3
+1502	updateBC_task <1502>	CPU Processor 0x1d00000000000001	3
+1503	Post Close Operation <1503>		
+1504	Post Close Operation <1504>		
+1505	Post Close Operation <1505>		
+1506	Post Close Operation <1506>		
+1507	Post Close Operation <1507>		
+1508	loc_solver_task <1508>		
+1509	loc_solver_task <1509>	CPU Processor 0x1d00000000000001	3
+1510	loc_solver_task <1510>	CPU Processor 0x1d00000000000001	3
+1511	loc_solver_task <1511>	CPU Processor 0x1d00000000000001	3
+1512	loc_solver_task <1512>	CPU Processor 0x1d00000000000001	3
+1513	loc_solver_task <1513>	CPU Processor 0x1d00000000000001	3
+1514	updateBC_task <1514>		
+1515	loc_solver_task <1515>		
+1516	updateBC_task <1516>		
+1517	updateBC_task <1517>	CPU Processor 0x1d00000000000001	3
+1518	updateBC_task <1518>	CPU Processor 0x1d00000000000001	3
+1519	updateBC_task <1519>	CPU Processor 0x1d00000000000001	3
+1520	updateBC_task <1520>	CPU Processor 0x1d00000000000001	3
+1521	updateBC_task <1521>	CPU Processor 0x1d00000000000001	3
+1522	Post Close Operation <1522>		
+1523	Post Close Operation <1523>		
+1524	Post Close Operation <1524>		
+1525	Post Close Operation <1525>		
+1526	Post Close Operation <1526>		
+1527	loc_solver_task <1527>		
+1528	loc_solver_task <1528>	CPU Processor 0x1d00000000000001	3
+1529	loc_solver_task <1529>	CPU Processor 0x1d00000000000001	3
+1530	loc_solver_task <1530>	CPU Processor 0x1d00000000000001	3
+1531	loc_solver_task <1531>	CPU Processor 0x1d00000000000001	3
+1532	loc_solver_task <1532>	CPU Processor 0x1d00000000000001	3
+1533	updateBC_task <1533>		
+1534	loc_solver_task <1534>		
+1535	updateBC_task <1535>		
+1536	updateBC_task <1536>	CPU Processor 0x1d00000000000001	3
+1537	updateBC_task <1537>	CPU Processor 0x1d00000000000001	3
+1538	updateBC_task <1538>	CPU Processor 0x1d00000000000001	3
+1539	updateBC_task <1539>	CPU Processor 0x1d00000000000001	3
+1540	updateBC_task <1540>	CPU Processor 0x1d00000000000001	3
+1541	Post Close Operation <1541>		
+1542	Post Close Operation <1542>		
+1543	Post Close Operation <1543>		
+1544	Post Close Operation <1544>		
+1545	Post Close Operation <1545>		
+1546	loc_solver_task <1546>		
+1547	loc_solver_task <1547>	CPU Processor 0x1d00000000000001	3
+1548	loc_solver_task <1548>	CPU Processor 0x1d00000000000001	3
+1549	loc_solver_task <1549>	CPU Processor 0x1d00000000000001	3
+1550	loc_solver_task <1550>	CPU Processor 0x1d00000000000001	3
+1551	loc_solver_task <1551>	CPU Processor 0x1d00000000000001	3
+1552	updateBC_task <1552>		
+1553	loc_solver_task <1553>		
+1554	updateBC_task <1554>		
+1555	updateBC_task <1555>	CPU Processor 0x1d00000000000001	3
+1556	updateBC_task <1556>	CPU Processor 0x1d00000000000001	3
+1557	updateBC_task <1557>	CPU Processor 0x1d00000000000001	3
+1558	updateBC_task <1558>	CPU Processor 0x1d00000000000001	3
+1559	updateBC_task <1559>	CPU Processor 0x1d00000000000001	3
+1560	Post Close Operation <1560>		
+1561	Post Close Operation <1561>		
+1562	Post Close Operation <1562>		
+1563	Post Close Operation <1563>		
+1564	Post Close Operation <1564>		
+1565	loc_solver_task <1565>		
+1566	loc_solver_task <1566>	CPU Processor 0x1d00000000000001	3
+1567	loc_solver_task <1567>	CPU Processor 0x1d00000000000001	3
+1568	loc_solver_task <1568>	CPU Processor 0x1d00000000000001	3
+1569	loc_solver_task <1569>	CPU Processor 0x1d00000000000001	3
+1570	loc_solver_task <1570>	CPU Processor 0x1d00000000000001	3
+1571	updateBC_task <1571>		
+1572	loc_solver_task <1572>		
+1573	updateBC_task <1573>		
+1574	updateBC_task <1574>	CPU Processor 0x1d00000000000001	3
+1575	updateBC_task <1575>	CPU Processor 0x1d00000000000001	3
+1576	updateBC_task <1576>	CPU Processor 0x1d00000000000001	3
+1577	updateBC_task <1577>	CPU Processor 0x1d00000000000001	3
+1578	updateBC_task <1578>	CPU Processor 0x1d00000000000001	3
+1579	Post Close Operation <1579>		
+1580	Post Close Operation <1580>		
+1581	Post Close Operation <1581>		
+1582	Post Close Operation <1582>		
+1583	Post Close Operation <1583>		
+1584	loc_solver_task <1584>		
+1585	loc_solver_task <1585>	CPU Processor 0x1d00000000000001	3
+1586	loc_solver_task <1586>	CPU Processor 0x1d00000000000001	3
+1587	loc_solver_task <1587>	CPU Processor 0x1d00000000000001	3
+1588	loc_solver_task <1588>	CPU Processor 0x1d00000000000001	3
+1589	loc_solver_task <1589>	CPU Processor 0x1d00000000000001	3
+1590	updateBC_task <1590>		
+1591	loc_solver_task <1591>		
+1592	updateBC_task <1592>		
+1593	updateBC_task <1593>	CPU Processor 0x1d00000000000001	3
+1594	updateBC_task <1594>	CPU Processor 0x1d00000000000001	3
+1595	updateBC_task <1595>	CPU Processor 0x1d00000000000001	3
+1596	updateBC_task <1596>	CPU Processor 0x1d00000000000001	3
+1597	updateBC_task <1597>	CPU Processor 0x1d00000000000001	3
+1598	Post Close Operation <1598>		
+1599	Post Close Operation <1599>		
+1600	Post Close Operation <1600>		
+1601	Post Close Operation <1601>		
+1602	Post Close Operation <1602>		
+1603	loc_solver_task <1603>		
+1604	loc_solver_task <1604>	CPU Processor 0x1d00000000000001	3
+1605	loc_solver_task <1605>	CPU Processor 0x1d00000000000001	3
+1606	loc_solver_task <1606>	CPU Processor 0x1d00000000000001	3
+1607	loc_solver_task <1607>	CPU Processor 0x1d00000000000001	3
+1608	loc_solver_task <1608>	CPU Processor 0x1d00000000000001	3
+1609	updateBC_task <1609>		
+1610	loc_solver_task <1610>		
+1611	updateBC_task <1611>		
+1612	updateBC_task <1612>	CPU Processor 0x1d00000000000001	3
+1613	updateBC_task <1613>	CPU Processor 0x1d00000000000001	3
+1614	updateBC_task <1614>	CPU Processor 0x1d00000000000001	3
+1615	updateBC_task <1615>	CPU Processor 0x1d00000000000001	3
+1616	updateBC_task <1616>	CPU Processor 0x1d00000000000001	3
+1617	Post Close Operation <1617>		
+1618	Post Close Operation <1618>		
+1619	Post Close Operation <1619>		
+1620	Post Close Operation <1620>		
+1621	Post Close Operation <1621>		
+1622	loc_solver_task <1622>		
+1623	loc_solver_task <1623>	CPU Processor 0x1d00000000000001	3
+1624	loc_solver_task <1624>	CPU Processor 0x1d00000000000001	3
+1625	loc_solver_task <1625>	CPU Processor 0x1d00000000000001	3
+1626	loc_solver_task <1626>	CPU Processor 0x1d00000000000001	3
+1627	loc_solver_task <1627>	CPU Processor 0x1d00000000000001	3
+1628	updateBC_task <1628>		
+1629	loc_solver_task <1629>		
+1630	updateBC_task <1630>		
+1631	updateBC_task <1631>	CPU Processor 0x1d00000000000001	3
+1632	updateBC_task <1632>	CPU Processor 0x1d00000000000001	3
+1633	updateBC_task <1633>	CPU Processor 0x1d00000000000001	3
+1634	updateBC_task <1634>	CPU Processor 0x1d00000000000001	3
+1635	updateBC_task <1635>	CPU Processor 0x1d00000000000001	3
+1636	Post Close Operation <1636>		
+1637	Post Close Operation <1637>		
+1638	Post Close Operation <1638>		
+1639	Post Close Operation <1639>		
+1640	Post Close Operation <1640>		
+1641	loc_solver_task <1641>		
+1642	loc_solver_task <1642>	CPU Processor 0x1d00000000000001	3
+1643	loc_solver_task <1643>	CPU Processor 0x1d00000000000001	3
+1644	loc_solver_task <1644>	CPU Processor 0x1d00000000000001	3
+1645	loc_solver_task <1645>	CPU Processor 0x1d00000000000001	3
+1646	loc_solver_task <1646>	CPU Processor 0x1d00000000000001	3
+1647	updateBC_task <1647>		
+1648	loc_solver_task <1648>		
+1649	updateBC_task <1649>		
+1650	updateBC_task <1650>	CPU Processor 0x1d00000000000001	3
+1651	updateBC_task <1651>	CPU Processor 0x1d00000000000001	3
+1652	updateBC_task <1652>	CPU Processor 0x1d00000000000001	3
+1653	updateBC_task <1653>	CPU Processor 0x1d00000000000001	3
+1654	updateBC_task <1654>	CPU Processor 0x1d00000000000001	3
+1655	Post Close Operation <1655>		
+1656	Post Close Operation <1656>		
+1657	Post Close Operation <1657>		
+1658	Post Close Operation <1658>		
+1659	Post Close Operation <1659>		
+1660	loc_solver_task <1660>		
+1661	loc_solver_task <1661>	CPU Processor 0x1d00000000000001	3
+1662	loc_solver_task <1662>	CPU Processor 0x1d00000000000001	3
+1663	loc_solver_task <1663>	CPU Processor 0x1d00000000000001	3
+1664	loc_solver_task <1664>	CPU Processor 0x1d00000000000001	3
+1665	loc_solver_task <1665>	CPU Processor 0x1d00000000000001	3
+1666	updateBC_task <1666>		
+1667	loc_solver_task <1667>		
+1668	updateBC_task <1668>		
+1669	updateBC_task <1669>	CPU Processor 0x1d00000000000001	3
+1670	updateBC_task <1670>	CPU Processor 0x1d00000000000001	3
+1671	updateBC_task <1671>	CPU Processor 0x1d00000000000001	3
+1672	updateBC_task <1672>	CPU Processor 0x1d00000000000001	3
+1673	updateBC_task <1673>	CPU Processor 0x1d00000000000001	3
+1674	Post Close Operation <1674>		
+1675	Post Close Operation <1675>		
+1676	Post Close Operation <1676>		
+1677	Post Close Operation <1677>		
+1678	Post Close Operation <1678>		
+1679	loc_solver_task <1679>		
+1680	loc_solver_task <1680>	CPU Processor 0x1d00000000000001	3
+1681	loc_solver_task <1681>	CPU Processor 0x1d00000000000001	3
+1682	loc_solver_task <1682>	CPU Processor 0x1d00000000000001	3
+1683	loc_solver_task <1683>	CPU Processor 0x1d00000000000001	3
+1684	loc_solver_task <1684>	CPU Processor 0x1d00000000000001	3
+1685	updateBC_task <1685>		
+1686	loc_solver_task <1686>		
+1687	updateBC_task <1687>		
+1688	updateBC_task <1688>	CPU Processor 0x1d00000000000001	3
+1689	updateBC_task <1689>	CPU Processor 0x1d00000000000001	3
+1690	updateBC_task <1690>	CPU Processor 0x1d00000000000001	3
+1691	updateBC_task <1691>	CPU Processor 0x1d00000000000001	3
+1692	updateBC_task <1692>	CPU Processor 0x1d00000000000001	3
+1693	Post Close Operation <1693>		
+1694	Post Close Operation <1694>		
+1695	Post Close Operation <1695>		
+1696	Post Close Operation <1696>		
+1697	Post Close Operation <1697>		
+1698	loc_solver_task <1698>		
+1699	loc_solver_task <1699>	CPU Processor 0x1d00000000000001	3
+1700	loc_solver_task <1700>	CPU Processor 0x1d00000000000001	3
+1701	loc_solver_task <1701>	CPU Processor 0x1d00000000000001	3
+1702	loc_solver_task <1702>	CPU Processor 0x1d00000000000001	3
+1703	loc_solver_task <1703>	CPU Processor 0x1d00000000000001	3
+1704	updateBC_task <1704>		
+1705	loc_solver_task <1705>		
+1706	updateBC_task <1706>		
+1707	updateBC_task <1707>	CPU Processor 0x1d00000000000001	3
+1708	updateBC_task <1708>	CPU Processor 0x1d00000000000001	3
+1709	updateBC_task <1709>	CPU Processor 0x1d00000000000001	3
+1710	updateBC_task <1710>	CPU Processor 0x1d00000000000001	3
+1711	updateBC_task <1711>	CPU Processor 0x1d00000000000001	3
+1712	Post Close Operation <1712>		
+1713	Post Close Operation <1713>		
+1714	Post Close Operation <1714>		
+1715	Post Close Operation <1715>		
+1716	Post Close Operation <1716>		
+1717	loc_solver_task <1717>		
+1718	loc_solver_task <1718>	CPU Processor 0x1d00000000000001	3
+1719	loc_solver_task <1719>	CPU Processor 0x1d00000000000001	3
+1720	loc_solver_task <1720>	CPU Processor 0x1d00000000000001	3
+1721	loc_solver_task <1721>	CPU Processor 0x1d00000000000001	3
+1722	loc_solver_task <1722>	CPU Processor 0x1d00000000000001	3
+1723	updateBC_task <1723>		
+1724	loc_solver_task <1724>		
+1725	updateBC_task <1725>		
+1726	updateBC_task <1726>	CPU Processor 0x1d00000000000001	3
+1727	updateBC_task <1727>	CPU Processor 0x1d00000000000001	3
+1728	updateBC_task <1728>	CPU Processor 0x1d00000000000001	3
+1729	updateBC_task <1729>	CPU Processor 0x1d00000000000001	3
+1730	updateBC_task <1730>	CPU Processor 0x1d00000000000001	3
+1731	Post Close Operation <1731>		
+1732	Post Close Operation <1732>		
+1733	Post Close Operation <1733>		
+1734	Post Close Operation <1734>		
+1735	Post Close Operation <1735>		
+1736	loc_solver_task <1736>		
+1737	loc_solver_task <1737>	CPU Processor 0x1d00000000000001	3
+1738	loc_solver_task <1738>	CPU Processor 0x1d00000000000001	3
+1739	loc_solver_task <1739>	CPU Processor 0x1d00000000000001	3
+1740	loc_solver_task <1740>	CPU Processor 0x1d00000000000001	3
+1741	loc_solver_task <1741>	CPU Processor 0x1d00000000000001	3
+1742	updateBC_task <1742>		
+1743	loc_solver_task <1743>		
+1744	updateBC_task <1744>		
+1745	updateBC_task <1745>	CPU Processor 0x1d00000000000001	3
+1746	updateBC_task <1746>	CPU Processor 0x1d00000000000001	3
+1747	updateBC_task <1747>	CPU Processor 0x1d00000000000001	3
+1748	updateBC_task <1748>	CPU Processor 0x1d00000000000001	3
+1749	updateBC_task <1749>	CPU Processor 0x1d00000000000001	3
+1750	Post Close Operation <1750>		
+1751	Post Close Operation <1751>		
+1752	Post Close Operation <1752>		
+1753	Post Close Operation <1753>		
+1754	Post Close Operation <1754>		
+1755	loc_solver_task <1755>		
+1756	loc_solver_task <1756>	CPU Processor 0x1d00000000000001	3
+1757	loc_solver_task <1757>	CPU Processor 0x1d00000000000001	3
+1758	loc_solver_task <1758>	CPU Processor 0x1d00000000000001	3
+1759	loc_solver_task <1759>	CPU Processor 0x1d00000000000001	3
+1760	loc_solver_task <1760>	CPU Processor 0x1d00000000000001	3
+1761	updateBC_task <1761>		
+1762	loc_solver_task <1762>		
+1763	updateBC_task <1763>		
+1764	updateBC_task <1764>	CPU Processor 0x1d00000000000001	3
+1765	updateBC_task <1765>	CPU Processor 0x1d00000000000001	3
+1766	updateBC_task <1766>	CPU Processor 0x1d00000000000001	3
+1767	updateBC_task <1767>	CPU Processor 0x1d00000000000001	3
+1768	updateBC_task <1768>	CPU Processor 0x1d00000000000001	3
+1769	Post Close Operation <1769>		
+1770	Post Close Operation <1770>		
+1771	Post Close Operation <1771>		
+1772	Post Close Operation <1772>		
+1773	Post Close Operation <1773>		
+1774	loc_solver_task <1774>		
+1775	loc_solver_task <1775>	CPU Processor 0x1d00000000000001	3
+1776	loc_solver_task <1776>	CPU Processor 0x1d00000000000001	3
+1777	loc_solver_task <1777>	CPU Processor 0x1d00000000000001	3
+1778	loc_solver_task <1778>	CPU Processor 0x1d00000000000001	3
+1779	loc_solver_task <1779>	CPU Processor 0x1d00000000000001	3
+1780	updateBC_task <1780>		
+1781	loc_solver_task <1781>		
+1782	updateBC_task <1782>		
+1783	updateBC_task <1783>	CPU Processor 0x1d00000000000001	3
+1784	updateBC_task <1784>	CPU Processor 0x1d00000000000001	3
+1785	updateBC_task <1785>	CPU Processor 0x1d00000000000001	3
+1786	updateBC_task <1786>	CPU Processor 0x1d00000000000001	3
+1787	updateBC_task <1787>	CPU Processor 0x1d00000000000001	3
+1788	Post Close Operation <1788>		
+1789	Post Close Operation <1789>		
+1790	Post Close Operation <1790>		
+1791	Post Close Operation <1791>		
+1792	Post Close Operation <1792>		
+1793	loc_solver_task <1793>		
+1794	loc_solver_task <1794>	CPU Processor 0x1d00000000000001	3
+1795	loc_solver_task <1795>	CPU Processor 0x1d00000000000001	3
+1796	loc_solver_task <1796>	CPU Processor 0x1d00000000000001	3
+1797	loc_solver_task <1797>	CPU Processor 0x1d00000000000001	3
+1798	loc_solver_task <1798>	CPU Processor 0x1d00000000000001	3
+1799	updateBC_task <1799>		
+1800	loc_solver_task <1800>		
+1801	updateBC_task <1801>		
+1802	updateBC_task <1802>	CPU Processor 0x1d00000000000001	3
+1803	updateBC_task <1803>	CPU Processor 0x1d00000000000001	3
+1804	updateBC_task <1804>	CPU Processor 0x1d00000000000001	3
+1805	updateBC_task <1805>	CPU Processor 0x1d00000000000001	3
+1806	updateBC_task <1806>	CPU Processor 0x1d00000000000001	3
+1807	Post Close Operation <1807>		
+1808	Post Close Operation <1808>		
+1809	Post Close Operation <1809>		
+1810	Post Close Operation <1810>		
+1811	Post Close Operation <1811>		
+1812	loc_solver_task <1812>		
+1813	loc_solver_task <1813>	CPU Processor 0x1d00000000000001	3
+1814	loc_solver_task <1814>	CPU Processor 0x1d00000000000001	3
+1815	loc_solver_task <1815>	CPU Processor 0x1d00000000000001	3
+1816	loc_solver_task <1816>	CPU Processor 0x1d00000000000001	3
+1817	loc_solver_task <1817>	CPU Processor 0x1d00000000000001	3
+1818	updateBC_task <1818>		
+1819	loc_solver_task <1819>		
+1820	updateBC_task <1820>		
+1821	updateBC_task <1821>	CPU Processor 0x1d00000000000001	3
+1822	updateBC_task <1822>	CPU Processor 0x1d00000000000001	3
+1823	updateBC_task <1823>	CPU Processor 0x1d00000000000001	3
+1824	updateBC_task <1824>	CPU Processor 0x1d00000000000001	3
+1825	updateBC_task <1825>	CPU Processor 0x1d00000000000001	3
+1826	Post Close Operation <1826>		
+1827	Post Close Operation <1827>		
+1828	Post Close Operation <1828>		
+1829	Post Close Operation <1829>		
+1830	Post Close Operation <1830>		
+1831	loc_solver_task <1831>		
+1832	loc_solver_task <1832>	CPU Processor 0x1d00000000000001	3
+1833	loc_solver_task <1833>	CPU Processor 0x1d00000000000001	3
+1834	loc_solver_task <1834>	CPU Processor 0x1d00000000000001	3
+1835	loc_solver_task <1835>	CPU Processor 0x1d00000000000001	3
+1836	loc_solver_task <1836>	CPU Processor 0x1d00000000000001	3
+1837	updateBC_task <1837>		
+1838	loc_solver_task <1838>		
+1839	updateBC_task <1839>		
+1840	updateBC_task <1840>	CPU Processor 0x1d00000000000001	3
+1841	updateBC_task <1841>	CPU Processor 0x1d00000000000001	3
+1842	updateBC_task <1842>	CPU Processor 0x1d00000000000001	3
+1843	updateBC_task <1843>	CPU Processor 0x1d00000000000001	3
+1844	updateBC_task <1844>	CPU Processor 0x1d00000000000001	3
+1845	Post Close Operation <1845>		
+1846	Post Close Operation <1846>		
+1847	Post Close Operation <1847>		
+1848	Post Close Operation <1848>		
+1849	Post Close Operation <1849>		
+1850	loc_solver_task <1850>		
+1851	loc_solver_task <1851>	CPU Processor 0x1d00000000000001	3
+1852	loc_solver_task <1852>	CPU Processor 0x1d00000000000001	3
+1853	loc_solver_task <1853>	CPU Processor 0x1d00000000000001	3
+1854	loc_solver_task <1854>	CPU Processor 0x1d00000000000001	3
+1855	loc_solver_task <1855>	CPU Processor 0x1d00000000000001	3
+1856	updateBC_task <1856>		
+1857	loc_solver_task <1857>		
+1858	updateBC_task <1858>		
+1859	updateBC_task <1859>	CPU Processor 0x1d00000000000001	3
+1860	updateBC_task <1860>	CPU Processor 0x1d00000000000001	3
+1861	updateBC_task <1861>	CPU Processor 0x1d00000000000001	3
+1862	updateBC_task <1862>	CPU Processor 0x1d00000000000001	3
+1863	updateBC_task <1863>	CPU Processor 0x1d00000000000001	3
+1864	Post Close Operation <1864>		
+1865	Post Close Operation <1865>		
+1866	Post Close Operation <1866>		
+1867	Post Close Operation <1867>		
+1868	Post Close Operation <1868>		
+1869	loc_solver_task <1869>		
+1870	loc_solver_task <1870>	CPU Processor 0x1d00000000000001	3
+1871	loc_solver_task <1871>	CPU Processor 0x1d00000000000001	3
+1872	loc_solver_task <1872>	CPU Processor 0x1d00000000000001	3
+1873	loc_solver_task <1873>	CPU Processor 0x1d00000000000001	3
+1874	loc_solver_task <1874>	CPU Processor 0x1d00000000000001	3
+1875	updateBC_task <1875>		
+1876	loc_solver_task <1876>		
+1877	updateBC_task <1877>		
+1878	updateBC_task <1878>	CPU Processor 0x1d00000000000001	3
+1879	updateBC_task <1879>	CPU Processor 0x1d00000000000001	3
+1880	updateBC_task <1880>	CPU Processor 0x1d00000000000001	3
+1881	updateBC_task <1881>	CPU Processor 0x1d00000000000001	3
+1882	updateBC_task <1882>	CPU Processor 0x1d00000000000001	3
+1883	Post Close Operation <1883>		
+1884	Post Close Operation <1884>		
+1885	Post Close Operation <1885>		
+1886	Post Close Operation <1886>		
+1887	Post Close Operation <1887>		
+1888	loc_solver_task <1888>		
+1889	loc_solver_task <1889>	CPU Processor 0x1d00000000000001	3
+1890	loc_solver_task <1890>	CPU Processor 0x1d00000000000001	3
+1891	loc_solver_task <1891>	CPU Processor 0x1d00000000000001	3
+1892	loc_solver_task <1892>	CPU Processor 0x1d00000000000001	3
+1893	loc_solver_task <1893>	CPU Processor 0x1d00000000000001	3
+1894	updateBC_task <1894>		
+1895	loc_solver_task <1895>		
+1896	updateBC_task <1896>		
+1897	updateBC_task <1897>	CPU Processor 0x1d00000000000001	3
+1898	updateBC_task <1898>	CPU Processor 0x1d00000000000001	3
+1899	updateBC_task <1899>	CPU Processor 0x1d00000000000001	3
+1900	updateBC_task <1900>	CPU Processor 0x1d00000000000001	3
+1901	updateBC_task <1901>	CPU Processor 0x1d00000000000001	3
+1902	Post Close Operation <1902>		
+1903	Post Close Operation <1903>		
+1904	Post Close Operation <1904>		
+1905	Post Close Operation <1905>		
+1906	Post Close Operation <1906>		
+1907	loc_solver_task <1907>		
+1908	loc_solver_task <1908>	CPU Processor 0x1d00000000000001	3
+1909	loc_solver_task <1909>	CPU Processor 0x1d00000000000001	3
+1910	loc_solver_task <1910>	CPU Processor 0x1d00000000000001	3
+1911	loc_solver_task <1911>	CPU Processor 0x1d00000000000001	3
+1912	loc_solver_task <1912>	CPU Processor 0x1d00000000000001	3
+1913	updateBC_task <1913>		
+1914	loc_solver_task <1914>		
+1915	updateBC_task <1915>		
+1916	updateBC_task <1916>	CPU Processor 0x1d00000000000001	3
+1917	updateBC_task <1917>	CPU Processor 0x1d00000000000001	3
+1918	updateBC_task <1918>	CPU Processor 0x1d00000000000001	3
+1919	updateBC_task <1919>	CPU Processor 0x1d00000000000001	3
+1920	updateBC_task <1920>	CPU Processor 0x1d00000000000001	3
+1921	Post Close Operation <1921>		
+1922	Post Close Operation <1922>		
+1923	Post Close Operation <1923>		
+1924	Post Close Operation <1924>		
+1925	Post Close Operation <1925>		
+1926	loc_solver_task <1926>		
+1927	loc_solver_task <1927>	CPU Processor 0x1d00000000000001	3
+1928	loc_solver_task <1928>	CPU Processor 0x1d00000000000001	3
+1929	loc_solver_task <1929>	CPU Processor 0x1d00000000000001	3
+1930	loc_solver_task <1930>	CPU Processor 0x1d00000000000001	3
+1931	loc_solver_task <1931>	CPU Processor 0x1d00000000000001	3
+1932	updateBC_task <1932>		
+1933	loc_solver_task <1933>		
+1934	updateBC_task <1934>		
+1935	updateBC_task <1935>	CPU Processor 0x1d00000000000001	3
+1936	updateBC_task <1936>	CPU Processor 0x1d00000000000001	3
+1937	updateBC_task <1937>	CPU Processor 0x1d00000000000001	3
+1938	updateBC_task <1938>	CPU Processor 0x1d00000000000001	3
+1939	updateBC_task <1939>	CPU Processor 0x1d00000000000001	3
+1940	Post Close Operation <1940>		
+1941	Post Close Operation <1941>		
+1942	Post Close Operation <1942>		
+1943	Post Close Operation <1943>		
+1944	Post Close Operation <1944>		
+1945	loc_solver_task <1945>		
+1946	loc_solver_task <1946>	CPU Processor 0x1d00000000000001	3
+1947	loc_solver_task <1947>	CPU Processor 0x1d00000000000001	3
+1948	loc_solver_task <1948>	CPU Processor 0x1d00000000000001	3
+1949	loc_solver_task <1949>	CPU Processor 0x1d00000000000001	3
+1950	loc_solver_task <1950>	CPU Processor 0x1d00000000000001	3
+1951	updateBC_task <1951>		
+1952	loc_solver_task <1952>		
+1953	updateBC_task <1953>		
+1954	updateBC_task <1954>	CPU Processor 0x1d00000000000001	3
+1955	updateBC_task <1955>	CPU Processor 0x1d00000000000001	3
+1956	updateBC_task <1956>	CPU Processor 0x1d00000000000001	3
+1957	updateBC_task <1957>	CPU Processor 0x1d00000000000001	3
+1958	updateBC_task <1958>	CPU Processor 0x1d00000000000001	3
+1959	Post Close Operation <1959>		
+1960	Post Close Operation <1960>		
+1961	Post Close Operation <1961>		
+1962	Post Close Operation <1962>		
+1963	Post Close Operation <1963>		
+1964	loc_solver_task <1964>		
+1965	loc_solver_task <1965>	CPU Processor 0x1d00000000000001	3
+1966	loc_solver_task <1966>	CPU Processor 0x1d00000000000001	3
+1967	loc_solver_task <1967>	CPU Processor 0x1d00000000000001	3
+1968	loc_solver_task <1968>	CPU Processor 0x1d00000000000001	3
+1969	loc_solver_task <1969>	CPU Processor 0x1d00000000000001	3
+1970	updateBC_task <1970>		
+1971	loc_solver_task <1971>		
+1972	updateBC_task <1972>		
+1973	updateBC_task <1973>	CPU Processor 0x1d00000000000001	3
+1974	updateBC_task <1974>	CPU Processor 0x1d00000000000001	3
+1975	updateBC_task <1975>	CPU Processor 0x1d00000000000001	3
+1976	updateBC_task <1976>	CPU Processor 0x1d00000000000001	3
+1977	updateBC_task <1977>	CPU Processor 0x1d00000000000001	3
+1978	Post Close Operation <1978>		
+1979	Post Close Operation <1979>		
+1980	Post Close Operation <1980>		
+1981	Post Close Operation <1981>		
+1982	Post Close Operation <1982>		
+1983	loc_solver_task <1983>		
+1984	loc_solver_task <1984>	CPU Processor 0x1d00000000000001	3
+1985	loc_solver_task <1985>	CPU Processor 0x1d00000000000001	3
+1986	loc_solver_task <1986>	CPU Processor 0x1d00000000000001	3
+1987	loc_solver_task <1987>	CPU Processor 0x1d00000000000001	3
+1988	loc_solver_task <1988>	CPU Processor 0x1d00000000000001	3
+1989	updateBC_task <1989>		
+1990	loc_solver_task <1990>		
+1991	updateBC_task <1991>		
+1992	updateBC_task <1992>	CPU Processor 0x1d00000000000001	3
+1993	updateBC_task <1993>	CPU Processor 0x1d00000000000001	3
+1994	updateBC_task <1994>	CPU Processor 0x1d00000000000001	3
+1995	updateBC_task <1995>	CPU Processor 0x1d00000000000001	3
+1996	updateBC_task <1996>	CPU Processor 0x1d00000000000001	3
+1997	Post Close Operation <1997>		
+1998	Post Close Operation <1998>		
+1999	Post Close Operation <1999>		
+2000	Post Close Operation <2000>		
+2001	Post Close Operation <2001>		
+2002	loc_solver_task <2002>		
+2003	loc_solver_task <2003>	CPU Processor 0x1d00000000000001	3
+2004	loc_solver_task <2004>	CPU Processor 0x1d00000000000001	3
+2005	loc_solver_task <2005>	CPU Processor 0x1d00000000000001	3
+2006	loc_solver_task <2006>	CPU Processor 0x1d00000000000001	3
+2007	loc_solver_task <2007>	CPU Processor 0x1d00000000000001	3
+2008	updateBC_task <2008>		
+2009	loc_solver_task <2009>		
+2010	updateBC_task <2010>		
+2011	updateBC_task <2011>	CPU Processor 0x1d00000000000001	3
+2012	updateBC_task <2012>	CPU Processor 0x1d00000000000001	3
+2013	updateBC_task <2013>	CPU Processor 0x1d00000000000001	3
+2014	updateBC_task <2014>	CPU Processor 0x1d00000000000001	3
+2015	updateBC_task <2015>	CPU Processor 0x1d00000000000001	3
+2016	Post Close Operation <2016>		
+2017	Post Close Operation <2017>		
+2018	Post Close Operation <2018>		
+2019	Post Close Operation <2019>		
+2020	Post Close Operation <2020>		
+2021	loc_solver_task <2021>		
+2022	loc_solver_task <2022>	CPU Processor 0x1d00000000000001	3
+2023	loc_solver_task <2023>	CPU Processor 0x1d00000000000001	3
+2024	loc_solver_task <2024>	CPU Processor 0x1d00000000000001	3
+2025	loc_solver_task <2025>	CPU Processor 0x1d00000000000001	3
+2026	loc_solver_task <2026>	CPU Processor 0x1d00000000000001	3
+2027	updateBC_task <2027>		
+2028	loc_solver_task <2028>		
+2029	updateBC_task <2029>		
+2030	updateBC_task <2030>	CPU Processor 0x1d00000000000001	3
+2031	updateBC_task <2031>	CPU Processor 0x1d00000000000001	3
+2032	updateBC_task <2032>	CPU Processor 0x1d00000000000001	3
+2033	updateBC_task <2033>	CPU Processor 0x1d00000000000001	3
+2034	updateBC_task <2034>	CPU Processor 0x1d00000000000001	3
+2035	Post Close Operation <2035>		
+2036	Post Close Operation <2036>		
+2037	Post Close Operation <2037>		
+2038	Post Close Operation <2038>		
+2039	Post Close Operation <2039>		
+2040	loc_solver_task <2040>		
+2041	loc_solver_task <2041>	CPU Processor 0x1d00000000000001	3
+2042	loc_solver_task <2042>	CPU Processor 0x1d00000000000001	3
+2043	loc_solver_task <2043>	CPU Processor 0x1d00000000000001	3
+2044	loc_solver_task <2044>	CPU Processor 0x1d00000000000001	3
+2045	loc_solver_task <2045>	CPU Processor 0x1d00000000000001	3
+2046	updateBC_task <2046>		
+2047	loc_solver_task <2047>		
+2048	updateBC_task <2048>		
+2049	updateBC_task <2049>	CPU Processor 0x1d00000000000001	3
+2050	updateBC_task <2050>	CPU Processor 0x1d00000000000001	3
+2051	updateBC_task <2051>	CPU Processor 0x1d00000000000001	3
+2052	updateBC_task <2052>	CPU Processor 0x1d00000000000001	3
+2053	updateBC_task <2053>	CPU Processor 0x1d00000000000001	3
+2054	Post Close Operation <2054>		
+2055	Post Close Operation <2055>		
+2056	Post Close Operation <2056>		
+2057	Post Close Operation <2057>		
+2058	Post Close Operation <2058>		
+2059	loc_solver_task <2059>		
+2060	loc_solver_task <2060>	CPU Processor 0x1d00000000000001	3
+2061	loc_solver_task <2061>	CPU Processor 0x1d00000000000001	3
+2062	loc_solver_task <2062>	CPU Processor 0x1d00000000000001	3
+2063	loc_solver_task <2063>	CPU Processor 0x1d00000000000001	3
+2064	loc_solver_task <2064>	CPU Processor 0x1d00000000000001	3
+2065	updateBC_task <2065>		
+2066	loc_solver_task <2066>		
+2067	updateBC_task <2067>		
+2068	updateBC_task <2068>	CPU Processor 0x1d00000000000001	3
+2069	updateBC_task <2069>	CPU Processor 0x1d00000000000001	3
+2070	updateBC_task <2070>	CPU Processor 0x1d00000000000001	3
+2071	updateBC_task <2071>	CPU Processor 0x1d00000000000001	3
+2072	updateBC_task <2072>	CPU Processor 0x1d00000000000001	3
+2073	Post Close Operation <2073>		
+2074	Post Close Operation <2074>		
+2075	Post Close Operation <2075>		
+2076	Post Close Operation <2076>		
+2077	Post Close Operation <2077>		
+2078	loc_solver_task <2078>		
+2079	loc_solver_task <2079>	CPU Processor 0x1d00000000000001	3
+2080	loc_solver_task <2080>	CPU Processor 0x1d00000000000001	3
+2081	loc_solver_task <2081>	CPU Processor 0x1d00000000000001	3
+2082	loc_solver_task <2082>	CPU Processor 0x1d00000000000001	3
+2083	loc_solver_task <2083>	CPU Processor 0x1d00000000000001	3
+2084	updateBC_task <2084>		
+2085	loc_solver_task <2085>		
+2086	updateBC_task <2086>		
+2087	updateBC_task <2087>	CPU Processor 0x1d00000000000001	3
+2088	updateBC_task <2088>	CPU Processor 0x1d00000000000001	3
+2089	updateBC_task <2089>	CPU Processor 0x1d00000000000001	3
+2090	updateBC_task <2090>	CPU Processor 0x1d00000000000001	3
+2091	updateBC_task <2091>	CPU Processor 0x1d00000000000001	3
+2092	Post Close Operation <2092>		
+2093	Post Close Operation <2093>		
+2094	Post Close Operation <2094>		
+2095	Post Close Operation <2095>		
+2096	Post Close Operation <2096>		
+2097	loc_solver_task <2097>		
+2098	loc_solver_task <2098>	CPU Processor 0x1d00000000000001	3
+2099	loc_solver_task <2099>	CPU Processor 0x1d00000000000001	3
+2100	loc_solver_task <2100>	CPU Processor 0x1d00000000000001	3
+2101	loc_solver_task <2101>	CPU Processor 0x1d00000000000001	3
+2102	loc_solver_task <2102>	CPU Processor 0x1d00000000000001	3
+2103	updateBC_task <2103>		
+2104	loc_solver_task <2104>		
+2105	updateBC_task <2105>		
+2106	updateBC_task <2106>	CPU Processor 0x1d00000000000001	3
+2107	updateBC_task <2107>	CPU Processor 0x1d00000000000001	3
+2108	updateBC_task <2108>	CPU Processor 0x1d00000000000001	3
+2109	updateBC_task <2109>	CPU Processor 0x1d00000000000001	3
+2110	updateBC_task <2110>	CPU Processor 0x1d00000000000001	3
+2111	Post Close Operation <2111>		
+2112	Post Close Operation <2112>		
+2113	Post Close Operation <2113>		
+2114	Post Close Operation <2114>		
+2115	Post Close Operation <2115>		
+2116	loc_solver_task <2116>		
+2117	loc_solver_task <2117>	CPU Processor 0x1d00000000000001	3
+2118	loc_solver_task <2118>	CPU Processor 0x1d00000000000001	3
+2119	loc_solver_task <2119>	CPU Processor 0x1d00000000000001	3
+2120	loc_solver_task <2120>	CPU Processor 0x1d00000000000001	3
+2121	loc_solver_task <2121>	CPU Processor 0x1d00000000000001	3
+2122	updateBC_task <2122>		
+2123	loc_solver_task <2123>		
+2124	updateBC_task <2124>		
+2125	updateBC_task <2125>	CPU Processor 0x1d00000000000001	3
+2126	updateBC_task <2126>	CPU Processor 0x1d00000000000001	3
+2127	updateBC_task <2127>	CPU Processor 0x1d00000000000001	3
+2128	updateBC_task <2128>	CPU Processor 0x1d00000000000001	3
+2129	updateBC_task <2129>	CPU Processor 0x1d00000000000001	3
+2130	Post Close Operation <2130>		
+2131	Post Close Operation <2131>		
+2132	Post Close Operation <2132>		
+2133	Post Close Operation <2133>		
+2134	Post Close Operation <2134>		
+2135	loc_solver_task <2135>		
+2136	loc_solver_task <2136>	CPU Processor 0x1d00000000000001	3
+2137	loc_solver_task <2137>	CPU Processor 0x1d00000000000001	3
+2138	loc_solver_task <2138>	CPU Processor 0x1d00000000000001	3
+2139	loc_solver_task <2139>	CPU Processor 0x1d00000000000001	3
+2140	loc_solver_task <2140>	CPU Processor 0x1d00000000000001	3
+2141	updateBC_task <2141>		
+2142	loc_solver_task <2142>		
+2143	updateBC_task <2143>		
+2144	updateBC_task <2144>	CPU Processor 0x1d00000000000001	3
+2145	updateBC_task <2145>	CPU Processor 0x1d00000000000001	3
+2146	updateBC_task <2146>	CPU Processor 0x1d00000000000001	3
+2147	updateBC_task <2147>	CPU Processor 0x1d00000000000001	3
+2148	updateBC_task <2148>	CPU Processor 0x1d00000000000001	3
+2149	Post Close Operation <2149>		
+2150	Post Close Operation <2150>		
+2151	Post Close Operation <2151>		
+2152	Post Close Operation <2152>		
+2153	Post Close Operation <2153>		
+2154	loc_solver_task <2154>		
+2155	loc_solver_task <2155>	CPU Processor 0x1d00000000000001	3
+2156	loc_solver_task <2156>	CPU Processor 0x1d00000000000001	3
+2157	loc_solver_task <2157>	CPU Processor 0x1d00000000000001	3
+2158	loc_solver_task <2158>	CPU Processor 0x1d00000000000001	3
+2159	loc_solver_task <2159>	CPU Processor 0x1d00000000000001	3
+2160	updateBC_task <2160>		
+2161	loc_solver_task <2161>		
+2162	updateBC_task <2162>		
+2163	updateBC_task <2163>	CPU Processor 0x1d00000000000001	3
+2164	updateBC_task <2164>	CPU Processor 0x1d00000000000001	3
+2165	updateBC_task <2165>	CPU Processor 0x1d00000000000001	3
+2166	updateBC_task <2166>	CPU Processor 0x1d00000000000001	3
+2167	updateBC_task <2167>	CPU Processor 0x1d00000000000001	3
+2168	Post Close Operation <2168>		
+2169	Post Close Operation <2169>		
+2170	Post Close Operation <2170>		
+2171	Post Close Operation <2171>		
+2172	Post Close Operation <2172>		
+2173	loc_solver_task <2173>		
+2174	loc_solver_task <2174>	CPU Processor 0x1d00000000000001	3
+2175	loc_solver_task <2175>	CPU Processor 0x1d00000000000001	3
+2176	loc_solver_task <2176>	CPU Processor 0x1d00000000000001	3
+2177	loc_solver_task <2177>	CPU Processor 0x1d00000000000001	3
+2178	loc_solver_task <2178>	CPU Processor 0x1d00000000000001	3
+2179	updateBC_task <2179>		
+2180	loc_solver_task <2180>		
+2181	updateBC_task <2181>		
+2182	updateBC_task <2182>	CPU Processor 0x1d00000000000001	3
+2183	updateBC_task <2183>	CPU Processor 0x1d00000000000001	3
+2184	updateBC_task <2184>	CPU Processor 0x1d00000000000001	3
+2185	updateBC_task <2185>	CPU Processor 0x1d00000000000001	3
+2186	updateBC_task <2186>	CPU Processor 0x1d00000000000001	3
+2187	Post Close Operation <2187>		
+2188	Post Close Operation <2188>		
+2189	Post Close Operation <2189>		
+2190	Post Close Operation <2190>		
+2191	Post Close Operation <2191>		
+2192	loc_solver_task <2192>		
+2193	loc_solver_task <2193>	CPU Processor 0x1d00000000000001	3
+2194	loc_solver_task <2194>	CPU Processor 0x1d00000000000001	3
+2195	loc_solver_task <2195>	CPU Processor 0x1d00000000000001	3
+2196	loc_solver_task <2196>	CPU Processor 0x1d00000000000001	3
+2197	loc_solver_task <2197>	CPU Processor 0x1d00000000000001	3
+2198	updateBC_task <2198>		
+2199	loc_solver_task <2199>		
+2200	updateBC_task <2200>		
+2201	updateBC_task <2201>	CPU Processor 0x1d00000000000001	3
+2202	updateBC_task <2202>	CPU Processor 0x1d00000000000001	3
+2203	updateBC_task <2203>	CPU Processor 0x1d00000000000001	3
+2204	updateBC_task <2204>	CPU Processor 0x1d00000000000001	3
+2205	updateBC_task <2205>	CPU Processor 0x1d00000000000001	3
+2206	Post Close Operation <2206>		
+2207	Post Close Operation <2207>		
+2208	Post Close Operation <2208>		
+2209	Post Close Operation <2209>		
+2210	Post Close Operation <2210>		
+2211	loc_solver_task <2211>		
+2212	loc_solver_task <2212>	CPU Processor 0x1d00000000000001	3
+2213	loc_solver_task <2213>	CPU Processor 0x1d00000000000001	3
+2214	loc_solver_task <2214>	CPU Processor 0x1d00000000000001	3
+2215	loc_solver_task <2215>	CPU Processor 0x1d00000000000001	3
+2216	loc_solver_task <2216>	CPU Processor 0x1d00000000000001	3
+2217	updateBC_task <2217>		
+2218	loc_solver_task <2218>		
+2219	updateBC_task <2219>		
+2220	updateBC_task <2220>	CPU Processor 0x1d00000000000001	3
+2221	updateBC_task <2221>	CPU Processor 0x1d00000000000001	3
+2222	updateBC_task <2222>	CPU Processor 0x1d00000000000001	3
+2223	updateBC_task <2223>	CPU Processor 0x1d00000000000001	3
+2224	updateBC_task <2224>	CPU Processor 0x1d00000000000001	3
+2225	Post Close Operation <2225>		
+2226	Post Close Operation <2226>		
+2227	Post Close Operation <2227>		
+2228	Post Close Operation <2228>		
+2229	Post Close Operation <2229>		
+2230	loc_solver_task <2230>		
+2231	loc_solver_task <2231>	CPU Processor 0x1d00000000000001	3
+2232	loc_solver_task <2232>	CPU Processor 0x1d00000000000001	3
+2233	loc_solver_task <2233>	CPU Processor 0x1d00000000000001	3
+2234	loc_solver_task <2234>	CPU Processor 0x1d00000000000001	3
+2235	loc_solver_task <2235>	CPU Processor 0x1d00000000000001	3
+2236	updateBC_task <2236>		
+2237	loc_solver_task <2237>		
+2238	updateBC_task <2238>		
+2239	updateBC_task <2239>	CPU Processor 0x1d00000000000001	3
+2240	updateBC_task <2240>	CPU Processor 0x1d00000000000001	3
+2241	updateBC_task <2241>	CPU Processor 0x1d00000000000001	3
+2242	updateBC_task <2242>	CPU Processor 0x1d00000000000001	3
+2243	updateBC_task <2243>	CPU Processor 0x1d00000000000001	3
+2244	Post Close Operation <2244>		
+2245	Post Close Operation <2245>		
+2246	Post Close Operation <2246>		
+2247	Post Close Operation <2247>		
+2248	Post Close Operation <2248>		
+2249	loc_solver_task <2249>		
+2250	loc_solver_task <2250>	CPU Processor 0x1d00000000000001	3
+2251	loc_solver_task <2251>	CPU Processor 0x1d00000000000001	3
+2252	loc_solver_task <2252>	CPU Processor 0x1d00000000000001	3
+2253	loc_solver_task <2253>	CPU Processor 0x1d00000000000001	3
+2254	loc_solver_task <2254>	CPU Processor 0x1d00000000000001	3
+2255	updateBC_task <2255>		
+2256	loc_solver_task <2256>		
+2257	updateBC_task <2257>		
+2258	updateBC_task <2258>	CPU Processor 0x1d00000000000001	3
+2259	updateBC_task <2259>	CPU Processor 0x1d00000000000001	3
+2260	updateBC_task <2260>	CPU Processor 0x1d00000000000001	3
+2261	updateBC_task <2261>	CPU Processor 0x1d00000000000001	3
+2262	updateBC_task <2262>	CPU Processor 0x1d00000000000001	3
+2263	Post Close Operation <2263>		
+2264	Post Close Operation <2264>		
+2265	Post Close Operation <2265>		
+2266	Post Close Operation <2266>		
+2267	Post Close Operation <2267>		
+2268	loc_solver_task <2268>		
+2269	loc_solver_task <2269>	CPU Processor 0x1d00000000000001	3
+2270	loc_solver_task <2270>	CPU Processor 0x1d00000000000001	3
+2271	loc_solver_task <2271>	CPU Processor 0x1d00000000000001	3
+2272	loc_solver_task <2272>	CPU Processor 0x1d00000000000001	3
+2273	loc_solver_task <2273>	CPU Processor 0x1d00000000000001	3
+2274	updateBC_task <2274>		
+2275	loc_solver_task <2275>		
+2276	updateBC_task <2276>		
+2277	updateBC_task <2277>	CPU Processor 0x1d00000000000001	3
+2278	updateBC_task <2278>	CPU Processor 0x1d00000000000001	3
+2279	updateBC_task <2279>	CPU Processor 0x1d00000000000001	3
+2280	updateBC_task <2280>	CPU Processor 0x1d00000000000001	3
+2281	updateBC_task <2281>	CPU Processor 0x1d00000000000001	3
+2282	Post Close Operation <2282>		
+2283	Post Close Operation <2283>		
+2284	Post Close Operation <2284>		
+2285	Post Close Operation <2285>		
+2286	Post Close Operation <2286>		
+2287	loc_solver_task <2287>		
+2288	loc_solver_task <2288>	CPU Processor 0x1d00000000000001	3
+2289	loc_solver_task <2289>	CPU Processor 0x1d00000000000001	3
+2290	loc_solver_task <2290>	CPU Processor 0x1d00000000000001	3
+2291	loc_solver_task <2291>	CPU Processor 0x1d00000000000001	3
+2292	loc_solver_task <2292>	CPU Processor 0x1d00000000000001	3
+2293	updateBC_task <2293>		
+2294	loc_solver_task <2294>		
+2295	updateBC_task <2295>		
+2296	updateBC_task <2296>	CPU Processor 0x1d00000000000001	3
+2297	updateBC_task <2297>	CPU Processor 0x1d00000000000001	3
+2298	updateBC_task <2298>	CPU Processor 0x1d00000000000001	3
+2299	updateBC_task <2299>	CPU Processor 0x1d00000000000001	3
+2300	updateBC_task <2300>	CPU Processor 0x1d00000000000001	3
+2301	Post Close Operation <2301>		
+2302	Post Close Operation <2302>		
+2303	Post Close Operation <2303>		
+2304	Post Close Operation <2304>		
+2305	Post Close Operation <2305>		
+2306	loc_solver_task <2306>		
+2307	loc_solver_task <2307>	CPU Processor 0x1d00000000000001	3
+2308	loc_solver_task <2308>	CPU Processor 0x1d00000000000001	3
+2309	loc_solver_task <2309>	CPU Processor 0x1d00000000000001	3
+2310	loc_solver_task <2310>	CPU Processor 0x1d00000000000001	3
+2311	loc_solver_task <2311>	CPU Processor 0x1d00000000000001	3
+2312	updateBC_task <2312>		
+2313	loc_solver_task <2313>		
+2314	updateBC_task <2314>		
+2315	updateBC_task <2315>	CPU Processor 0x1d00000000000001	3
+2316	updateBC_task <2316>	CPU Processor 0x1d00000000000001	3
+2317	updateBC_task <2317>	CPU Processor 0x1d00000000000001	3
+2318	updateBC_task <2318>	CPU Processor 0x1d00000000000001	3
+2319	updateBC_task <2319>	CPU Processor 0x1d00000000000001	3
+2320	Post Close Operation <2320>		
+2321	Post Close Operation <2321>		
+2322	Post Close Operation <2322>		
+2323	Post Close Operation <2323>		
+2324	Post Close Operation <2324>		
+2325	loc_solver_task <2325>		
+2326	loc_solver_task <2326>	CPU Processor 0x1d00000000000001	3
+2327	loc_solver_task <2327>	CPU Processor 0x1d00000000000001	3
+2328	loc_solver_task <2328>	CPU Processor 0x1d00000000000001	3
+2329	loc_solver_task <2329>	CPU Processor 0x1d00000000000001	3
+2330	loc_solver_task <2330>	CPU Processor 0x1d00000000000001	3
+2331	updateBC_task <2331>		
+2332	loc_solver_task <2332>		
+2333	updateBC_task <2333>		
+2334	updateBC_task <2334>	CPU Processor 0x1d00000000000001	3
+2335	updateBC_task <2335>	CPU Processor 0x1d00000000000001	3
+2336	updateBC_task <2336>	CPU Processor 0x1d00000000000001	3
+2337	updateBC_task <2337>	CPU Processor 0x1d00000000000001	3
+2338	updateBC_task <2338>	CPU Processor 0x1d00000000000001	3
+2339	Post Close Operation <2339>		
+2340	Post Close Operation <2340>		
+2341	Post Close Operation <2341>		
+2342	Post Close Operation <2342>		
+2343	Post Close Operation <2343>		
+2344	loc_solver_task <2344>		
+2345	loc_solver_task <2345>	CPU Processor 0x1d00000000000001	3
+2346	loc_solver_task <2346>	CPU Processor 0x1d00000000000001	3
+2347	loc_solver_task <2347>	CPU Processor 0x1d00000000000001	3
+2348	loc_solver_task <2348>	CPU Processor 0x1d00000000000001	3
+2349	loc_solver_task <2349>	CPU Processor 0x1d00000000000001	3
+2350	updateBC_task <2350>		
+2351	loc_solver_task <2351>		
+2352	updateBC_task <2352>		
+2353	updateBC_task <2353>	CPU Processor 0x1d00000000000001	3
+2354	updateBC_task <2354>	CPU Processor 0x1d00000000000001	3
+2355	updateBC_task <2355>	CPU Processor 0x1d00000000000001	3
+2356	updateBC_task <2356>	CPU Processor 0x1d00000000000001	3
+2357	updateBC_task <2357>	CPU Processor 0x1d00000000000001	3
+2358	Post Close Operation <2358>		
+2359	Post Close Operation <2359>		
+2360	Post Close Operation <2360>		
+2361	Post Close Operation <2361>		
+2362	Post Close Operation <2362>		
+2363	loc_solver_task <2363>		
+2364	loc_solver_task <2364>	CPU Processor 0x1d00000000000001	3
+2365	loc_solver_task <2365>	CPU Processor 0x1d00000000000001	3
+2366	loc_solver_task <2366>	CPU Processor 0x1d00000000000001	3
+2367	loc_solver_task <2367>	CPU Processor 0x1d00000000000001	3
+2368	loc_solver_task <2368>	CPU Processor 0x1d00000000000001	3
+2369	updateBC_task <2369>		
+2370	loc_solver_task <2370>		
+2371	updateBC_task <2371>		
+2372	updateBC_task <2372>	CPU Processor 0x1d00000000000001	3
+2373	updateBC_task <2373>	CPU Processor 0x1d00000000000001	3
+2374	updateBC_task <2374>	CPU Processor 0x1d00000000000001	3
+2375	updateBC_task <2375>	CPU Processor 0x1d00000000000001	3
+2376	updateBC_task <2376>	CPU Processor 0x1d00000000000001	3
+2377	Post Close Operation <2377>		
+2378	Post Close Operation <2378>		
+2379	Post Close Operation <2379>		
+2380	Post Close Operation <2380>		
+2381	Post Close Operation <2381>		
+2382	loc_solver_task <2382>		
+2383	loc_solver_task <2383>	CPU Processor 0x1d00000000000001	3
+2384	loc_solver_task <2384>	CPU Processor 0x1d00000000000001	3
+2385	loc_solver_task <2385>	CPU Processor 0x1d00000000000001	3
+2386	loc_solver_task <2386>	CPU Processor 0x1d00000000000001	3
+2387	loc_solver_task <2387>	CPU Processor 0x1d00000000000001	3
+2388	updateBC_task <2388>		
+2389	loc_solver_task <2389>		
+2390	updateBC_task <2390>		
+2391	updateBC_task <2391>	CPU Processor 0x1d00000000000001	3
+2392	updateBC_task <2392>	CPU Processor 0x1d00000000000001	3
+2393	updateBC_task <2393>	CPU Processor 0x1d00000000000001	3
+2394	updateBC_task <2394>	CPU Processor 0x1d00000000000001	3
+2395	updateBC_task <2395>	CPU Processor 0x1d00000000000001	3
+2396	Post Close Operation <2396>		
+2397	Post Close Operation <2397>		
+2398	Post Close Operation <2398>		
+2399	Post Close Operation <2399>		
+2400	Post Close Operation <2400>		
+2401	loc_solver_task <2401>		
+2402	loc_solver_task <2402>	CPU Processor 0x1d00000000000001	3
+2403	loc_solver_task <2403>	CPU Processor 0x1d00000000000001	3
+2404	loc_solver_task <2404>	CPU Processor 0x1d00000000000001	3
+2405	loc_solver_task <2405>	CPU Processor 0x1d00000000000001	3
+2406	loc_solver_task <2406>	CPU Processor 0x1d00000000000001	3
+2407	updateBC_task <2407>		
+2408	loc_solver_task <2408>		
+2409	updateBC_task <2409>		
+2410	updateBC_task <2410>	CPU Processor 0x1d00000000000001	3
+2411	updateBC_task <2411>	CPU Processor 0x1d00000000000001	3
+2412	updateBC_task <2412>	CPU Processor 0x1d00000000000001	3
+2413	updateBC_task <2413>	CPU Processor 0x1d00000000000001	3
+2414	updateBC_task <2414>	CPU Processor 0x1d00000000000001	3
+2415	Post Close Operation <2415>		
+2416	Post Close Operation <2416>		
+2417	Post Close Operation <2417>		
+2418	Post Close Operation <2418>		
+2419	Post Close Operation <2419>		
+2420	loc_solver_task <2420>		
+2421	loc_solver_task <2421>	CPU Processor 0x1d00000000000001	3
+2422	loc_solver_task <2422>	CPU Processor 0x1d00000000000001	3
+2423	loc_solver_task <2423>	CPU Processor 0x1d00000000000001	3
+2424	loc_solver_task <2424>	CPU Processor 0x1d00000000000001	3
+2425	loc_solver_task <2425>	CPU Processor 0x1d00000000000001	3
+2426	updateBC_task <2426>		
+2427	loc_solver_task <2427>		
+2428	updateBC_task <2428>		
+2429	updateBC_task <2429>	CPU Processor 0x1d00000000000001	3
+2430	updateBC_task <2430>	CPU Processor 0x1d00000000000001	3
+2431	updateBC_task <2431>	CPU Processor 0x1d00000000000001	3
+2432	updateBC_task <2432>	CPU Processor 0x1d00000000000001	3
+2433	updateBC_task <2433>	CPU Processor 0x1d00000000000001	3
+2434	Post Close Operation <2434>		
+2435	Post Close Operation <2435>		
+2436	Post Close Operation <2436>		
+2437	Post Close Operation <2437>		
+2438	Post Close Operation <2438>		
+2439	loc_solver_task <2439>		
+2440	loc_solver_task <2440>	CPU Processor 0x1d00000000000001	3
+2441	loc_solver_task <2441>	CPU Processor 0x1d00000000000001	3
+2442	loc_solver_task <2442>	CPU Processor 0x1d00000000000001	3
+2443	loc_solver_task <2443>	CPU Processor 0x1d00000000000001	3
+2444	loc_solver_task <2444>	CPU Processor 0x1d00000000000001	3
+2445	updateBC_task <2445>		
+2446	loc_solver_task <2446>		
+2447	updateBC_task <2447>		
+2448	updateBC_task <2448>	CPU Processor 0x1d00000000000001	3
+2449	updateBC_task <2449>	CPU Processor 0x1d00000000000001	3
+2450	updateBC_task <2450>	CPU Processor 0x1d00000000000001	3
+2451	updateBC_task <2451>	CPU Processor 0x1d00000000000001	3
+2452	updateBC_task <2452>	CPU Processor 0x1d00000000000001	3
+2453	Post Close Operation <2453>		
+2454	Post Close Operation <2454>		
+2455	Post Close Operation <2455>		
+2456	Post Close Operation <2456>		
+2457	Post Close Operation <2457>		
+2458	loc_solver_task <2458>		
+2459	loc_solver_task <2459>	CPU Processor 0x1d00000000000001	3
+2460	loc_solver_task <2460>	CPU Processor 0x1d00000000000001	3
+2461	loc_solver_task <2461>	CPU Processor 0x1d00000000000001	3
+2462	loc_solver_task <2462>	CPU Processor 0x1d00000000000001	3
+2463	loc_solver_task <2463>	CPU Processor 0x1d00000000000001	3
+2464	updateBC_task <2464>		
+2465	display_task <2465>	CPU Processor 0x1d00000000000001	2
+2466	Inter Close Operation <2466>		
+2467	updateBC_task <2467>		
+2468	updateBC_task <2468>	CPU Processor 0x1d00000000000001	2
+2469	updateBC_task <2469>	CPU Processor 0x1d00000000000001	2
+2470	updateBC_task <2470>	CPU Processor 0x1d00000000000001	2
+2471	updateBC_task <2471>	CPU Processor 0x1d00000000000001	2
+2472	updateBC_task <2472>	CPU Processor 0x1d00000000000001	2
+2473	Post Close Operation <2473>		
+2474	Post Close Operation <2474>		
+2475	Post Close Operation <2475>		
+2476	Post Close Operation <2476>		
+2477	Post Close Operation <2477>		
