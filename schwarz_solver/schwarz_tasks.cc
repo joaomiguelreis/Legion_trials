@@ -1,67 +1,69 @@
 #include "schwarz_solver.h"
-#include "../../kldec.h"
-
-
-MatrixXd SetKLModes(int const nel, VectorXd &Lam, double len_kl, double var_f);
-
 
 void init_spatial_task(const Task *task,
                        const std::vector<PhysicalRegion> &regions,
                        Context ctx, Runtime *runtime){
 
-
 	Indices indices = *((const Indices*)task->args);
 	int current_subdomain = task->index_point.point_data[0];
-
-
 
 	const FieldAccessor<WRITE_ONLY, double, 1> acc_source(regions[0], SOURCE_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_mesh(regions[0], MESH_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[0], SOLUTION_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_field(regions[0], FIELD_ID);
 
-	int ned = indices.elements_per_subdomain;
-	int No = indices.num_overlapping_elem;
-	int Net = indices.num_total_elements;
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_mesh(regions[1], MESH_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[1], SOLUTION_ID);
+
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_edge_left(regions[2], EDGE_LEFT_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_edge_right(regions[2], EDGE_RIGHT_ID);
+
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_left(regions[3], INNER_LEFT_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_right(regions[3], INNER_RIGHT_ID);
+	const FieldAccessor<WRITE_ONLY, bool, 1> acc_done(regions[3], DONE_ID);
+	const FieldAccessor<WRITE_ONLY, bool, 1> acc_write(regions[3], WRITE_ID);
+
+	const FieldAccessor<WRITE_ONLY, double, 2> acc_matrix(regions[4], MASS_MATRIX_ID);
 	
-	int start = current_subdomain * (ned-No);
-	double dx = 1 / float(Net);
-	// int id; 
-	for (int e=0; e<ned+1; e++){
-		int id = start + e;
-		if (e<ned+1) acc_source[id] = 1; //last value is just something...
-		acc_mesh[id] = id*dx;
-		acc_sol[id] = 0; //BC WILL BE WRITTEN IN NODES TASK
-	}
-}
 
-
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
-
-
-void init_fields_task(const Task *task,
-			          const std::vector<PhysicalRegion> &regions,
-			          Context ctx, Runtime *runtime){
-
-
-	Indices indices = *((const Indices*)task->args);
-	int current_subdomain = task->index_point.point_data[0];
-
-
-
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_edge_left(regions[0], EDGE_LEFT_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_edge_right(regions[0], EDGE_RIGHT_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_left(regions[1], INNER_LEFT_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_inner_right(regions[1], INNER_RIGHT_ID);
-	const FieldAccessor<WRITE_ONLY, bool, 1> acc_done(regions[1], DONE_ID);
-	const FieldAccessor<WRITE_ONLY, bool, 1> acc_write(regions[1], WRITE_ID);
-
-
+	int Net = indices.num_total_elements;
+	int No = indices.num_overlapping_elem;
 	int num_pieces = indices.num_pieces;
 	double u0 = indices.u0;
 	double u1 = indices.u1;
-	double ul, ur;
+	int ned = indices.elements_per_subdomain;
 
+
+	double ul, ur;
+	int start = -current_subdomain * (No+1);
+
+	// write local matrices R4
+	MatrixXd A = MatrixXd::Zero(ned-1, ned-1);
+
+	/* Local Mesh, field and source */
+	VectorXd X = VectorXd::Zero(ned+1);
+	VectorXd field = VectorXd::Zero(ned);
+
+	// write source R0
+	Rect<1> middle_elem_rect = runtime->get_index_space_domain(ctx, task->regions[0].region.get_index_space());
+	int e=0;
+	for (PointInRectIterator<1> pir(middle_elem_rect); pir(); pir++){
+	    acc_source[*pir] = 1;
+	    field(e) = acc_field[*pir];
+		e++;
+	}
+
+	// write mesh and solution R5
+	Rect<1> edge_elem_rect = runtime->get_index_space_domain(ctx, task->regions[1].region.get_index_space());
+	int i = 0;
+	for (PointInRectIterator<1> pir(edge_elem_rect); pir(); pir++){
+		X(i) = (double) ( start + (*pir).x )/(Net);
+		acc_mesh[*pir] = X(i);
+		i++;
+	    acc_sol[*pir] = 0;
+	    
+	}
+
+
+	// write inner and edge nodes R2 and R3
 	if (current_subdomain==0 || current_subdomain==num_pieces-1 ){
 		if (current_subdomain== 0){
 			ul = u0; //left BC
@@ -77,79 +79,40 @@ void init_fields_task(const Task *task,
 		ur = 0;
 
 	}
+	
 
 	acc_edge_left[current_subdomain] = ul;
 	acc_edge_right[current_subdomain] = ur;
-
-
 
 	acc_inner_left[current_subdomain] = 0;
 	acc_inner_right[current_subdomain] = 0;
 	acc_done[current_subdomain] = false;
 	acc_write[current_subdomain] = true;
 
+	//Loop over elements
+	for(int e=0; e<ned; e++){				
+		double kv = field(e)/fabs(X(e+1)-X(e)); // k(x_e)/dx
+		if(e==0){	// first sudomain	
+			A(e,e) += kv;
 
-}
+		}else if (e==ned-1){ // last subdomain
+			A(e-1,e-1) += kv;
 
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
+		} else { //inner subdomains
+			A(e-1,e-1) += kv;
+			A(e-1,e) -= kv;
+			A(e,e-1) -= kv;
+			A(e,e) += kv;
+		}
 
-void KL_expansion_task(const Task *task,
-                    const std::vector<PhysicalRegion> &regions,
-                    Context ctx, Runtime *runtime){
-
-	std::default_random_engine generator;
-	std::normal_distribution<double> G(.0,1.0);
-
-	Indices indices = *((const Indices*)task->args);
-
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_field(regions[0], FIELD_ID);
-
-	double len_kl = indices.len_kl;
-	double var_kl = indices.var_kl;
-	double mu_kl = indices.mu_kl;
-	int Net = indices.num_total_elements;
-
-	/* Find KL modes */
-	VectorXd Lam;
-	MatrixXd Modes = SetKLModes(Net, Lam, len_kl, var_kl);
-	for(int e=0; e<Net; e++) Modes.col(e) *= Lam(e);
-
-	/* KL Expansion */
-	VectorXd KF = VectorXd::Ones(Net)*mu_kl; // full KL-epansion
-	for(int e=0; e<Net; e++){
-		double va = G(generator);
-		KF += Modes.col(e)*va;	
-	}
-	KF.array() = KF.array().exp();
-
-	for(int e=0; e<Net; e++){
-		acc_field[e] = KF(e);	
 	}
 
-}
+	MatrixXd L = A.llt().matrixL();
 
-
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
-
-
-void color_spatial_fields_task(const Task *task,
-                    const std::vector<PhysicalRegion> &regions,
-                    Context ctx, Runtime *runtime){
-
-	const FieldAccessor<WRITE_ONLY, Point<1>, 1> acc_color(regions[0], SUBDOMAIN_COLOR_ID);
-
-	Indices indices = *((const Indices*)task->args);
-	int ned = indices.elements_per_subdomain;
-	int num_pieces = indices.num_pieces;
-
-
-	for(int n=0; n<num_pieces; n++){
-		for (int e=0; e<ned; e++){
-			int id = n * ned + e;
-			const Point<1> node_ptr(id);
-			acc_color[node_ptr] = n;
+	for (int e1=0; e1<ned-1; e1++){
+		int i1 = current_subdomain * (ned-1) + e1;
+		for(int e2=0; e2<ned-1; e2++){
+			acc_matrix[Point<2>(i1, e2)] = L(e1,e2);
 		}
 	}
 
@@ -159,9 +122,13 @@ void color_spatial_fields_task(const Task *task,
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 
-bool loc_solver_task(const Task *task,
+
+
+
+void loc_solver_task(const Task *task,
 			         const std::vector<PhysicalRegion> &regions,
 			         Context ctx, Runtime *runtime){
+
 
 	/* create accessors to regions */
 	const FieldAccessor<READ_ONLY, double, 1> acc_edge_left(regions[0], EDGE_LEFT_ID);
@@ -172,11 +139,15 @@ bool loc_solver_task(const Task *task,
 	const FieldAccessor<READ_WRITE, bool, 1> acc_write(regions[1], WRITE_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_field(regions[2], FIELD_ID);
 	const FieldAccessor<READ_ONLY, double, 1> acc_source(regions[2], SOURCE_ID);
-	const FieldAccessor<READ_ONLY, double, 1> acc_mesh(regions[2], MESH_ID);
-	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[2], SOLUTION_ID);
+	const FieldAccessor<READ_ONLY, double, 1> acc_mesh(regions[3], MESH_ID);
+	const FieldAccessor<WRITE_ONLY, double, 1> acc_sol(regions[3], SOLUTION_ID);
+	const FieldAccessor<READ_ONLY, double, 2> acc_matrix(regions[4], MASS_MATRIX_ID);
+
+
 
 	// Get indices 
-	int current_subdomain = *((const int*)task->local_args);
+	int current_subdomain = task->index_point.point_data[0];
+
 	Indices indices = *((const Indices*)task->args);
 
 	int ned = indices.elements_per_subdomain;
@@ -187,31 +158,37 @@ bool loc_solver_task(const Task *task,
 
 	if(done==false){
 
-		
-
 		// ----------------------------------------------------------------------
 		// ----------------------------------------------------------------------
-		//                          GET SPATIAL OPERATORS
+		//               SOLVE FE PROBLEM AND UPDATE INNER NODES 
 		// ----------------------------------------------------------------------
 		// ----------------------------------------------------------------------
 
-		/* Local Mesh, field and source */
+
+		// We use the same region to store the mesh (defined at each edge of element),
+		// and the field and source (defined both at the middle of the element)
 		VectorXd X = VectorXd::Zero(ned+1);
 		VectorXd field = VectorXd::Zero(ned);
 		VectorXd Source = VectorXd::Zero(ned-1);
 
-		int start = current_subdomain * (ned-no);
-		for (int e=0; e<ned+1; e++){
-			int id = start + e;
-			X(e) = acc_mesh[id];
-			if (e<ned) field(e) = acc_field[id]; //values in the middle of elements
-
+		Rect<1> rect2 = runtime->get_index_space_domain(ctx, task->regions[2].region.get_index_space());
+		int e=0;
+		for (PointInRectIterator<1> pir(rect2); pir(); pir++){
+			field(e) = acc_field[*pir];
+			e++;
 		}
 
+		Rect<1> rect = runtime->get_index_space_domain(ctx, task->regions[3].region.get_index_space());
+		int i=0;
+		for (PointInRectIterator<1> pir(rect); pir(); pir++){
+			X(i) = acc_mesh[*pir];
+			i++;
+		}
+		
 
-
-		// loop over elements subdomain
-		for(int e=0; e<ned; e++){
+		// Building source
+		int start = current_subdomain * (ned-no);
+		for(int e=0; e<ned; e++){ // loop over elements subdomain
 			double f = acc_source[start+e]*.5*fabs(X(e+1)-X(e));	//Source term
 			if(e==0){
 				Source(e  ) += f;													
@@ -224,79 +201,8 @@ bool loc_solver_task(const Task *task,
 		} //next element
 
 
-		// ----------------------------------------------------------------------
-		// ----------------------------------------------------------------------
-		//                      GET FE SYSTEM OPERATORS
-		// ----------------------------------------------------------------------
-		// ----------------------------------------------------------------------
 
-		// Compute SpMat or get them from cache
-		static map< int, SpMat > Oper_for_point;
-		static map<int,SpMat* > Oper_ptr_for_point;
-		static map<int,int> Oper_for_point_is_valid_for_timestep;
-		static std::mutex cache_mutex;
-
-		SpMat Oper;
-		SpMat* Oper_ptr;
-		int valid_timestep;
-		{
-		std::lock_guard<std::mutex> guard(cache_mutex);
-		Oper = Oper_for_point[current_subdomain];
-		Oper_ptr = Oper_ptr_for_point[current_subdomain];
-		valid_timestep = Oper_for_point_is_valid_for_timestep[current_subdomain];
-		}
-		if (Oper_ptr_for_point[current_subdomain] == NULL || valid_timestep != current_subdomain) { /* check if SpMat in cache 
-																						   corresponds to current subdomain */
-
-			vector<T> cprec; //inititate the vector with values of FEM integral
-
-			//Loop over elements
-			for(int e=0; e<ned; e++){				
-				double kv = field(e)/fabs(X(e+1)-X(e)); // k(x_e)/dx	
-
-				if(e==0){	// first sudomain	
-					cprec.push_back(T(e,e,kv)); 
-
-				}else if (e==ned-1){ // last subdomain
-					cprec.push_back(T(e-1,e-1,kv));
-
-				} else { //inner subdomains
-					cprec.push_back(T(e-1,e-1, kv));
-					cprec.push_back(T(e-1,e  ,-kv));
-					cprec.push_back(T(e  ,e-1,-kv));
-					cprec.push_back(T(e  ,e  , kv));
-					/* T(e1, e2, value_kappa) is the approx of 
-							the FEM integral for basis functions with indices (e1,e2).
-							This tells the value is approximated by value_kappa.
-							Since we are doing linear interpolation, we just have a flat
-							approx of the integral
-					*/
-				}
-			}
-
-			SpMat Oper = SpMat(ned-1,ned-1);	// Assembly sparse matrix:
-			Oper.setFromTriplets(cprec.begin(), cprec.end()); /* fill the sparse matrix with cprec 
-															 Oper_(e1,e2) = kappa_value */
-					
-			Oper_ptr = &Oper;
-
-			std::lock_guard<std::mutex> guard(cache_mutex);
-			if (Oper_ptr_for_point[current_subdomain] != NULL) {
-				Oper_for_point.erase(current_subdomain); // remove old value from cache
-				Oper_ptr_for_point.erase(current_subdomain); // remove old value from cache
-			}
-
-			Oper_for_point[current_subdomain] = Oper;
-			Oper_ptr_for_point[current_subdomain] = Oper_ptr;
-			Oper_for_point_is_valid_for_timestep[current_subdomain] = current_subdomain;
-		}
-
-
-		// ----------------------------------------------------------------------
-		// ----------------------------------------------------------------------
-		//               SOLVE FE PROBLEM AND UPDATE INNER NODES 
-		// ----------------------------------------------------------------------
-		// ----------------------------------------------------------------------
+		
 
 		/* Dirichlet boundary values at edges for FE system. */
 		double BCvalue_edge = field(0)/fabs(X(1)-X(0));
@@ -306,13 +212,6 @@ bool loc_solver_task(const Task *task,
 		double Ul = acc_edge_left[current_subdomain];
 		double Ur = acc_edge_right[current_subdomain];
 
-		
-
-		/* solve FE problem*/
-		SpMat Operator = Oper_for_point[current_subdomain];
-		SimplicialCholesky<SpMat> chol; // cholesky decomp of (sparse) mass matrix
-		chol.compute(Operator); /*  find cholesky decomposition. This will be used to solve the FE 
-								linear system */
 
 		// applies boundary values in the source vector
 		VectorXd b = Source; b(0) += BCvalue_edge * Ul; b(ned-2) += BCvalue_right * Ur;
@@ -320,14 +219,48 @@ bool loc_solver_task(const Task *task,
 		// just making sure we are not deleting any rows in the FE system
 		if(b.rows()!=ned-1) cout << "Mismatch\n";
 
+		MatrixXd L = MatrixXd::Zero(ned-1, ned-1);
+		VectorXd y = VectorXd::Zero(ned-1);
+		VectorXd x = VectorXd::Zero(ned-1);
+
+
+		for (int e1=0; e1<ned-1; e1++){
+			int i1 = current_subdomain * (ned-1) + e1;
+			for(int e2=0; e2<ned-1; e2++){
+				L(e1, e2) = acc_matrix[Point<2>(i1, e2)];
+			}
+		}
+		MatrixXd Lt = L.transpose();
+
+		/* solves portion of Mx=b for inner points of current
+		subdomain. Boundary values will be added later.
+		This is the heaviest computation and should be done 
+		in parallel. */
+
+		// forward substitution		
+		for(int m=0; m<ned-1; m++){
+			double sum = 0;
+			for(int i=0; i<=m-1; i++){
+				sum -= L(m,i) * y(i);
+			}
+			y(m) = (b(m) + sum) / L(m,m);
+		}
+
+		// backward substitution
+		for(int m=ned-1 -1; m>=0; m--){
+			double sum = 0;
+			for(int i=ned-1 -1; i>m; i--){
+				sum -= Lt(m,i) * x(i);
+			}
+			x(m) = (y(m) + sum) / Lt(m,m);
+		}
+
+		
 		// solving M_d x_d = b_d
 		VectorXd Usol = VectorXd(ned+1); // initiate vector with solution values
-		Usol.segment(1,ned-1) = chol.solve(b); /* solves portion of Mx=b for inner points of current
-												  subdomain. Boundary values will be added later.
-												  This is the heaviest computation and should be done 
-												  in parallel. */
-		Usol(0) = Ul; Usol(ned) = Ur; // adding boundary values at the edges
+		Usol.segment(1,ned-1)= x;
 
+		Usol(0) = Ul; Usol(ned) = Ur; // adding boundary values at the edges
 
 
 		/* getting local gaps */
@@ -342,24 +275,22 @@ bool loc_solver_task(const Task *task,
 		if ((gap_left < tol) && (gap_right < tol)== 1){
 			acc_done[current_subdomain] = true;
 
+
+
 			//display
 			if (acc_write[current_subdomain]){
-				cout << " piece of solution at subdomain " << current_subdomain << endl;
-				cout << Usol.transpose() << endl;
-				cout << "\n" << endl;
-				int start = current_subdomain * (ned-no);
-				for (int e=0; e<ned+1; e++){
-					int id = start + e;
-					acc_sol[id] = Usol(e);
+				int i=0;
+				Rect<1> edge_elem_rect = runtime->get_index_space_domain(ctx, task->regions[3].region.get_index_space());
+				for (PointInRectIterator<1> pir(edge_elem_rect); pir(); pir++){
+					acc_sol[*pir] = Usol(i);
+					i++;
 				}
-				acc_write[current_subdomain] = false;
-				
+				acc_write[current_subdomain] = false;			
 			}
+
 		}
 
 	} // END OF IF BOOL == FALSE
-
-	return done;
 
 }
 
@@ -396,21 +327,43 @@ void updateBC_task(const Task *task,
 
 }
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
+
+
 
 void display_task(const Task *task,
-			       const std::vector<PhysicalRegion> &regions,
-			       Context ctx, Runtime *runtime){
+			      const std::vector<PhysicalRegion> &regions,
+			      Context ctx, Runtime *runtime){
 
-	const FieldAccessor<READ_ONLY, double, 1> acc_sol(regions[0], SOLUTION_ID);
+	const FieldAccessor<READ_WRITE, double, 1> acc_sol(regions[0], SOLUTION_ID);
 
-	int Net = *((const int*)task->args);
+	Indices indices = *((const Indices*)task->args);
+	int Net = indices.num_total_elements;
+	int ned = indices.elements_per_subdomain;
+	int no = indices.num_overlapping_elem;
+	int num_pieces = indices.num_pieces;
+
+
 
 	VectorXd solution = VectorXd::Zero(Net+1);
-	for (int n=0; n<Net+1; n++){
-		solution[n] = acc_sol[n];
+	int id = 0;
+	for(int n=0; n<num_pieces; n++){
+		int start = -n * (no+1);
+		if (n==0){
+			for(int e=0; e<ned+1; e++){
+				id = n * (ned+1) + e;
+				solution[start+e] = acc_sol[e];
+			}
+		} else{
+			for(int e=0; e<ned+1; e++){
+				id = n * (ned+1) + e;
+				solution[start+id] = acc_sol[id];
+
+			}
+		}
+		
 	}
 
 	cout << "final solution \n";
@@ -418,8 +371,6 @@ void display_task(const Task *task,
 
 
 }
-
-
 
 
 

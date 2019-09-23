@@ -1,16 +1,15 @@
 #include <cstdio>
 #include <iostream>
+#include <chrono> 
 #include <vector>
 #include <random>
 
-// #define EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
-// #include "../StochTk++/includes/pcb++.h"
-// #include "../StochTk++/includes/cub++.h"
-// #include "../StochTk++/includes/mstoch++.h"
+#include <Eigen/Eigenvalues>
 
-#include "../../legion/runtime/legion.h"
+
+#include "../legion/runtime/legion.h"
 
 
 using namespace std;
@@ -22,13 +21,9 @@ typedef Eigen::Triplet<double> T;
 
 enum TaskIDs {
   TOP_LEVEL_TASK_ID,
-  SCHWARZ_SOLVER_TASK_ID,
-  INIT_FIELDS_TASK_ID,
   INIT_SPATIAL_TASK_ID,
   LOC_SOLVER_TASK_ID,
   UPDATE_BC_TASK_ID,
-  SUBDOMAIN_COLOR_TASK_ID,
-  KL_EXPANSION_TASK_ID,
   DISPLAY_TASK_ID,
 };
 
@@ -46,14 +41,26 @@ enum InnerFieldsID{
 	WRITE_ID,
 };
 
-enum SpatialFieldsID
+enum MiddleElemFieldsID
 {
 	FIELD_ID,
 	SOURCE_ID,
-	MESH_ID,
 	SUBDOMAIN_COLOR_ID,
+	RANDOM_VA_ID,
+};
+
+enum EdgeElemFieldsID
+{
+	MESH_ID,
 	SOLUTION_ID,
 };
+
+
+enum MatrixFieldsIDs
+{
+	MASS_MATRIX_ID,
+};
+
 
 
 struct Indices{
@@ -66,7 +73,6 @@ struct Indices{
 	double len_kl;
 	double var_kl;
 	double mu_kl;
-	vector<double> KF_vector;
 	double u0;
 	double u1;
 };

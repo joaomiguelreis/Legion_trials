@@ -1,10 +1,16 @@
-#include "schwarz_solver.h"
+1§§#include "schwarz_solver.h"
+#include "../kldec.h"
+
+
+MatrixXd SetKLModes(int const nel, VectorXd &Lam, double len_kl, double var_f);
 
 
 
 void allocate_inner_fields(Context ctx, Runtime *runtime, FieldSpace field_space);
 void allocate_edge_fields(Context ctx, Runtime *runtime, FieldSpace field_space);
-void allocate_spatial_fields(Context ctx, Runtime *runtime, FieldSpace field_space);
+void allocate_middle_elem(Context ctx, Runtime *runtime, FieldSpace field_space);
+void allocate_edge_elem(Context ctx, Runtime *runtime, FieldSpace field_space);
+void allocate_matrix_fields(Context ctx, Runtime *runtime, FieldSpace field_space);
 
 
 /*
@@ -13,29 +19,18 @@ FORWARD DECLARATION OF TASKS
 ---------------------------------------------------
 */
 
-void color_spatial_fields_task(const Task *task,
-                    		   const std::vector<PhysicalRegion> &regions,
-                    		   Context ctx, Runtime *runtime);
-
-void init_fields_task(const Task *task,
-			          const std::vector<PhysicalRegion> &regions,
-			          Context ctx, Runtime *runtime);
-
 void init_spatial_task(const Task *task,
                     const std::vector<PhysicalRegion> &regions,
                     Context ctx, Runtime *runtime);
 
-bool loc_solver_task(const Task *task,
+
+void loc_solver_task(const Task *task,
 			         const std::vector<PhysicalRegion> &regions,
 			         Context ctx, Runtime *runtime);
 
 void updateBC_task(const Task *task,
 			       const std::vector<PhysicalRegion> &regions,
 			       Context ctx, Runtime *runtime);
-
-void KL_expansion_task(const Task *task,
-                    const std::vector<PhysicalRegion> &regions,
-                    Context ctx, Runtime *runtime);
 
 void display_task(const Task *task,
 			       const std::vector<PhysicalRegion> &regions,
@@ -52,20 +47,22 @@ void top_level_task(const Task *task,
                     const std::vector<PhysicalRegion> &regions,
                     Context ctx, Runtime *runtime){
 
+	std::default_random_engine generator;
+	std::normal_distribution<double> G(.0,1.0);
 
-	int Ne = 7; // non overlapping elements per subdomain
-	int Nd = 5; // ovrlapping elements per subdomain
-	int No = 3; //number of subdomains
+
+	int Ne = 100; // non overlapping elements per subdomain
+	int Nd = 10; // number of subdomains
+	int No = 10; // overlapping elements per subdomain
 	int num_pieces = Nd;
 	int Net = Nd*Ne+No;  // number of total elements (added "no" elements to last subdomain)
-	double tol = 1e-9; // tolerance
+	double tol = 1e-12; // tolerance
 	int num_elements_subdomain = Ne+No;
 	double len_kl = 0.1; //correlation length of log(k)
 	double var_kl = 1; //var of log(k)
 	double mu_kl = 0; // mean of k
 	double u0 = 1; //left dirichlet BC
 	double u1 = 0; //right Dirichlet BC
-
 
 	Indices indices;
 	indices.num_pieces = num_pieces;
@@ -81,67 +78,84 @@ void top_level_task(const Task *task,
 	
 
 	printf("Define Index Space\n");
-	Rect<1> rect(0,num_pieces-1);
-	IndexSpaceT<1> is = runtime->create_index_space(ctx, rect);
-	runtime->attach_name(is, "main_index_space");
-	Rect<1> rect_spatial(0,Nd*(Ne+No)-1);
-	IndexSpaceT<1> spatial_is = runtime->create_index_space(ctx, rect_spatial);
-	runtime->attach_name(spatial_is, "index for spatial settings");
+	Rect<1> rect_main(0,num_pieces-1);
+	IndexSpaceT<1> one_dimensional_is = runtime->create_index_space(ctx, rect_main);
+	runtime->attach_name(one_dimensional_is, "main_1d_ndex_space");
+	Rect<1> rect_middle_elem(0,Nd*(Ne+No)-1);
+	IndexSpaceT<1> middle_elem_is = runtime->create_index_space(ctx, rect_middle_elem);
+	runtime->attach_name(middle_elem_is, "index for element mid points");
+	Rect<1> rect_edge_elem(0,Nd*(Ne+No+1)-1);
+	IndexSpaceT<1> edge_elem_is = runtime->create_index_space(ctx, rect_edge_elem);
+	runtime->attach_name(edge_elem_is, "index for element edge points");
+
+	Rect<2> matrix_main = Rect<2>(Point<2>(0,0),Point<2>(num_pieces-1,0));
+	IndexSpaceT<2> two_dimensional_is = runtime->create_index_space(ctx, matrix_main);
+	runtime->attach_name(two_dimensional_is, "main_2d_index_space");
+	Rect<2> matrix_spatial = Rect<2>(Point<2>(0,0),Point<2>(Nd*(Ne+No-1) -1,Ne+No-1 -1));   // we store the inner part of matrices
+																							// which excludes the bcs
+	IndexSpaceT<2> matrix_is = runtime->create_index_space(ctx, matrix_spatial);
+	runtime->attach_name(matrix_is, "2d index for spatial settings");
 
 	// Make field spaces
 	FieldSpace edge_fs = runtime->create_field_space(ctx);
 	runtime->attach_name(edge_fs, "field space for edge nodes");
 	FieldSpace inner_fs = runtime->create_field_space(ctx);
 	runtime->attach_name(inner_fs, "field space for inner nodes and bool");
-	FieldSpace spatial_fs = runtime->create_field_space(ctx);
-	runtime->attach_name(spatial_fs, "field space for space settings (field, source and mesh)");
+	FieldSpace middle_elem_fs = runtime->create_field_space(ctx);
+	runtime->attach_name(middle_elem_fs, "field space for space settings using mid pts elem (field, source)");
+	FieldSpace edge_elem_fs = runtime->create_field_space(ctx);
+	runtime->attach_name(edge_elem_fs, "field space for space settings using edge pts elem (mesh and solution)");
+	FieldSpace matrix_fs = runtime->create_field_space(ctx);
+	runtime->attach_name(matrix_fs, "field space for the local fe matrices");
 
 	// Allocate fields
 	printf("Allocate field spaces\n");
 	allocate_edge_fields(ctx, runtime, edge_fs);
 	allocate_inner_fields(ctx, runtime, inner_fs);
-	allocate_spatial_fields(ctx, runtime, spatial_fs);
+	allocate_middle_elem(ctx, runtime, middle_elem_fs);
+	allocate_edge_elem(ctx, runtime, edge_elem_fs);
+	allocate_matrix_fields(ctx, runtime, matrix_fs);
 
 
-	//Finally create logical region all_subproblems
+	//Finally create logical region
 	printf("Create logical region\n");
-	LogicalRegion edge_lr = runtime->create_logical_region(ctx, is, edge_fs);
+	LogicalRegion edge_lr = runtime->create_logical_region(ctx, one_dimensional_is, edge_fs);
 	runtime->attach_name(edge_lr, "region with the edge nodes");
-	LogicalRegion inner_lr = runtime->create_logical_region(ctx, is, inner_fs);
-	runtime->attach_name(inner_lr, "regin with the inner node and boolean");
-	LogicalRegion spatial_lr = runtime->create_logical_region(ctx, spatial_is, spatial_fs);
-	runtime->attach_name(spatial_lr, "regin with the space settings (field, source and mesh)");
+	LogicalRegion inner_lr = runtime->create_logical_region(ctx, one_dimensional_is, inner_fs);
+	runtime->attach_name(inner_lr, "region with the inner node and boolean");
+	LogicalRegion middle_elem_lr = runtime->create_logical_region(ctx, middle_elem_is, middle_elem_fs);
+	runtime->attach_name(middle_elem_lr, "region with the space settings (field, source and mesh)");
+	LogicalRegion edge_elem_lr = runtime->create_logical_region(ctx, edge_elem_is, edge_elem_fs);
+	runtime->attach_name(edge_elem_lr, "region with the space settings (field, source and mesh)");
+	LogicalRegion matrix_lr = runtime->create_logical_region(ctx, matrix_is, matrix_fs);
+	runtime->attach_name(matrix_lr, "region with the local fe matrices");
+
+	
 
 
 
 	// CREATE PARTITIONS FOR NODES
 	printf("Create partitions for nodes\n");
-	IndexPartition ip = runtime->create_equal_partition(ctx, is, is);
+	IndexPartition ip = runtime->create_equal_partition(ctx, one_dimensional_is, one_dimensional_is);
 	LogicalPartition edge_lp = runtime->get_logical_partition(ctx, edge_lr, ip);
 	LogicalPartition inner_lp = runtime->get_logical_partition(ctx, inner_lr, ip);
 
-	// COLOR SPATIAL FIELDS TASK
-	TaskLauncher color_launcher(SUBDOMAIN_COLOR_TASK_ID, TaskArgument(&indices,sizeof(Indices)));
-	RegionRequirement spatialWO_color_req(spatial_lr, READ_WRITE, EXCLUSIVE, spatial_lr);
-	color_launcher.add_region_requirement(spatialWO_color_req);
-	color_launcher.region_requirements[0].add_field(3, SUBDOMAIN_COLOR_ID);
-	runtime->execute_task(ctx,color_launcher);
-
-
 	// CREATE PARTITIONS FOR SPATIAL SETTINGS
 	printf("Creating partition for spatial settings\n");
-	//IndexPartition spatial_ip = runtime->create_equal_partition(ctx, spatial_is, is);
-	IndexPartition spatial_ip = runtime->create_partition_by_field(ctx, spatial_lr, spatial_lr, SUBDOMAIN_COLOR_ID, is);
-	LogicalPartition spatial_lp = runtime->get_logical_partition(ctx, spatial_lr, spatial_ip);
+	DomainPoint middle_elem_blocking_factor = Point<1>(Ne+No);
+	IndexPartition middle_elem_ip = runtime->create_partition_by_blockify(ctx, middle_elem_is, middle_elem_blocking_factor);
+	DomainPoint edge_elem_blocking_factor = Point<1>(Ne+No+1);
+	IndexPartition edge_elem_ip = runtime->create_partition_by_blockify(ctx, edge_elem_is, edge_elem_blocking_factor);
+
+	LogicalPartition middle_elem_lp = runtime->get_logical_partition(ctx, middle_elem_lr, middle_elem_ip);
+	LogicalPartition edge_elem_lp = runtime->get_logical_partition(ctx, edge_elem_lr, edge_elem_ip);
+
+	DomainPoint blocking_factor = Point<2>(Ne+No-1, Ne+No-1 +1);
+	IndexPartition matrix_ip = runtime->create_partition_by_blockify(ctx, matrix_is, blocking_factor);
+	LogicalPartition matrix_lp = runtime->get_logical_partition(ctx, matrix_lr, matrix_ip);
 	printf("PARTITIONS SUCCESSFULLY CREATED\n");
 
 
-	// SET KL EXPANSION OF THE FIELD
-	TaskLauncher KL_launcher(KL_EXPANSION_TASK_ID, TaskArgument(&indices, sizeof(Indices)));
-	RegionRequirement KL_req(spatial_lr, WRITE_ONLY, EXCLUSIVE, spatial_lr);
-	KL_launcher.add_region_requirement(KL_req);	
-	KL_launcher.region_requirements[0].add_field(0,FIELD_ID);
-	runtime->execute_task(ctx, KL_launcher);
 
 
 	ArgumentMap arg_map;
@@ -150,96 +164,177 @@ void top_level_task(const Task *task,
 		arg_map.set_point(point, TaskArgument(&piece, sizeof(int)));
 	}
 
+	InlineLauncher KL_launcher(RegionRequirement(middle_elem_lr, WRITE_DISCARD, EXCLUSIVE, middle_elem_lr));
+	KL_launcher.requirement.add_field(0,FIELD_ID);
+	PhysicalRegion KL_region = runtime->map_region(ctx, KL_launcher);
+
+	/* Find KL modes */
+	VectorXd Lam;
+	MatrixXd Modes = SetKLModes(Net, Lam, len_kl, var_kl);
+	for(int e=0; e<Net; e++) Modes.col(e) *= Lam(e);
+
+	Rect<2> domain = Rect<2>(Point<2>(0,0),Point<2>(num_pieces-1,0));
+
 
 	// CONSTRUCT SPATIAL SETTINGS
-	IndexTaskLauncher spatial_launcher(INIT_SPATIAL_TASK_ID, rect, TaskArgument(&indices, sizeof(Indices)), arg_map);
-	RegionRequirement spatialWO_req(spatial_lp, 0, WRITE_ONLY, EXCLUSIVE, spatial_lr);
-	spatial_launcher.add_region_requirement(spatialWO_req);	
-	spatial_launcher.region_requirements[0].add_field(0,FIELD_ID);
-	spatial_launcher.region_requirements[0].add_field(1,SOURCE_ID);
-	spatial_launcher.region_requirements[0].add_field(2,MESH_ID);
-	spatial_launcher.region_requirements[0].add_field(4,SOLUTION_ID);
-	runtime->execute_index_space(ctx, spatial_launcher);
+	IndexTaskLauncher spatial_launcher(INIT_SPATIAL_TASK_ID, domain, TaskArgument(&indices, sizeof(Indices)), arg_map);
 
-	// INITIATE EDGE AND INNER NODES TASK
-	IndexTaskLauncher init_launcher(INIT_FIELDS_TASK_ID, rect, TaskArgument(&indices,sizeof(Indices)), arg_map);
+	RegionRequirement middleElemRW_req(middle_elem_lp, 0, READ_WRITE, EXCLUSIVE, middle_elem_lr);
+	RegionRequirement edgeElemWO_req(edge_elem_lp, 0, WRITE_ONLY, EXCLUSIVE, edge_elem_lr);
 	RegionRequirement edgeWO_req(edge_lp, 0, WRITE_ONLY, EXCLUSIVE, edge_lr);
 	RegionRequirement innerWO_req(inner_lp, 0, WRITE_ONLY, EXCLUSIVE, inner_lr);
-	init_launcher.add_region_requirement(edgeWO_req);
-	init_launcher.add_region_requirement(innerWO_req);
-	init_launcher.region_requirements[0].add_field(0,EDGE_LEFT_ID);
-	init_launcher.region_requirements[0].add_field(1,EDGE_RIGHT_ID);
-	init_launcher.region_requirements[1].add_field(0,INNER_LEFT_ID);
-	init_launcher.region_requirements[1].add_field(1,INNER_RIGHT_ID);
-	init_launcher.region_requirements[1].add_field(2,DONE_ID);
-	init_launcher.region_requirements[1].add_field(3,WRITE_ID);
-	runtime->execute_index_space(ctx, init_launcher);
+	RegionRequirement matrixWO_req(matrix_lp, 0, WRITE_ONLY, EXCLUSIVE, matrix_lr);
+
+	spatial_launcher.add_region_requirement(middleElemRW_req);
+	spatial_launcher.add_region_requirement(edgeElemWO_req);
+	spatial_launcher.add_region_requirement(edgeWO_req);
+	spatial_launcher.add_region_requirement(innerWO_req);
+	spatial_launcher.add_region_requirement(matrixWO_req);
+
+	spatial_launcher.region_requirements[0].add_field(0,FIELD_ID);
+	spatial_launcher.region_requirements[0].add_field(1,SOURCE_ID);
+
+	spatial_launcher.region_requirements[1].add_field(0,MESH_ID);
+	spatial_launcher.region_requirements[1].add_field(1,SOLUTION_ID);
+
+	spatial_launcher.region_requirements[2].add_field(0,EDGE_LEFT_ID);
+	spatial_launcher.region_requirements[2].add_field(1,EDGE_RIGHT_ID);
+
+	spatial_launcher.region_requirements[3].add_field(0,INNER_LEFT_ID);
+	spatial_launcher.region_requirements[3].add_field(1,INNER_RIGHT_ID);
+	spatial_launcher.region_requirements[3].add_field(2,DONE_ID);
+	spatial_launcher.region_requirements[3].add_field(3,WRITE_ID);
+
+	spatial_launcher.region_requirements[4].add_field(0, MASS_MATRIX_ID);
 
 
-	// START ITERATION
-	bool all_done = false;
-	FutureMap all_done_future;
-	int iterations = 0;
-	while(all_done==false){
+	// Local Solver
+	IndexTaskLauncher loc_solver_launcher(LOC_SOLVER_TASK_ID, domain, TaskArgument(&indices,sizeof(Indices)), arg_map);
+	RegionRequirement edgeRO_req(edge_lp, 0, READ_ONLY, EXCLUSIVE, edge_lr);
+	RegionRequirement matrixRO_req(matrix_lp, 0, READ_ONLY, EXCLUSIVE, matrix_lr);
+	RegionRequirement middleElemRO_req(middle_elem_lp, 0, READ_ONLY, EXCLUSIVE, middle_elem_lr);
+	RegionRequirement edgeElemRO_req(edge_elem_lp, 0, READ_ONLY, EXCLUSIVE, edge_elem_lr);
+	loc_solver_launcher.add_region_requirement(edgeRO_req);
+	loc_solver_launcher.add_region_requirement(innerWO_req);
+	loc_solver_launcher.add_region_requirement(middleElemRO_req);
+	loc_solver_launcher.add_region_requirement(edgeElemRO_req);
+	loc_solver_launcher.add_region_requirement(matrixRO_req);
+	loc_solver_launcher.region_requirements[0].add_field(0,EDGE_LEFT_ID);
+	loc_solver_launcher.region_requirements[0].add_field(1,EDGE_RIGHT_ID);
+	loc_solver_launcher.region_requirements[1].add_field(0,INNER_LEFT_ID);
+	loc_solver_launcher.region_requirements[1].add_field(1,INNER_RIGHT_ID);
+	loc_solver_launcher.region_requirements[1].add_field(2,DONE_ID);
+	loc_solver_launcher.region_requirements[1].add_field(3,WRITE_ID);
+	loc_solver_launcher.region_requirements[2].add_field(0,FIELD_ID);
+	loc_solver_launcher.region_requirements[2].add_field(1,SOURCE_ID);
+	loc_solver_launcher.region_requirements[3].add_field(0,MESH_ID);
+	loc_solver_launcher.region_requirements[3].add_field(1,SOLUTION_ID);
+	loc_solver_launcher.region_requirements[4].add_field(0,MASS_MATRIX_ID);
+
+	InlineLauncher done_launcher(RegionRequirement(inner_lr, READ_WRITE, EXCLUSIVE, inner_lr));
+	done_launcher.requirement.add_field(2,DONE_ID);
+	PhysicalRegion done_region = runtime->map_region(ctx, done_launcher);
+
+	//UPDATE BC
+	IndexTaskLauncher updateBC_launcher(UPDATE_BC_TASK_ID, domain, TaskArgument(&indices,sizeof(Indices)), arg_map);
+	RegionRequirement innerRO_req(inner_lp, 0, READ_ONLY, EXCLUSIVE, inner_lr);
+	updateBC_launcher.add_region_requirement(edgeWO_req);
+	updateBC_launcher.add_region_requirement(innerRO_req);
+	updateBC_launcher.region_requirements[0].add_field(0,EDGE_LEFT_ID);
+	updateBC_launcher.region_requirements[0].add_field(1,EDGE_RIGHT_ID);
+	updateBC_launcher.region_requirements[1].add_field(0,INNER_LEFT_ID);
+	updateBC_launcher.region_requirements[1].add_field(1,INNER_RIGHT_ID);
+	updateBC_launcher.region_requirements[1].add_field(2,DONE_ID);
 
 
-		IndexTaskLauncher loc_solver_launcher(LOC_SOLVER_TASK_ID, is, TaskArgument(&indices,sizeof(Indices)), arg_map);
-		RegionRequirement edgeWO_req(edge_lp, 0, READ_ONLY, EXCLUSIVE, edge_lr);
-		RegionRequirement innerRW_req(inner_lp, 0, WRITE_ONLY, EXCLUSIVE, inner_lr);
-		RegionRequirement spatialRO_req(spatial_lp, 0, READ_ONLY, EXCLUSIVE, spatial_lr);
-		loc_solver_launcher.add_region_requirement(edgeWO_req);
-		loc_solver_launcher.add_region_requirement(innerRW_req);
-		loc_solver_launcher.add_region_requirement(spatialRO_req);
-		loc_solver_launcher.region_requirements[0].add_field(0,EDGE_LEFT_ID);
-		loc_solver_launcher.region_requirements[0].add_field(1,EDGE_RIGHT_ID);
-		loc_solver_launcher.region_requirements[1].add_field(0,INNER_LEFT_ID);
-		loc_solver_launcher.region_requirements[1].add_field(1,INNER_RIGHT_ID);
-		loc_solver_launcher.region_requirements[1].add_field(2,DONE_ID);
-		loc_solver_launcher.region_requirements[1].add_field(3,WRITE_ID);
-		loc_solver_launcher.region_requirements[2].add_field(0,FIELD_ID);
-		loc_solver_launcher.region_requirements[2].add_field(1,SOURCE_ID);
-		loc_solver_launcher.region_requirements[2].add_field(2,MESH_ID);
-		loc_solver_launcher.region_requirements[2].add_field(4,SOLUTION_ID);
-		all_done_future = runtime->execute_index_space(ctx, loc_solver_launcher);
-		all_done_future.wait_all_results();
+
+	// Start MC loop
+	for(int samples=0; samples<1; samples++){
+
+		printf("sample %3d \n", samples);
 
 
-		bool success = true;
-		for(int n=0; n<num_pieces; n++){
-			success = all_done_future.get_result<bool>(n) && success;
+		const FieldAccessor<WRITE_DISCARD,double,1> acc_field(KL_region, FIELD_ID);
+
+		/* KL Expansion */
+		VectorXd KF = VectorXd::Ones(Net)*mu_kl; // full KL-epansion
+		for(int e=0; e<Net; e++){
+			double va = G(generator);
+			KF += Modes.col(e)*va;	
+		}
+		KF.array() = KF.array().exp();
+
+		int ned=Ne+No;
+		int id = 0;
+		int elem=0;
+		for(int n=0; n<Nd; n++){
+			if (n==0){
+				for(int e=0; e<Ne+No; e++){
+					id = n * ned + e;
+					elem = n * Ne + e;
+					acc_field[id] = KF(elem);
+				}
+			}
+			else{
+				for(int e=0; e<No; e++){
+					id = n * ned + e;
+					acc_field[id] = acc_field[id-No];
+
+				}
+				for(int e=No; e<Ne+No; e++){
+					id = n * ned + e;
+					elem = n * Ne + e;
+					acc_field[id] = KF(elem);
+
+				}
+			}
+			
 		}
 
-		if (success==true) all_done = true;
-
-		//GET FUTURE SOLUTIONS
-		ArgumentMap all_done_map(all_done_future);
-
-		//UPDATE BC
-		IndexTaskLauncher updateBC_launcher(UPDATE_BC_TASK_ID, is, TaskArgument(&indices,sizeof(Indices)), all_done_map);
-		RegionRequirement edgeRO_req(edge_lp, 0, WRITE_ONLY, EXCLUSIVE, edge_lr);
-		RegionRequirement innerWO_req(inner_lp, 0, READ_ONLY, EXCLUSIVE, inner_lr);
-		updateBC_launcher.add_region_requirement(edgeRO_req);
-		updateBC_launcher.add_region_requirement(innerWO_req);
-		updateBC_launcher.region_requirements[0].add_field(0,EDGE_LEFT_ID);
-		updateBC_launcher.region_requirements[0].add_field(1,EDGE_RIGHT_ID);
-		updateBC_launcher.region_requirements[1].add_field(0,INNER_LEFT_ID);
-		updateBC_launcher.region_requirements[1].add_field(1,INNER_RIGHT_ID);
-		updateBC_launcher.region_requirements[1].add_field(2,DONE_ID);
-		runtime->execute_index_space(ctx, updateBC_launcher);
-
-		iterations ++;
-	} 
-	// END SCHWARZ ITERATIONS
+		// CONSTRUCT SPATIAL SETTINGS
+		runtime->execute_index_space(ctx, spatial_launcher);
 
 
-	// FOR DISPLAY
-	TaskLauncher display_task(DISPLAY_TASK_ID, TaskArgument(&Net, sizeof(int)));
-	RegionRequirement spatialRO_req2(spatial_lr, READ_ONLY, EXCLUSIVE, spatial_lr);
-	display_task.add_region_requirement(spatialRO_req2);
-	display_task.region_requirements[0].add_field(4,SOLUTION_ID);
-	runtime->execute_task(ctx, display_task);
+		// START ITERATION
+		bool all_done = false;
+		int iterations = 0;
+		while(all_done==false){
 
-	printf("\n Classic Schwar: solved in %3d iterations local gap of %12.0e\n", iterations, tol);
+
+			
+			runtime->execute_index_space(ctx, loc_solver_launcher);
+
+
+			const FieldAccessor<READ_ONLY,bool,1> acc_done(done_region, DONE_ID);
+
+
+
+			bool success = true;
+			for(int n=0; n<num_pieces; n++){
+				success = acc_done[Point<1>(n)] && success;
+				if(success==false) break;
+			}
+			if (success==true){
+				all_done = true;
+			} 
+
+			
+			runtime->execute_index_space(ctx, updateBC_launcher);
+
+			iterations ++;
+		} 
+		// END SCHWARZ ITERATIONS
+
+
+		// FOR DISPLAY
+		TaskLauncher display_task(DISPLAY_TASK_ID, TaskArgument(&indices, sizeof(Indices)));
+		RegionRequirement edgeElemRO_req2(edge_elem_lr, READ_WRITE, EXCLUSIVE, edge_elem_lr);
+		display_task.add_region_requirement(edgeElemRO_req2);
+		display_task.region_requirements[0].add_field(1,SOLUTION_ID);
+		runtime->execute_task(ctx, display_task);
+
+		printf("\n Classic Schwar: solved in %3d iterations local gap of %12.0e\n", iterations, tol);
+	}
 
 }
 
@@ -261,14 +356,24 @@ void allocate_inner_fields(Context ctx, Runtime *runtime, FieldSpace field_space
 	allocator.allocate_field(sizeof(bool), WRITE_ID);
 };
 
-void allocate_spatial_fields(Context ctx, Runtime *runtime, FieldSpace field_space)
+void allocate_middle_elem(Context ctx, Runtime *runtime, FieldSpace field_space)
 {
 	FieldAllocator allocator = runtime->create_field_allocator(ctx, field_space);
 	allocator.allocate_field(sizeof(double), FIELD_ID);
 	allocator.allocate_field(sizeof(double), SOURCE_ID);
+};
+
+void allocate_edge_elem(Context ctx, Runtime *runtime, FieldSpace field_space)
+{
+	FieldAllocator allocator = runtime->create_field_allocator(ctx, field_space);
 	allocator.allocate_field(sizeof(double), MESH_ID);
-	allocator.allocate_field(sizeof(Point<1>), SUBDOMAIN_COLOR_ID);
 	allocator.allocate_field(sizeof(double), SOLUTION_ID);
+};
+
+void allocate_matrix_fields(Context ctx, Runtime *runtime, FieldSpace field_space)
+{
+	FieldAllocator allocator = runtime->create_field_allocator(ctx, field_space);
+	allocator.allocate_field(sizeof(double), MASS_MATRIX_ID);
 };
 
 
@@ -284,11 +389,6 @@ int main(int argc, char **argv){
 		Runtime::preregister_task_variant<top_level_task>(registrar, "top_level");
 	}
 
-	{
-		TaskVariantRegistrar registrar(INIT_FIELDS_TASK_ID, "init_fields_task");
-		registrar.add_constraint(ProcessorConstraint(Processor::LOC_PROC));
-		Runtime::preregister_task_variant<init_fields_task>(registrar, "init_fields_task");
-	}
 
 	{
 		TaskVariantRegistrar registrar(INIT_SPATIAL_TASK_ID, "init_spatial_task");
@@ -299,9 +399,9 @@ int main(int argc, char **argv){
 	{
 		TaskVariantRegistrar registrar(LOC_SOLVER_TASK_ID, "loc_solver_task");
 		registrar.add_constraint(ProcessorConstraint(Processor::LOC_PROC));
-		registrar.set_leaf();
-		Runtime::preregister_task_variant<bool, loc_solver_task>(registrar, "loc_solver_task");
+		Runtime::preregister_task_variant<loc_solver_task>(registrar, "loc_solver_task");
 	}
+
 
 	{
 		TaskVariantRegistrar registrar(UPDATE_BC_TASK_ID, "updateBC_task");
@@ -310,22 +410,12 @@ int main(int argc, char **argv){
 	}
 
 	{
-		TaskVariantRegistrar registrar(SUBDOMAIN_COLOR_TASK_ID, "color_spatial_fields_task");
-		registrar.add_constraint(ProcessorConstraint(Processor::LOC_PROC));
-		Runtime::preregister_task_variant<color_spatial_fields_task>(registrar, "color_spatial_fields_task");
-	}
-
-	{
-		TaskVariantRegistrar registrar(KL_EXPANSION_TASK_ID, "KL_expansion_task");
-		registrar.add_constraint(ProcessorConstraint(Processor::LOC_PROC));
-		Runtime::preregister_task_variant<KL_expansion_task>(registrar, "KL_expansion_task");
-	}
-
-	{
 		TaskVariantRegistrar registrar(DISPLAY_TASK_ID, "display_task");
 		registrar.add_constraint(ProcessorConstraint(Processor::LOC_PROC));
 		Runtime::preregister_task_variant<display_task>(registrar, "display_task");
 	}
+
+	
 
 	
 
