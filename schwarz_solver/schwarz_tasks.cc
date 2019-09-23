@@ -1,5 +1,5 @@
 #include "schwarz_solver.h"
-#include "../kldec.h"
+#include "../../kldec.h"
 
 
 MatrixXd SetKLModes(int const nel, VectorXd &Lam, double len_kl, double var_f);

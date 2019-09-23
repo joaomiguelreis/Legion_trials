@@ -10,7 +10,7 @@
 // #include "../StochTk++/includes/cub++.h"
 // #include "../StochTk++/includes/mstoch++.h"
 
-#include "../legion/runtime/legion.h"
+#include "../../legion/runtime/legion.h"
 
 
 using namespace std;
